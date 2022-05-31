@@ -1,0 +1,19 @@
+<document xmlns="http://cnx.rice.edu/cnxml">
+  <title>Result and Analysis</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m45580</md:content-id>
+  <md:title>Result and Analysis</md:title>
+  <md:abstract/>
+  <md:uuid>6c9e6eea-4464-42f9-961a-b0a5a391b5e8</md:uuid>
+</metadata>
+
+<content>
+    <para id="import-auto-id1170233684300">To analyze the robustness of our implementation of the Cox’s algorithm, a random generator function is used to generate a length-1000 string with printable characters (ACSII 32-126) for each trial of the analysis. A comparator is built to generate the ratio between number of correct character over the total number of characters by comparing the original watermark message to the extracted one. The ratio is recorded for the length-1000 randomly generated strings for each compression value starting at 512, the minimum value of the image’s dimensions. To visualize the result, the correct ratio is plotted against the compression values with a decrement of 5. </para>
+    <para id="import-auto-id1170210840757">At very large and small compression values, correct ratios are unresponsive to the change of compression values. Between 450-100, the correct ratio drops linearly with compression. From this result, we can conclude that effectiveness of Cox’s DCT watermarking decays linearly with SVD compression at midrange and the algorithm is very effective for minor compression. Also note that error occurs for the characters with higher index before ones with lower. In context of sending secrete message through watermarking, errors are more likely to occur in longer messages than in a shorter ones under the same compression. In other words, if the message is short, one could send and retrieve the message with perfect accuracy even under high compression.</para>
+    <figure id="import-auto-id1170242544448">
+      <media id="import-auto-id1170235408084" alt="">
+        <image mime-type="image/jpg" src="../../media/Picture 1-a349.jpg" height="492" width="623"/>
+      </media>
+    </figure>
+  </content>
+</document>

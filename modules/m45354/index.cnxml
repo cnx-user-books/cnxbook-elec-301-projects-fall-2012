@@ -1,0 +1,42 @@
+<document xmlns="http://cnx.rice.edu/cnxml">
+  <title>Conclusion</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m45354</md:content-id>
+  <md:title>Conclusion</md:title>
+  <md:abstract>Results, shortcomings, and future work for our Music Visualization project.</md:abstract>
+  <md:uuid>5e8c307a-a5f7-4409-b4b5-6528c1277077</md:uuid>
+</metadata>
+
+<content>
+    <section id="import-auto-id1167355725050">
+      <title>Conclusion</title>
+      <section id="import-auto-id1167360257186">
+        <title>Results</title>
+        <para id="import-auto-id1167357258129">Using ICA algorithms, Matlab, Java, and a graphic library, we were able to create a our own visualization of music.</para>
+        <para id="import-auto-id1167360264248">The ICA algorithm in our Matlab code successfully extracted three tracks form the song that were independent enough to represent the notes from the song. </para>
+        <para id="import-auto-id1167358620128">The FFT of the song gave us relevant frequencies which were mapped to the visualization.</para>
+        <para id="import-auto-id1167360265726">Our beat detection worked well and shot out particles whenever there were beats. </para>
+        <figure id="import-auto-id1167365429413">
+          <media id="import-auto-id1167355728097" alt="">
+            <image mime-type="image/png" src="../../media/Picture 7-f35e.png" height="401" width="625"/>
+          </media>
+        </figure>
+      </section>
+      <section id="import-auto-id1167360269766">
+        <title>Shortcomings</title>
+        <para id="import-auto-id1167354695595">Our music visualization worked well with Drum and Bass music and Instrumental music. However, the ICA algorithm couldn't handle slightly wavering notes, which made voice and vibrato troublesome to work with. </para>
+        <para id="import-auto-id1167355646717">At the same time, the our algorithm couldn't determine harmonics in an instrument, and thus would occassionally display the same note being in two different places. </para>
+        <para id="import-auto-id1167355657962">The algorithm used the relative volume of what was going on in each frame, and thus would occassionally display sustained notes as a dashed line in our code instead of a continuous one.</para>
+      </section>
+      <section id="import-auto-id1167369783205">
+        <title>Future Developments</title>
+        <para id="import-auto-id1167355715468">There are many developments that can be implemented to this project, from more visualizations for more parts of the song to using different algorithms to get more accurate sources. We can also include that smoothing out the detection of notes on our current algorithm would benefit the display on our visualization, so our lines appear more continuous when it is the same note.</para>
+        <para id="import-auto-id1167365910805"> The most important part that we wish to implement is to have all of our code in Java.</para>
+        <para id="import-auto-id1167355608177">This would allow us to perform the visualization in real time, instead of preprocessed data from Matlab.</para>
+        <para id="import-auto-id1167375133014">Adding an interface to our visualization, with simple things such as scrolling through the song, to changing the amount of sources without having to go to the code and changing it.</para>
+        <para id="import-auto-id1167355606502">Another development that could be added is doing voice visualization, which at the moment is not easy to do, since the voice usually wavers slightly and thus our algorithm doesn't find it as a continuous note.</para>
+        <para id="import-auto-id1167355659079">Future work for this project includes adding an interface for our visualizer. In said interface we could change.</para>
+      </section>
+    </section>
+  </content>
+</document>

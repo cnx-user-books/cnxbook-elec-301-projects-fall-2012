@@ -1,0 +1,40 @@
+<document xmlns="http://cnx.rice.edu/cnxml">
+  <title>Direction of Arrival Estimation</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m45412</md:content-id>
+  <md:title>Direction of Arrival Estimation</md:title>
+  <md:abstract>A description of what direction of arrival is and a discussion of our specific algorithm for determining it</md:abstract>
+  <md:uuid>5f66ca6a-c2f7-43cd-8c62-23dfd5bd7833</md:uuid>
+</metadata>
+
+<content>
+    <section id="import-auto-id1172207171412">
+      <title>Direction of Arrival Estimation</title>
+      <para id="import-auto-id1172207495170">Given the basic foundation in beamforming the other modules in this section have established, we would like to extend the usefulness of the technique into new domains. One application of interest outside of simply creating a directional antenna is to identify the direction from which a known source is broadcasting, called <term id="import-auto-id1172206875893">Direction of Arrival Estimation.</term></para>
+      <section id="import-auto-id1172207251898">
+        <title>Basic Premise:</title>
+        <para id="import-auto-id1172217652853">In all cases, direction of arrival estimation relies upon an a priori estimate of the signal’s arrival direction. If no estimate can be made, the array’s response is swept around the unit circle, and a decision rule is applied to its output. Locations where this decision rule is satisfied are assumed to correspond to locations of the known source. If an estimate exists, more sophisticated adaptive processing techniques may be applied to determine the source’s location with greater precision.</para>
+      </section>
+      <section id="import-auto-id1172210498030">
+        <title>Specific Implementation:</title>
+        <para id="import-auto-id1172213401210">To simplify the process of direction estimation, we make a few assumptions about the configuration of our sensor network and its environment. The first assumption we make is that our source is sufficiently distant from our sensor network for the received wavefront to be considered linear. This first assumption is called the Far Field Approximation, and simplifies the computation of steering and weighting vectors. The second assumption we make pertains to the noise environment the sensor operates within. We assume that noise (if present) is ideal Gaussian noise, simplifying the structure of our signal detection segment. </para>
+        <para id="import-auto-id1172207106635">These assumptions having been made, the detection algorithm is quite simple. We step through angles over which the array can look, feeding an input from a known location. The output of the array is then fed through a matched filter, which has the effect of computing the cross-correlation between the signal received by the array and the known signal of the transmitter. The peak value of that correlation is then stored with its corresponding angle. Upon completing the sweep over angles, the angle with the highest peak correlation is taken to be the most likely location of the signal source. This algorithm is described below in pseudocode:</para>
+      </section>
+      <section id="import-auto-id1172207126720"><title>Pseudocode:</title><code id="angleEstimate" display="block">
+        Function AngleEstimation{
+           Angle &lt;- 0
+           Angles &lt;- [] //empty set of angles
+           Magnitudes &lt;- [] //empty set of peak amplitudes
+           While Angle &lt; 2*pi {
+              Output &lt;- Beamformer(Angle, input)
+              Output &lt;- Matched_Filter(Output)
+              Angles &lt;- concatenate(Angles, Angle)
+              Magnitudes &lt;- concat(Magnitudes, max(Output))
+              Angle &lt;- Angle + pi/32 //increment to next angle
+           }
+           SourceAngle &lt;- Angles[index(max(Magnitudes))]
+           Return SourceAngle;
+        }
+</code>    </section></section>
+  </content>
+</document>

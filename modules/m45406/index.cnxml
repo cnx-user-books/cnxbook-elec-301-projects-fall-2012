@@ -1,0 +1,34 @@
+<document xmlns="http://cnx.rice.edu/cnxml">
+  <title>Introduction</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m45406</md:content-id>
+  <md:title>Introduction</md:title>
+  <md:abstract/>
+  <md:uuid>2ed7a240-dfba-4ae2-8e18-153606322c61</md:uuid>
+</metadata>
+
+<content>
+    <section id="import-auto-id1171922426972">
+      <title>Introduction</title>
+      <para id="import-auto-id1171922499208">Digital watermarking is the technology of inserting, and most of the time, hiding messages in noise- tolerant digital signals, such as images, videos and audios. The technology is mainly used for copyright protection but it also has applications to fields such as,</para><para id="import-auto-id1171932855410">Copyright protection</para>
+      <para id="import-auto-id7551524">Fingerprinting</para>
+      <para id="import-auto-id1171922495723">Ownership assertion</para>
+      <para id="import-auto-id1171922997984">Fraud&amp; temper detection</para>
+      <para id="import-auto-id1171906249579">ID card security</para>
+      <para id="import-auto-id1171901557532">Deter digital counterfeiting bank notes</para>
+      <para id="import-auto-id1171909841941">The following is a top level illustration of general procedures of embedding, transmitting and extracting a digital watermark in an image.</para>
+      <figure id="import-auto-id1171906191539">
+        <media id="import-auto-id1171923429514" alt="">
+          <image mime-type="image/jpg" src="../../media/graphics1-8d3c.jpg" height="434" width="440"/>
+        </media>
+      </figure>
+      <para id="import-auto-id1171932528316">The following is our Host and Watermarked image, which looks pretty much the same to naked eye.</para>
+      <figure id="import-auto-id7560311"><title>Host Image</title><media id="import-auto-id1171922558090" alt="">
+          <image mime-type="image/jpg" src="../../media/graphics2-9ad1.jpg" height="512" width="514"/>
+        </media>
+      </figure><figure id="import-auto-id1171906180448"><title>Watermarked Image</title><media id="import-auto-id1171915801535" alt="">
+          <image mime-type="image/jpg" src="../../media/graphics3-f9d3.jpg" height="510" width="512"/>
+        </media>
+      </figure></section>
+  </content>
+</document>

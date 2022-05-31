@@ -1,0 +1,22 @@
+<document xmlns="http://cnx.rice.edu/cnxml">
+  <title>Conclusion</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m45403</md:content-id>
+  <md:title>Conclusion</md:title>
+  <md:abstract/>
+  <md:uuid>47e3e171-82c9-4ef4-aa70-a13630e7788e</md:uuid>
+</metadata>
+
+<content>
+    <section id="import-auto-id1165784058267">
+      <title>Conclusion </title>
+      <para id="import-auto-id1165788763729">Using feature recognition and corner detection, we were not only able to successfully identify a face, but also to detect whether or not that face was smiling in a photo. The ability to automatically identify smiles has many possible applications such as: marketing analysis of customer reaction, improved camera features and functionality, and the automatic disposal of ‘bad’ photos amongst a collection of camera shots. </para>
+      <para id="import-auto-id1165762646908">One drawback of our smile detection system was its handling of the neutral face, which has no obvious concavity on which to judge the presence of a smile. To deal with this problem, and produce less false positive results, we assigned all results with no obvious positive concavity to the ‘unsmiling’ category. Though this decision did lead to more misses in detecting a smile with our algorithm, all errors occurred on photos where the subject was barely smiling, as with a close-lipped smile. Therefore, our algorithm still has the capability to distinguish a recognizable smile, but has more issues with small, less recognizable smiles that the average person might also struggle to identify as a happy face. </para>
+      <section id="import-auto-id1165766132868">
+        <title>Future Work and Improvements</title>
+        <para id="import-auto-id1165760912612">In the future the program could be improved to work with video. As an alternative to inputting images to the program, a short video could be taken and the frame where the smile is best could be pulled and presented as the optimal photograph of the person. (An alternate version of the program we wrote is currently capable of pulling video frames from a video and running our analysis over individual frames). </para>
+        <para id="import-auto-id1165752597682">There are several ways in which the program could be improved. Our software could analyze other regions in addition to a person’s mouth to aid in more accurately determining their facial expression, and add a blink detection feature. The program would be more versatile if it were improved to handle more than one face per photo. In order to improve accuracy, statistical analysis of ideal curvature and corner density criteria could be fine tuned. The code could also be improved to accurately determine rotated faces. To increase the likelihood of initial face detection, the program could be optimized to identify faces even when partially obscured by a person’s hair. Finally, the program could be trained with previous edge and corner detection data, in order to more accurately and rapidly determine the person’s facial expression.</para>
+      </section>
+    </section>
+  </content>
+</document>

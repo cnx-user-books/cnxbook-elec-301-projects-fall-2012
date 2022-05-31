@@ -1,0 +1,34 @@
+<document xmlns="http://cnx.rice.edu/cnxml">
+  <title>Conclusions</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m45364</md:content-id>
+  <md:title>Conclusions</md:title>
+  <md:abstract>This module includes the conclusions of our project.</md:abstract>
+  <md:uuid>df3a201a-b2a1-40bb-9116-54e2537dd77b</md:uuid>
+</metadata>
+<featured-links>
+  <!-- WARNING! The 'featured-links' section is read only. Do not edit below.
+       Changes to the links section in the source will not be saved. -->
+    <link-group type="supplemental">
+      <link url="http://cnx.org/content/m45356/latest/" strength="3">Introduction</link>
+      <link url="http://cnx.org/content/m45358/latest/" strength="3">Background</link>
+      <link url="http://cnx.org/content/m45359/latest/" strength="3">Calculating the Position, Speed, and Orientation of an Object</link>
+      <link url="http://cnx.org/content/m45357/latest/" strength="3">Object Detection Challenges and Solutions</link>
+      <link url="http://cnx.org/content/m45375/latest/" strength="3">Musical Mapping</link>
+      <link url="http://cnx.org/content/m45360/latest/" strength="3">3-D Sound Implementation</link>
+      <link url="http://cnx.org/content/m45362/latest/" strength="3">Results</link>
+      <link url="http://cnx.org/content/m45363/latest/" strength="3">Future Work</link>
+      <link url="http://cnx.org/content/m45366/latest/" strength="3">Poster</link>
+      <link url="http://cnx.org/content/m45365/latest/" strength="3">References</link>
+      <link url="http://cnx.org/content/m45373/latest/" strength="3">The Team</link>
+    </link-group>
+  <!-- WARNING! The 'featured-links' section is read only. Do not edit above.
+       Changes to the links section in the source will not be saved. -->
+</featured-links>
+<content>
+    <section id="import-auto-id1171920582020">
+      <title>Conclusion</title>
+      <para id="import-auto-id1171927790886">The OpenSurf function can be used to detect not only an object, but also its motion. As a result, by utilizing the OpenSurf function, we are able to track the dancing movements of a dancer who is wearing a hat and holding objects in her/his hands. As a result, the 3-D sound generated from the output of the OpenSurf function successfully describes those movements. Though work remains, our object detection and 3-D sound synthesis system can be used to help the blind experience the TV show Dancing With The Stars, as well as many other dancing performances.  </para>
+    </section>
+  </content>
+</document>

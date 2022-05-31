@@ -1,0 +1,16 @@
+<document xmlns="http://cnx.rice.edu/cnxml">
+  <title>Code and Poster</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m45415</md:content-id>
+  <md:title>Code and Poster</md:title>
+  <md:abstract>A link to our MATLAB code and a PDF version of our poster</md:abstract>
+  <md:uuid>fb92f880-48db-4dff-848a-2ad3761d2e77</md:uuid>
+</metadata>
+
+<content>
+    <section id="import-auto-id6787945">
+      <title>Code and Poster</title>
+      <para id="import-auto-id6490141">For those who are curious, we’ve provided a link to our MATLAB code and poster. Both of them can be found <link url="http://amd11.web.rice.edu/finalweb"><emphasis effect="underline">here</emphasis></link>.</para>
+    </section>
+  </content>
+</document>

@@ -1,0 +1,51 @@
+<document xmlns="http://cnx.rice.edu/cnxml">
+  <title>Beamforming</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m45411</md:content-id>
+  <md:title>Beamforming</md:title>
+  <md:abstract>A discussion of the conventional frequency-domain beamforming algorithm</md:abstract>
+  <md:uuid>dd717f03-f4dc-406e-924f-49de38949b4a</md:uuid>
+</metadata>
+
+<content>
+    <section id="import-auto-id1166336602176">
+      <title>Beamforming </title>
+      <para id="import-auto-id1166336608107">The conventional frequency domain beamforming algorithm involves three components: a steering vector<emphasis effect="bold"/><emphasis effect="bold"><emphasis effect="italics">e</emphasis></emphasis>, a weighting matrix <emphasis effect="bold">W</emphasis>, and a vector <emphasis effect="bold">Y</emphasis> which contains the frequency information about the signal received at each sensor. The steering vector is given its own section, and I will go into brief detail about the other two here.</para>
+      <section id="import-auto-id1166336601939">
+        <title>Sensor Data</title>
+        <para id="import-auto-id1166336482535">The column vector <emphasis effect="bold">Y</emphasis> is actually a collection of short-time Fourier Transforms. The signal received at each sensor at a given time <emphasis effect="italics">t </emphasis>is multiplied by a window of duration <emphasis effect="italics">D </emphasis>and then the Fourier Transform of that product is taken. Mathematically, this can be expressed as</para>
+        <figure id="import-auto-id1166336591198">
+          <media id="import-auto-id1166336591199" alt="">
+            <image mime-type="image/png" src="../../media/graphics1-19b7.png" height="47" width="263"/>
+          </media>
+        </figure>
+        <para id="import-auto-id1166336601945"> This transform effectively represents the frequency components of the signal during various blocks of time, and is useful if the signal itself is finite and/or not uniform over all time. When performing a short-time Fourier Transform, it is best to pick a window that has a Fourier Transform which looks like a single narrow spike so that its width is narrow compared to the signal’s spectral variations – this allows the short-time Fourier Transform of a signal at one instant in time to best approximate the signal’s spectrum. The vector <emphasis effect="bold">Y </emphasis>should actually be written as <emphasis effect="bold">Y</emphasis>(<emphasis effect="italics">t, ω</emphasis>) because it is dependent both on time and the frequency content of the signal, but often that notation is omitted for neatness. Each element <emphasis effect="italics">Y­</emphasis><emphasis effect="italics">n­</emphasis> ­is the collection of short-time Fourier Transforms at sensor <emphasis effect="italics">n</emphasis>, thus giving <emphasis effect="bold">Y </emphasis>the form </para>
+        <figure id="import-auto-id1166336595675">
+          <media id="import-auto-id1166336482485" alt="">
+            <image mime-type="image/png" src="../../media/graphics2-e6b8.png" height="58" width="151"/>
+          </media>
+        </figure>
+      </section>
+      <section id="import-auto-id1166336605100">
+        <title>The Weighting Matrix</title>
+        <para id="import-auto-id1166336605104">The matrix <emphasis effect="bold">W </emphasis>is diagonal; the only elements which are not zero are the sensor weights along its main diagonal. The actual content of those weights can vary by application. In a simple linear array like the one used in our particular example, all of the weights are simply one. However, in more interesting array configurations such as an array with sensors that were placed randomly or real-world sensors that have inherent noise components, the weighting matrix can become much more important.</para>
+      </section>
+      <section id="import-auto-id1166336591207">
+        <title>Beamformer Output</title>
+        <para id="import-auto-id1166336613065">The Fourier Transform of the beamformer output can be written in the following way:</para>
+        <figure id="import-auto-id1166336613067">
+          <media id="import-auto-id1166336613068" alt="">
+            <image mime-type="image/png" src="../../media/graphics3-ea9f.png" height="58" width="354"/>
+          </media>
+        </figure>
+        <para id="import-auto-id1166336613642">This is the inner product of <emphasis effect="bold"><emphasis effect="italics">e’</emphasis></emphasis> and <emphasis effect="bold">WY</emphasis>, which is nothing more than a column vector of weighted short-time Fourier transforms. In order to get the beamformer output in the time domain, all that is necessary is taking an inverse short-time Fourier Transform of <emphasis effect="bold"><emphasis effect="italics">e’WY</emphasis></emphasis>(<emphasis effect="italics">t, ω</emphasis>).</para>
+        <para id="import-auto-id1166336600149">Here is a visual representation of the entire beamforming process:</para>
+        <figure id="import-auto-id1166336602166">
+          <media id="import-auto-id1166336602167" alt="">
+            <image mime-type="image/jpg" src="../../media/Picture 0-decf.jpg" height="275" width="624"/>
+          </media>
+        </figure>
+      </section>
+    </section>
+  </content>
+</document>

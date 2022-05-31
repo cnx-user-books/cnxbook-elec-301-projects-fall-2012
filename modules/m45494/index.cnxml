@@ -1,0 +1,161 @@
+<document xmlns="http://cnx.rice.edu/cnxml">
+  <title>Results</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m45494</md:content-id>
+  <md:title>Results</md:title>
+  <md:abstract/>
+  <md:uuid>da6d5514-29e4-4393-9e67-54ca363d8143</md:uuid>
+</metadata>
+
+<content>
+    <section id="eip-411"><title>Results</title><para id="eip-133">
+
+</para></section><para id="import-auto-id1170246691226">In our experiment, we take three groups of LDR pictures and try to construct three HDR pictures from them. For each group of these pictures, we take 6 LDR pictures with different exposure times. We’ll display the response curve for each color channel: red, blue and green and our final HDR picture.</para>
+    <section id="eip-683"><title>Group 1</title><para id="eip-877">
+
+</para></section><para id="import-auto-id1170218884488"><figure id="ResFun1R"><media id="G1Red" alt="Figure1.">
+    <image mime-type="image/png" src="../../media/RF Group1 Red.jpg" height="400" width="700"/>
+  </media>
+  
+<caption>Response Function for Channel Red
+  </caption></figure></para><para id="import-auto-id1170203110596"><figure id="ResFun1G"><media id="G1green1" alt="Figure2.">
+    <image mime-type="image/png" src="../../media/RF Group1 Green.jpg" height="400" width="700"/>
+  </media>
+  
+<caption>Response Function for Channel Green
+  </caption></figure></para><para id="import-auto-id1170220335405"><figure id="ResFun1B"><media id="G1Blue" alt="Figure3.">
+    <image mime-type="image/png" src="../../media/RF Group1 Blue.jpg" height="400" width="700"/>
+  </media>
+  
+<caption>Response Function for Channel Blue</caption></figure></para><para id="import-auto-id1170209746070"><figure id="E1-50s"><media id="e150" alt="Figure4.">
+    <image mime-type="image/png" src="../../media/Group1 150s.jpg" height="400" width="700"/>
+  </media>
+  
+<caption>LDR picture with exposure time 1/50s
+  </caption></figure></para><para id="import-auto-id1170201375158"><figure id="E1-125s"><media id="e125" alt="Figure6.">
+    <image mime-type="image/png" src="../../media/Group1 1125s.jpg" height="400" width="700"/>
+  </media>
+  
+<caption>LDR picture with exposure time 1/125s
+  </caption></figure></para><para id="import-auto-id1170212358967"><figure id="E1-320s"><media id="e320" alt="Figure6.">
+    <image mime-type="image/png" src="../../media/Group1 1320s.jpg" height="400" width="700"/>
+  </media>
+  
+<caption>LDR picture with exposure time 1/320s
+  </caption></figure></para><para id="import-auto-id1170220771963"><figure id="E1-800s"><media id="e800" alt="Figure7.">
+    <image mime-type="image/png" src="../../media/Group1 1800s.jpg" height="400" width="700"/>
+  </media>
+  
+<caption>LDR picture with exposure time 1/800s
+  </caption></figure></para><para id="import-auto-id1170232490286"><figure id="E1-1600s"><media id="e1600" alt="Figure8.">
+    <image mime-type="image/png" src="../../media/Group1 11600s.jpg" height="400" width="700"/>
+  </media>
+  
+<caption>LDR picture with exposure time 1/1600s
+  </caption></figure></para><para id="import-auto-id1170234066662"><figure id="E1-4000s"><media id="e4000" alt="Figure9.">
+    <image mime-type="image/png" src="../../media/Group1 14000s.jpg" height="400" width="700"/>
+  </media>
+  
+<caption>LDR picture with exposure time 1/4000s
+  </caption></figure></para><para id="import-auto-id1170233721703"><figure id="E1-finals"><media id="efinal" alt="Figure10.">
+    <image mime-type="image/png" src="../../media/FinalPic Group1.jpg" height="400" width="700"/>
+  </media>
+  
+<caption>Final HDR picture for Group 1
+  </caption></figure></para><para id="import-auto-id1170201434852">Comment: It’s impressive to see the details both of the light and of the clothes. For these kind of pictures, it’s always easy to lose the details of the light since the pixel values of the area around the light will get saturated. But, through HDR, we could keep the details of the light without losing any other details.</para><section id="eip-813"><title>Group 2</title><para id="eip-175">
+
+</para></section><para id="import-auto-id1170217251724"><figure id="E2-s"><media id="ResFG2B" alt="Figure11.">
+    <image mime-type="image/png" src="../../media/RF Group2 Blue.jpg" height="400" width="700"/>
+  </media>
+  
+<caption>Response function for Channel Blue
+  </caption></figure></para><para id="import-auto-id1170212335277"><figure id="RFG2G"><media id="ResFG2G" alt="Figure12.">
+    <image mime-type="image/png" src="../../media/RF Group2 Green.jpg" height="400" width="700"/>
+  </media>
+  
+<caption>Response function for Channel Green
+  </caption></figure></para><para id="import-auto-id1170195615073"><figure id="RFG2R"><media id="ResFG2R" alt="Figure13.">
+    <image mime-type="image/png" src="../../media/RF Group2 Red.jpg" height="400" width="700"/>
+  </media>
+  
+<caption>Response function for Channel Red
+  </caption></figure></para><para id="import-auto-id1170219199934"><figure id="eG2150s"><media id="eg2150s" alt="Figure14.">
+    <image mime-type="image/png" src="../../media/P150s.jpg" height="400" width="700"/>
+  </media>
+  
+<caption>LDR Picture with exposure time 1/50s
+  </caption></figure></para><para id="import-auto-id1170213441682"><figure id="eG21100s"><media id="eg21100s" alt="Figure15.">
+    <image mime-type="image/png" src="../../media/P1100s.jpg" height="400" width="700"/>
+  </media>
+  
+<caption>LDR Picture with exposure time 1/100s
+  </caption></figure></para><para id="import-auto-id1170223701547"><figure id="eG21400s"><media id="eg21400s" alt="Figure16.">
+    <image mime-type="image/png" src="../../media/P1400s.jpg" height="400" width="700"/>
+  </media>
+  
+<caption>LDR Picture with exposure time 1/400s
+  </caption></figure></para><para id="import-auto-id1170239666278"><figure id="eG211000s"><media id="eg211000s" alt="Figure17.">
+    <image mime-type="image/png" src="../../media/P11000s.jpg" height="400" width="700"/>
+  </media>
+  
+<caption>LDR Picture with exposure time 1/1000s
+  </caption></figure></para><para id="import-auto-id1170196841871"><figure id="eG212000s"><media id="eg212000s" alt="Figure18.">
+    <image mime-type="image/png" src="../../media/P12000s.jpg" height="400" width="700"/>
+  </media>
+  
+<caption>LDR Picture with exposure time 1/2000s
+  </caption></figure></para><para id="import-auto-id1170234395204"><figure id="eG214000s"><media id="eg214000s" alt="Figure19.">
+    <image mime-type="image/png" src="../../media/P14000s.jpg" height="400" width="700"/>
+  </media>
+  
+<caption>LDR Picture with exposure time 1/4000s
+  </caption></figure></para><para id="import-auto-id1170212033449"><figure id="eG2finals"><media id="eg2finals" alt="Figure20.">
+    <image mime-type="image/png" src="../../media/finalhdrpic.jpg" height="400" width="700"/>
+  </media>
+  
+<caption>Final HDR picture for Group 2
+  </caption></figure>
+</para><para id="import-auto-id1170206299400">Comment: Once again, we almost see the details of the lamb. Although it’s distorted a bit, we know there’s something in it, instead of just completely white for the whole area. What’s amazing is that we could clearly see what’s going on in the background. All the details of the bags are clearly revealed.</para><section id="eip-764"><title>Group 3</title><para id="eip-521">
+
+</para></section><para id="import-auto-id1170195522590"><figure id="RFG3B"><media id="rfg3b" alt="Figure21.">
+    <image mime-type="image/png" src="../../media/RF Group Blue.jpg" height="400" width="700"/>
+  </media>
+  
+<caption>Response Function for Channel Blue
+  </caption></figure></para><para id="import-auto-id1170201864413"><figure id="RFG3G"><media id="rfg3g" alt="Figure22.">
+    <image mime-type="image/png" src="../../media/RF Group 3 Green.jpg" height="400" width="700"/>
+  </media>
+  
+<caption>Response Function for Channel Green
+  </caption></figure></para><para id="import-auto-id1170213336875"><figure id="RFG3R"><media id="rfg3r" alt="Figure23.">
+    <image mime-type="image/png" src="../../media/RF Group 3 Red.jpg" height="400" width="700"/>
+  </media>
+  
+<caption>Response Function for Channel Red
+  </caption></figure></para><para id="import-auto-id1170232361258"><figure id="eG31-160s"><media id="eg1-160s" alt="Figure24.">
+    <image mime-type="image/png" src="../../media/G3 1160s.jpg" height="400" width="700"/>
+  </media>
+  
+<caption>LDR Picture with exposure time 1/160s
+  </caption></figure></para><para id="import-auto-id1170209237515"><figure id="eG31-320s"><media id="eg1-320s" alt="Figure25.">
+    <image mime-type="image/png" src="../../media/G3 1320s.jpg" height="400" width="700"/>
+  </media>
+  
+<caption>LDR Picture with exposure time 1/320s
+  </caption></figure></para><para id="import-auto-id1170198695119"><figure id="eG31-640s"><media id="eg1-640s" alt="Figure26.">
+    <image mime-type="image/png" src="../../media/G3 1640s.jpg" height="400" width="700"/>
+  </media>
+  
+<caption>LDR Picture with exposure time 1/640s
+  </caption></figure></para><para id="import-auto-id1170222413643"><figure id="eG31-1250s"><media id="eg1-1250s" alt="Figure27.">
+    <image mime-type="image/png" src="../../media/G3 11250s.jpg" height="400" width="700"/>
+  </media>
+  
+<caption>LDR Picture with exposure time 1/1250s
+  </caption></figure></para><para id="import-auto-id1170220199790"><figure id="eG3finals"><media id="eg3finals" alt="Figure28.">
+    <image mime-type="image/png" src="../../media/G3 FinalPic.jpg" height="400" width="700"/>
+  </media>
+  
+<caption>Final HDR Picture for Group 3
+  </caption></figure></para><para id="import-auto-id1170220114838">Comment: Once again, we could see a lot of details both in over-exposed area and in under-exposed area. For example, we could see some words on the white container on the right hand side of the lamb. It’s impossible for us to see those words when we take a picture with relatively large exposure time. Similarly, we could see the details in the dark area. For example, we could see that there’s a purple/blue stuff lying on the black bag. However, it’s likely that we’ll barely see it when the exposure time of the picture is relatively small. </para></content>
+</document>

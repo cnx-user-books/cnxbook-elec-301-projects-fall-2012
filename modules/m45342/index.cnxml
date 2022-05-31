@@ -1,0 +1,42 @@
+<document xmlns="http://cnx.rice.edu/cnxml">
+  <title>Preprocessing</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m45342</md:content-id>
+  <md:title>Preprocessing</md:title>
+  <md:abstract/>
+  <md:uuid>34b2f920-576a-4d3f-a142-058bd47163d3</md:uuid>
+</metadata>
+
+<content>
+    <section id="cid1">
+      <title>Database Parsing</title>
+      <para id="id62167">This database was selected because it contained labeled emotional samples. The annotation files followed the general format</para>
+      <para id="id62178">Start Stop A: Emotion,Phrase</para>
+      <para id="id62182">Consequently, a parsing file was written that scanned each line and searched for 'A:'. If all sample descriptors could be identified successfully, the sample was added to the database providing that</para>
+      <list id="id62186" display="block" list-type="bulleted">
+        <item id="uid1">The start and stop times were less than 3 seconds apart
+</item>
+        <item id="uid2">The emotion matched one of the designated 15 categories
+</item>
+        <item id="uid3">The phrase did not contain any non-alpha characters (ie, [ ] or  )
+</item>
+      </list>
+      <para id="id62563">With the database assembled, the files were read individually and each sample extracted one at a time.</para>
+    </section>
+    <section id="cid2">
+      <title>Silence Removal</title>
+      <para id="id62577">Although the annotations were always accurate, they were not exactly precise. The padding of silence that surrounded each sample added bias to our feature vectors. Consequently, we developed a method to detect and remove this padding.
+We want to apply a threshold above which we deem the speaker to be active. Directly applying such a threshold to the raw signal is risky because of the inherent background noise. Thus, we first find the amplitude envelope. The Hilbert transform was applied to each sample. This returns the analytic signal. A lowpass FIR filter with cutoff frequency 20 Hz was implemented in MatLab. Finally, we applied a zero-phase filtering technique. This essentially filters the signal in the forward direction and then again in the reverse direction. Because the phase shift of a FIR filter is linear in the passband, the phase shift in each direction is cancelled. This produces an excellent amplitude envelope with no offset in the time domain.</para>
+      <para id="id62595">analyt = hilbert(trace);</para>
+      <para id="id62598">b = fir1(200,20/(fs/2),'low');</para>
+      <para id="id62604">env = filtfilt(b,1,abs(analyt));</para>
+      <para id="id62609">Finally, we applied a generous threshold, found the first and last crossings of that threshold, and deleted the silence padding.</para>
+      <figure id="uid4"><media id="uid4_media" alt="">
+          <image mime-type="image/png" src="../../media/preprocessing.png" id="uid4_onlineimage" width="330"><!-- NOTE: attribute width changes image size online (pixels). original width is 570. --></image>
+          <image mime-type="application/postscript" for="pdf" src="../../media/preprocessing.eps" id="uid4_printimage" print-width="0.2">
+            <!--NOTE: attribute width changes image size in printed PDF (if specified in .tex file)-->
+          </image>
+        </media>
+      </figure></section>
+  </content>
+</document>

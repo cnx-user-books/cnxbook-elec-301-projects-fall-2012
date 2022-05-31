@@ -1,0 +1,31 @@
+<document xmlns="http://cnx.rice.edu/cnxml">
+  <title>Database</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m45347</md:content-id>
+  <md:title>Database</md:title>
+  <md:abstract/>
+  <md:uuid>46a59867-2ec7-49b4-8f4c-d28263dfe478</md:uuid>
+</metadata>
+
+<content>
+    <section id="import-auto-id1167535708242">
+      <title>Emotion Database</title><para id="import-auto-id1167530045447">We use the Emotional Prosody Speech and Transcripts Database from the Linguistic Data Consortium.  The data set consists of labeled emotional utterances of semantically neutral content, intoned by professional actors.  </para>
+      <para id="import-auto-id1167534007707">
+        <figure id="import-auto-id1167528228445">
+          <media id="import-auto-id1167523835834" alt="">
+            <image mime-type="image/png" src="../../media/Picture 1-331c.png" height="328" width="211"/>
+          </media>
+        </figure>
+      </para>
+      <para id="import-auto-id1167528390317">Specifically, the utterances were four-syllable dates and numbers, in the English language, from 15 emotion categories.  Actors were provided with descriptions of each emotional context and were to reproduce the utterance in that manner.  For example, </para>
+      <figure id="import-auto-id1167521773218"><media id="import-auto-id1167535710173" alt="">
+          <image mime-type="image/png" src="../../media/Picture 5-be8e.png" height="250" width="343"/>
+        </media>
+      </figure><para id="import-auto-id1167529258458">9 Actors participated, with a yield of  ~3 hours of high quality speech samples.  This translated to ~3000 speech samples overall, with ~200 samples per emotion.  This was the largest English data set we could find with a high emotion resolution.  </para>
+      <para id="import-auto-id1167529370869">We split the database into two sets – a training set and test set, 70% - 30% respectively.  These were used to train the neural network then test its performance.</para>
+    </section>
+    <section id="import-auto-id1167527443556">
+      <title>Source</title>
+      <para id="import-auto-id1167527703674">M. Liberman, K. Davis, M. Grossman, N. Martey, and J. Bell. “Emotional Prosody Speech and Transcripts.” Linguistic Data Consortium, 2002.</para></section>
+  </content>
+</document>

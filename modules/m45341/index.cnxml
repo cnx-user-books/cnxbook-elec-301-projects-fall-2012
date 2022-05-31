@@ -1,0 +1,13 @@
+<document xmlns="http://cnx.rice.edu/cnxml">
+  <title>Future Directions</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m45341</md:content-id>
+  <md:title>Future Directions</md:title>
+  <md:abstract/>
+  <md:uuid>aee81851-54a3-45f0-88c0-10ce9b5c854b</md:uuid>
+</metadata>
+
+<content>
+    <para id="id209372">A neural network driven by features derived from the pitch contour of a speech sample is capable of robust emotional classification. The results presented here will be markedly improved with the expansion of existing short phrase, semantically neutral databases. These methods have been prepared for such an implementation through rigorous optimization of the computation complexity required to process each sample. A larger number of labeled samples will also allow for an enhanced feature vector of greater length. This guarantees an increase in the quality of classification. Independent and reliable emotional analysis adds rich texture to existing speech recognition methods that attempt to identify and decode each spoken word by allowing a machine to distinguish the intent of semantically identical phrases.</para>
+  </content>
+</document>

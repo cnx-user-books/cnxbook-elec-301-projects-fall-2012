@@ -1,0 +1,455 @@
+<document xmlns="http://cnx.rice.edu/cnxml">
+  <title>The Adaptive Filter Method</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m45392</md:content-id>
+  <md:title>The Adaptive Filter Method</md:title>
+  <md:abstract>Background on a few adaptive filtering algorithms we tried in our echo cancellation project.</md:abstract>
+  <md:uuid>60754df8-d9de-4ea6-8b25-4c6aa06eaa1c</md:uuid>
+</metadata>
+
+<content>
+    <section id="import-auto-id1168267789704">
+      <title>Adaptive Filtering</title><para id="import-auto-id1168272582631"><emphasis>Adaptive filters</emphasis> are time-varying filters that use an update algorithm to create a finite impulse response (FIR) filter that outputs the best approximation of desired signal. Adaptive filters take in a desired signal and an input signal and update their parameters using feedback driven by the error signal. The adaptive filter finds the ideal filter coefficients for a filter that gives the least mean square of the error signal. The <emphasis>error signal</emphasis> is defined as the difference of the desired signal and the output signal.  </para><equation xmlns:m="http://www.w3.org/1998/Math/MathML" id="eip-28"><m:math>
+ <m:semantics>
+  <m:mrow>
+   <m:mi>e</m:mi><m:mo stretchy="false">(</m:mo><m:mi>n</m:mi><m:mo stretchy="false">)</m:mo><m:mo>=</m:mo><m:mi>d</m:mi><m:mo stretchy="false">(</m:mo><m:mi>n</m:mi><m:mo stretchy="false">)</m:mo><m:mo>−</m:mo><m:mi>y</m:mi><m:mo stretchy="false">(</m:mo><m:mi>n</m:mi><m:mo stretchy="false">)</m:mo>
+  </m:mrow>
+  <m:annotation encoding="MathType-MTEF">MathType@MTEF@5@5@+=
+  feaagGart1ev2aqatCvAUfeBSjuyZL2yd9gzLbvyNv2CaerbuLwBLn
+  hiov2DGi1BTfMBaeXatLxBI9gBaerbd9wDYLwzYbItLDharqqtubsr
+  4rNCHbGeaGqiVu0Je9sqqrpepC0xbbL8F4rqqrFfpeea0xe9Lq=Jc9
+  vqaqpepm0xbba9pwe9Q8fs0=yqaqpepae9pg0FirpepeKkFr0xfr=x
+  fr=xb9adbaqaaeGaciGaaiaabeqaamaabaabaaGcbaGaamyzaiaacI
+  cacaWGUbGaaiykaiabg2da9iaadsgacaGGOaGaamOBaiaacMcacqGH
+  sislcaWG5bGaaiikaiaad6gacaGGPaaaaa@419E@
+  </m:annotation>
+ </m:semantics>
+</m:math>
+</equation><para id="import-auto-id6137821">At every iteration (or block of samples) the gradient of the mean square error at that time is found, and is then used to adjust the filter coefficients at the time to converge towards the ideal filter coefficients. </para><para id="eip-559"><figure id="adapt"><media id="adaptivefilt" alt="adaptive filter block diagram">
+          <image mime-type="image/png" src="../../media/adaptive filter.png"/>
+        </media>
+<caption>Adaptive filtering block diagram</caption></figure></para><para id="import-auto-id1168268420801">We trained adaptive filters using signals recorded in a low-echo environment using three algorithms to filter out echoes in an echoic room and in the OEDK classroom. Our desired signal is a recording of our signal in a low-echo environment that would give us a signal with minimal echo. This gave us a baseline for the distortion of the signal caused by our equipment. </para><para id="eip-544">Having gathered a baseline signal, we recorded our input signals in the echoic room and the OEDK classroom. The basic idea of the adaptive filter method is to take in a desired signal and an input signal and mimic an ideal filter with ideal filter coefficients that would make the output signal virtually echo-free and therefore comparable to the desired signal. We explored three different adaptive filtering algorithms for our project.</para></section>
+    <section id="import-auto-id1168266741653">
+      <title>The Least Mean Squares (LMS) Algorithm</title><para xmlns:m="http://www.w3.org/1998/Math/MathML" id="import-auto-id1168268653766">The <emphasis>LMS</emphasis> algorithm is a class of adaptive filter used to mimic a desired filter by finding the filter coefficients that relate to producing the least mean squares of the error signal (the difference between the desired and the actual signal). The algorithm begins by assuming small weights (zero in most cases), and at each step, by finding the gradient of the mean square error, <m:math>
+ <m:semantics>
+  <m:mrow>
+   <m:mi>E</m:mi><m:mo stretchy="false">[</m:mo><m:msup>
+    <m:mi>e</m:mi>
+    <m:mn>2</m:mn>
+   </m:msup>
+   <m:mo stretchy="false">(</m:mo><m:mi>n</m:mi><m:mo stretchy="false">)</m:mo><m:mo stretchy="false">]</m:mo>
+  </m:mrow>
+  <m:annotation encoding="MathType-MTEF">MathType@MTEF@5@5@+=
+  feaagGart1ev2aqatCvAUfeBSjuyZL2yd9gzLbvyNv2CaerbuLwBLn
+  hiov2DGi1BTfMBaeXatLxBI9gBaerbd9wDYLwzYbItLDharqqtubsr
+  4rNCHbGeaGqiVu0Je9sqqrpepC0xbbL8F4rqqrFfpeea0xe9Lq=Jc9
+  vqaqpepm0xbba9pwe9Q8fs0=yqaqpepae9pg0FirpepeKkFr0xfr=x
+  fr=xb9adbaqaaeGaciGaaiaabeqaamaabaabaaGcbaaeaaaaaaaaa8
+  qacaWGfbGaai4waiaadwgapaWaaWbaaSqabeaapeGaaGOmaaaakiaa
+  cIcacaWGUbGaaiykaiaac2faaaa@3CE8@
+  </m:annotation>
+ </m:semantics>
+</m:math>, the weights are updated using this cost function. Each iteration uses three steps:</para><list id="eip-513" list-type="bulleted" bullet-style="1."><item>Calculate the output of the filter.</item>
+</list><equation xmlns:m="http://www.w3.org/1998/Math/MathML" id="eip-720"><m:math>
+ <m:semantics>
+  <m:mrow>
+   <m:mi>y</m:mi><m:mo stretchy="false">(</m:mo><m:mi>n</m:mi><m:mo stretchy="false">)</m:mo><m:mo>=</m:mo><m:msup>
+    <m:mi>w</m:mi>
+    <m:mi>T</m:mi>
+   </m:msup>
+   <m:mo stretchy="false">(</m:mo><m:mi>n</m:mi><m:mo stretchy="false">)</m:mo><m:mi>x</m:mi><m:mo stretchy="false">(</m:mo><m:mi>n</m:mi><m:mo stretchy="false">)</m:mo>
+  </m:mrow>
+  <m:annotation encoding="MathType-MTEF">MathType@MTEF@5@5@+=
+  feaagGart1ev2aqatCvAUfeBSjuyZL2yd9gzLbvyNv2CaerbuLwBLn
+  hiov2DGi1BTfMBaeXatLxBI9gBaerbd9wDYLwzYbItLDharqqtubsr
+  4rNCHbGeaGqiVu0Je9sqqrpepC0xbbL8F4rqqrFfpeea0xe9Lq=Jc9
+  vqaqpepm0xbba9pwe9Q8fs0=yqaqpepae9pg0FirpepeKkFr0xfr=x
+  fr=xb9adbaqaaeGaciGaaiaabeqaamaabaabaaGcbaaeaaaaaaaaa8
+  qacaWG5bGaaiikaiaad6gacaGGPaGaeyypa0Jaam4DamaaCaaaleqa
+  baGaamivaaaakiaacIcacaWGUbGaaiykaiaadIhacaGGOaGaamOBai
+  aacMcaaaa@4207@
+  </m:annotation>
+ </m:semantics>
+</m:math>
+</equation><list id="eip-10" list-type="bulleted" bullet-style="2."><item>Calculate the estimate of the error using the error signal.</item></list><equation xmlns:m="http://www.w3.org/1998/Math/MathML" id="eip-319"><m:math>
+ <m:semantics>
+  <m:mrow>
+   <m:mi>e</m:mi><m:mo stretchy="false">(</m:mo><m:mi>n</m:mi><m:mo stretchy="false">)</m:mo><m:mo>=</m:mo><m:mi>d</m:mi><m:mo stretchy="false">(</m:mo><m:mi>n</m:mi><m:mo stretchy="false">)</m:mo><m:mo>−</m:mo><m:mi>y</m:mi><m:mo stretchy="false">(</m:mo><m:mi>n</m:mi><m:mo stretchy="false">)</m:mo>
+  </m:mrow>
+  <m:annotation encoding="MathType-MTEF">MathType@MTEF@5@5@+=
+  feaagGart1ev2aqatCvAUfeBSjuyZL2yd9gzLbvyNv2CaerbuLwBLn
+  hiov2DGi1BTfMBaeXatLxBI9gBaerbd9wDYLwzYbItLDharqqtubsr
+  4rNCHbGeaGqiVu0Je9sqqrpepC0xbbL8F4rqqrFfpeea0xe9Lq=Jc9
+  vqaqpepm0xbba9pwe9Q8fs0=yqaqpepae9pg0FirpepeKkFr0xfr=x
+  fr=xb9adbaqaaeGaciGaaiaabeqaamaabaabaaGcbaGaamyzaiaacI
+  cacaWGUbGaaiykaiabg2da9iaadsgacaGGOaGaamOBaiaacMcacqGH
+  sislcaWG5bGaaiikaiaad6gacaGGPaaaaa@419E@
+  </m:annotation>
+ </m:semantics>
+</m:math>
+</equation><list id="eip-514" list-type="bulleted" bullet-style="3."><item>Update the weights of the FIR coefficients.</item>
+</list><equation xmlns:m="http://www.w3.org/1998/Math/MathML" id="eip-3192"><m:math>
+ <m:semantics>
+  <m:mrow>
+   <m:mi>w</m:mi><m:mo stretchy="false">(</m:mo><m:mi>n</m:mi><m:mo>+</m:mo><m:mn>1</m:mn><m:mo stretchy="false">)</m:mo><m:mo>=</m:mo><m:mi>w</m:mi><m:mo stretchy="false">(</m:mo><m:mi>n</m:mi><m:mo stretchy="false">)</m:mo><m:mo>+</m:mo><m:mn>2</m:mn><m:mi>μ</m:mi><m:mi>e</m:mi><m:mo stretchy="false">(</m:mo><m:mi>n</m:mi><m:mo stretchy="false">)</m:mo><m:mi>x</m:mi><m:mo stretchy="false">(</m:mo><m:mi>n</m:mi><m:mo stretchy="false">)</m:mo>
+  </m:mrow>
+  <m:annotation encoding="MathType-MTEF">MathType@MTEF@5@5@+=
+  feaagGart1ev2aqatCvAUfeBSjuyZL2yd9gzLbvyNv2CaerbuLwBLn
+  hiov2DGi1BTfMBaeXatLxBI9gBaerbd9wDYLwzYbItLDharqqtubsr
+  4rNCHbGeaGqiVu0Je9sqqrpepC0xbbL8F4rqqrFfpeea0xe9Lq=Jc9
+  vqaqpepm0xbba9pwe9Q8fs0=yqaqpepae9pg0FirpepeKkFr0xfr=x
+  fr=xb9adbaqaaeGaciGaaiaabeqaamaabaabaaGcbaaeaaaaaaaaa8
+  qacaWG3bGaaiikaiaad6gacqGHRaWkcaaIXaGaaiykaiabg2da9iaa
+  dEhacaGGOaGaamOBaiaacMcacqGHRaWkcaaIYaGaeqiVd0Maamyzai
+  aacIcacaWGUbGaaiykaiaadIhacaGGOaGaamOBaiaacMcaaaa@491C@
+  </m:annotation>
+ </m:semantics>
+</m:math>
+</equation><note xmlns:m="http://www.w3.org/1998/Math/MathML" id="eip-182"><m:math>
+ <m:semantics>
+  <m:mrow>
+   <m:mi>y</m:mi><m:mo stretchy="false">(</m:mo><m:mi>n</m:mi><m:mo stretchy="false">)</m:mo>
+  </m:mrow>
+  <m:annotation encoding="MathType-MTEF">MathType@MTEF@5@5@+=
+  feaagGart1ev2aqatCvAUfeBSjuyZL2yd9gzLbvyNv2CaerbuLwBLn
+  hiov2DGi1BTfMBaeXatLxBI9gBaerbd9wDYLwzYbItLDharqqtubsr
+  4rNCHbGeaGqiVu0Je9sqqrpepC0xbbL8F4rqqrFfpeea0xe9Lq=Jc9
+  vqaqpepm0xbba9pwe9Q8fs0=yqaqpepae9pg0FirpepeKkFr0xfr=x
+  fr=xb9adbaqaaeGaciGaaiaabeqaamaabaabaaGcbaaeaaaaaaaaa8
+  qacaWG5bGaaiikaiaad6gacaGGPaaaaa@3960@
+  </m:annotation>
+ </m:semantics>
+</m:math>
+ is the output of the filter, <m:math>
+ <m:semantics>
+  <m:mrow>
+   <m:mi>w</m:mi><m:mo stretchy="false">(</m:mo><m:mi>n</m:mi><m:mo stretchy="false">)</m:mo>
+  </m:mrow>
+  <m:annotation encoding="MathType-MTEF">MathType@MTEF@5@5@+=
+  feaagGart1ev2aqatCvAUfeBSjuyZL2yd9gzLbvyNv2CaerbuLwBLn
+  hiov2DGi1BTfMBaeXatLxBI9gBaerbd9wDYLwzYbItLDharqqtubsr
+  4rNCHbGeaGqiVu0Je9sqqrpepC0xbbL8F4rqqrFfpeea0xe9Lq=Jc9
+  vqaqpepm0xbba9pwe9Q8fs0=yqaqpepae9pg0FirpepeKkFr0xfr=x
+  fr=xb9adbaqaaeGaciGaaiaabeqaamaabaabaaGcbaaeaaaaaaaaa8
+  qacaWG3bGaaiikaiaad6gacaGGPaaaaa@395E@
+  </m:annotation>
+ </m:semantics>
+</m:math>
+ are the coefficients of the FIR filter, <m:math>
+ <m:semantics>
+  <m:mrow>
+   <m:mi>x</m:mi><m:mo stretchy="false">(</m:mo><m:mi>n</m:mi><m:mo stretchy="false">)</m:mo>
+  </m:mrow>
+  <m:annotation encoding="MathType-MTEF">MathType@MTEF@5@5@+=
+  feaagGart1ev2aqatCvAUfeBSjuyZL2yd9gzLbvyNv2CaerbuLwBLn
+  hiov2DGi1BTfMBaeXatLxBI9gBaerbd9wDYLwzYbItLDharqqtubsr
+  4rNCHbGeaGqiVu0Je9sqqrpepC0xbbL8F4rqqrFfpeea0xe9Lq=Jc9
+  vqaqpepm0xbba9pwe9Q8fs0=yqaqpepae9pg0FirpepeKkFr0xfr=x
+  fr=xb9adbaqaaeGaciGaaiaabeqaamaabaabaaGcbaaeaaaaaaaaa8
+  qacaWG4bGaaiikaiaad6gacaGGPaaaaa@395F@
+  </m:annotation>
+ </m:semantics>
+</m:math> is the input signal, <m:math>
+ <m:semantics>
+  <m:mrow>
+   <m:mi>d</m:mi><m:mo stretchy="false">(</m:mo><m:mi>n</m:mi><m:mo stretchy="false">)</m:mo>
+  </m:mrow>
+  <m:annotation encoding="MathType-MTEF">MathType@MTEF@5@5@+=
+  feaagGart1ev2aqatCvAUfeBSjuyZL2yd9gzLbvyNv2CaerbuLwBLn
+  hiov2DGi1BTfMBaeXatLxBI9gBaerbd9wDYLwzYbItLDharqqtubsr
+  4rNCHbGeaGqiVu0Je9sqqrpepC0xbbL8F4rqqrFfpeea0xe9Lq=Jc9
+  vqaqpepm0xbba9pwe9Q8fs0=yqaqpepae9pg0FirpepeKkFr0xfr=x
+  fr=xb9adbaqaaeGaciGaaiaabeqaamaabaabaaGcbaGaamizaiaacI
+  cacaWGUbGaaiykaaaa@392B@
+  </m:annotation>
+ </m:semantics>
+</m:math>
+is the desired signal, and <m:math>
+ <m:semantics>
+  <m:mi>μ</m:mi>
+  <m:annotation encoding="MathType-MTEF">MathType@MTEF@5@5@+=
+  feaagGart1ev2aqatCvAUfeBSjuyZL2yd9gzLbvyNv2CaerbuLwBLn
+  hiov2DGi1BTfMBaeXatLxBI9gBaerbd9wDYLwzYbItLDharqqtubsr
+  4rNCHbGeaGqiVu0Je9sqqrpepC0xbbL8F4rqqrFfpeea0xe9Lq=Jc9
+  vqaqpepm0xbba9pwe9Q8fs0=yqaqpepae9pg0FirpepeKkFr0xfr=x
+  fr=xb9adbaqaaeGaciGaaiaabeqaamaabaabaaGcbaaeaaaaaaaaa8
+  qacqaH8oqBaaa@37CC@
+  </m:annotation>
+ </m:semantics>
+</m:math> is the step size.
+</note><para xmlns:m="http://www.w3.org/1998/Math/MathML" id="eip-104">Computational complexity: <m:math>
+ <m:semantics>
+  <m:mrow>
+   <m:mn>2</m:mn><m:mi>N</m:mi>
+  </m:mrow>
+  <m:annotation encoding="MathType-MTEF">MathType@MTEF@5@5@+=
+  feaagGart1ev2aqatCvAUfeBSjuyZL2yd9gzLbvyNv2CaerbuLwBLn
+  hiov2DGi1BTfMBaeXatLxBI9gBaerbd9wDYLwzYbItLDharqqtubsr
+  4rNCHbGeaGqiVu0Je9sqqrpepC0xbbL8F4rqqrFfpeea0xe9Lq=Jc9
+  vqaqpepm0xbba9pwe9Q8fs0=yqaqpepae9pg0FirpepeKkFr0xfr=x
+  fr=xb9adbaqaaeGaciGaaiaabeqaamaabaabaaGcbaaeaaaaaaaaa8
+  qacaaIYaGaamOtaaaa@37A5@
+  </m:annotation>
+ </m:semantics>
+</m:math>
+ additions, <m:math>
+ <m:semantics>
+  <m:mrow>
+   <m:mn>2</m:mn><m:mi>N</m:mi><m:mo>+</m:mo><m:mn>1</m:mn>
+  </m:mrow>
+  <m:annotation encoding="MathType-MTEF">MathType@MTEF@5@5@+=
+  feaagGart1ev2aqatCvAUfeBSjuyZL2yd9gzLbvyNv2CaerbuLwBLn
+  hiov2DGi1BTfMBaeXatLxBI9gBaerbd9wDYLwzYbItLDharqqtubsr
+  4rNCHbGeaGqiVu0Je9sqqrpepC0xbbL8F4rqqrFfpeea0xe9Lq=Jc9
+  vqaqpepm0xbba9pwe9Q8fs0=yqaqpepae9pg0FirpepeKkFr0xfr=x
+  fr=xb9adbaqaaeGaciGaaiaabeqaamaabaabaaGcbaaeaaaaaaaaa8
+  qacaaIYaGaamOtaiabgUcaRiaaigdaaaa@3942@
+  </m:annotation>
+ </m:semantics>
+</m:math>
+ multiplications.</para></section>
+    <example id="eip-942"><para id="eip-162">The MathWorks <link url="http://www.mathworks.com/help/dsp/ref/adaptfilt.lms.html">adaptfilt.lms</link> documentation can be used in Matlab to create an LMS adaptive filter object.
+</para></example><section id="import-auto-id7004869">
+      <title>The Normalized LMS (NLMS) Algorithm</title><para xmlns:m="http://www.w3.org/1998/Math/MathML" id="import-auto-id1168272569209"><emphasis>NLMS</emphasis> allows for a variable step size <m:math>
+ <m:semantics>
+  <m:mrow>
+   <m:mi>μ</m:mi><m:mo stretchy="false">(</m:mo><m:mi>n</m:mi><m:mo stretchy="false">)</m:mo>
+  </m:mrow>
+  <m:annotation encoding="MathType-MTEF">MathType@MTEF@5@5@+=
+  feaagGart1ev2aqatCvAUfeBSjuyZL2yd9gzLbvyNv2CaerbuLwBLn
+  hiov2DGi1BTfMBaeXatLxBI9gBaerbd9wDYLwzYbItLDharqqtubsr
+  4rNCHbGeaGqiVu0Je9sqqrpepC0xbbL8F4rqqrFfpeea0xe9Lq=Jc9
+  vqaqpepm0xbba9pwe9Q8fs0=yqaqpepae9pg0FirpepeKkFr0xfr=x
+  fr=xb9adbaqaaeGaciGaaiaabeqaamaabaabaaGcbaaeaaaaaaaaa8
+  qacqaH8oqBcaGGOaGaamOBaiaacMcaaaa@3A18@
+  </m:annotation>
+ </m:semantics>
+</m:math> for each iteration. The first two steps of the algorithm are identical to the first two steps of the regular LMS algorithm. </para><list id="eip-212" list-type="bulleted" bullet-style="1."><item>Calculate the output of the filter.</item>
+</list><equation xmlns:m="http://www.w3.org/1998/Math/MathML" id="eip-707"><m:math>
+ <m:semantics>
+  <m:mrow>
+   <m:mi>y</m:mi><m:mo stretchy="false">(</m:mo><m:mi>n</m:mi><m:mo stretchy="false">)</m:mo><m:mo>=</m:mo><m:msup>
+    <m:mi>w</m:mi>
+    <m:mi>T</m:mi>
+   </m:msup>
+   <m:mo stretchy="false">(</m:mo><m:mi>n</m:mi><m:mo stretchy="false">)</m:mo><m:mi>x</m:mi><m:mo stretchy="false">(</m:mo><m:mi>n</m:mi><m:mo stretchy="false">)</m:mo>
+  </m:mrow>
+  <m:annotation encoding="MathType-MTEF">MathType@MTEF@5@5@+=
+  feaagGart1ev2aqatCvAUfeBSjuyZL2yd9gzLbvyNv2CaerbuLwBLn
+  hiov2DGi1BTfMBaeXatLxBI9gBaerbd9wDYLwzYbItLDharqqtubsr
+  4rNCHbGeaGqiVu0Je9sqqrpepC0xbbL8F4rqqrFfpeea0xe9Lq=Jc9
+  vqaqpepm0xbba9pwe9Q8fs0=yqaqpepae9pg0FirpepeKkFr0xfr=x
+  fr=xb9adbaqaaeGaciGaaiaabeqaamaabaabaaGcbaaeaaaaaaaaa8
+  qacaWG5bGaaiikaiaad6gacaGGPaGaeyypa0Jaam4DamaaCaaaleqa
+  baGaamivaaaakiaacIcacaWGUbGaaiykaiaadIhacaGGOaGaamOBai
+  aacMcaaaa@4207@
+  </m:annotation>
+ </m:semantics>
+</m:math>
+</equation><list id="eip-969" list-type="bulleted" bullet-style="2."><item>Calculate the estimate of the error using the error signal.</item>
+</list><equation xmlns:m="http://www.w3.org/1998/Math/MathML" id="eip-881"><m:math>
+ <m:semantics>
+  <m:mrow>
+   <m:mi>e</m:mi><m:mo stretchy="false">(</m:mo><m:mi>n</m:mi><m:mo stretchy="false">)</m:mo><m:mo>=</m:mo><m:mi>d</m:mi><m:mo stretchy="false">(</m:mo><m:mi>n</m:mi><m:mo stretchy="false">)</m:mo><m:mo>−</m:mo><m:mi>y</m:mi><m:mo stretchy="false">(</m:mo><m:mi>n</m:mi><m:mo stretchy="false">)</m:mo>
+  </m:mrow>
+  <m:annotation encoding="MathType-MTEF">MathType@MTEF@5@5@+=
+  feaagGart1ev2aqatCvAUfeBSjuyZL2yd9gzLbvyNv2CaerbuLwBLn
+  hiov2DGi1BTfMBaeXatLxBI9gBaerbd9wDYLwzYbItLDharqqtubsr
+  4rNCHbGeaGqiVu0Je9sqqrpepC0xbbL8F4rqqrFfpeea0xe9Lq=Jc9
+  vqaqpepm0xbba9pwe9Q8fs0=yqaqpepae9pg0FirpepeKkFr0xfr=x
+  fr=xb9adbaqaaeGaciGaaiaabeqaamaabaabaaGcbaGaamyzaiaacI
+  cacaWGUbGaaiykaiabg2da9iaadsgacaGGOaGaamOBaiaacMcacqGH
+  sislcaWG5bGaaiikaiaad6gacaGGPaaaaa@419E@
+  </m:annotation>
+ </m:semantics>
+</m:math>
+</equation><list id="eip-161" list-type="bulleted" bullet-style="3."><item>Calculate the step size for the input.</item>
+
+</list><equation xmlns:m="http://www.w3.org/1998/Math/MathML" id="eip-425"><m:math>
+ <m:semantics>
+  <m:mrow>
+   <m:mi>μ</m:mi><m:mo stretchy="false">(</m:mo><m:mi>n</m:mi><m:mo stretchy="false">)</m:mo><m:mo>=</m:mo><m:mfrac>
+    <m:mn>1</m:mn>
+    <m:mrow>
+     <m:msup>
+      <m:mi>x</m:mi>
+      <m:mi>T</m:mi>
+     </m:msup>
+     <m:mo stretchy="false">(</m:mo><m:mi>n</m:mi><m:mo stretchy="false">)</m:mo><m:mi>x</m:mi><m:mo stretchy="false">(</m:mo><m:mi>n</m:mi><m:mo stretchy="false">)</m:mo>
+    </m:mrow>
+   </m:mfrac>
+   
+  </m:mrow>
+  <m:annotation encoding="MathType-MTEF">MathType@MTEF@5@5@+=
+  feaagGart1ev2aqatCvAUfeBSjuyZL2yd9gzLbvyNv2CaerbuLwBLn
+  hiov2DGi1BTfMBaeXatLxBI9gBaerbd9wDYLwzYbItLDharqqtubsr
+  4rNCHbGeaGqiVu0Je9sqqrpepC0xbbL8F4rqqrFfpeea0xe9Lq=Jc9
+  vqaqpepm0xbba9pwe9Q8fs0=yqaqpepae9pg0FirpepeKkFr0xfr=x
+  fr=xb9adbaqaaeGaciGaaiaabeqaamaabaabaaGcbaGaeqiVd0Maai
+  ikaiaad6gacaGGPaGaeyypa0ZaaSaaaeaacaaIXaaabaGaamiEamaa
+  CaaaleqabaGaamivaaaakiaacIcacaWGUbGaaiykaiaadIhacaGGOa
+  GaamOBaiaacMcaaaaaaa@436B@
+  </m:annotation>
+ </m:semantics>
+</m:math>
+</equation><list id="eip-89" list-type="bulleted" bullet-style="4."><item>Update the weights of the FIR coefficients.</item>
+</list><equation xmlns:m="http://www.w3.org/1998/Math/MathML" id="eip-653"><m:math>
+ <m:semantics>
+  <m:mrow>
+   <m:mi>w</m:mi><m:mo stretchy="false">(</m:mo><m:mi>n</m:mi><m:mo>+</m:mo><m:mn>1</m:mn><m:mo stretchy="false">)</m:mo><m:mo>=</m:mo><m:mi>w</m:mi><m:mo stretchy="false">(</m:mo><m:mi>n</m:mi><m:mo stretchy="false">)</m:mo><m:mo>+</m:mo><m:mi>μ</m:mi><m:mo stretchy="false">(</m:mo><m:mi>n</m:mi><m:mo stretchy="false">)</m:mo><m:mi>e</m:mi><m:mo stretchy="false">(</m:mo><m:mi>n</m:mi><m:mo stretchy="false">)</m:mo><m:mi>x</m:mi><m:mo stretchy="false">(</m:mo><m:mi>n</m:mi><m:mo stretchy="false">)</m:mo>
+  </m:mrow>
+  <m:annotation encoding="MathType-MTEF">MathType@MTEF@5@5@+=
+  feaagGart1ev2aqatCvAUfeBSjuyZL2yd9gzLbvyNv2CaerbuLwBLn
+  hiov2DGi1BTfMBaeXatLxBI9gBaerbd9wDYLwzYbItLDharqqtubsr
+  4rNCHbGeaGqiVu0Je9sqqrpepC0xbbL8F4rqqrFfpeea0xe9Lq=Jc9
+  vqaqpepm0xbba9pwe9Q8fs0=yqaqpepae9pg0FirpepeKkFr0xfr=x
+  fr=xb9adbaqaaeGaciGaaiaabeqaamaabaabaaGcbaGaam4DaiaacI
+  cacaWGUbGaey4kaSIaaGymaiaacMcacqGH9aqpcaWG3bGaaiikaiaa
+  d6gacaGGPaGaey4kaSIaeqiVd0Maaiikaiaad6gacaGGPaGaamyzai
+  aacIcacaWGUbGaaiykaiaadIhacaGGOaGaamOBaiaacMcaaaa@4A8C@
+  </m:annotation>
+ </m:semantics>
+</m:math>
+</equation><para xmlns:m="http://www.w3.org/1998/Math/MathML" id="import-auto-id1168267785482">Computational Complexity: <m:math>
+ <m:semantics>
+  <m:mrow>
+   <m:mn>2</m:mn><m:mi>N</m:mi>
+  </m:mrow>
+  <m:annotation encoding="MathType-MTEF">MathType@MTEF@5@5@+=
+  feaagGart1ev2aqatCvAUfeBSjuyZL2yd9gzLbvyNv2CaerbuLwBLn
+  hiov2DGi1BTfMBaeXatLxBI9gBaerbd9wDYLwzYbItLDharqqtubsr
+  4rNCHbGeaGqiVu0Je9sqqrpepC0xbbL8F4rqqrFfpeea0xe9Lq=Jc9
+  vqaqpepm0xbba9pwe9Q8fs0=yqaqpepae9pg0FirpepeKkFr0xfr=x
+  fr=xb9adbaqaaeGaciGaaiaabeqaamaabaabaaGcbaGaaGOmaiaad6
+  eaaaa@3785@
+  </m:annotation>
+ </m:semantics>
+</m:math>
+ additions <m:math>
+ <m:semantics>
+  <m:mrow>
+   <m:mn>3</m:mn><m:mi>N</m:mi><m:mo>+</m:mo><m:mn>1</m:mn>
+  </m:mrow>
+  <m:annotation encoding="MathType-MTEF">MathType@MTEF@5@5@+=
+  feaagGart1ev2aqatCvAUfeBSjuyZL2yd9gzLbvyNv2CaerbuLwBLn
+  hiov2DGi1BTfMBaeXatLxBI9gBaerbd9wDYLwzYbItLDharqqtubsr
+  4rNCHbGeaGqiVu0Je9sqqrpepC0xbbL8F4rqqrFfpeea0xe9Lq=Jc9
+  vqaqpepm0xbba9pwe9Q8fs0=yqaqpepae9pg0FirpepeKkFr0xfr=x
+  fr=xb9adbaqaaeGaciGaaiaabeqaamaabaabaaGcbaGaaG4maiaad6
+  eacqGHRaWkcaaIXaaaaa@3923@
+  </m:annotation>
+ </m:semantics>
+</m:math>
+ multiplications.</para></section>
+    <example id="eip-410"><para id="eip-714">The MathWorks <link url="http://www.mathworks.com/help/dsp/ref/adaptfilt.nlms.html">adaptfilt.nlms</link> documentation can be used in Matlab to create an NLMS adaptive filter object.</para></example><section id="import-auto-id6579782">
+      <title>The Block LMS (BLMS) Algorithm</title><para id="import-auto-id8553715">Rather than computing by discrete samples, the <emphasis>BLMS</emphasis> algorithm calculates in blocks of data, reducing computation cost and improving the convergence rate. The BLMS algorithm can be implemented in the frequency domain using the Discrete Fourier Transform or the FFT.</para><para xmlns:m="http://www.w3.org/1998/Math/MathML" id="eip-12">Computational complexity: <m:math>
+ <m:semantics>
+  <m:mrow>
+   <m:mfrac>
+    <m:mrow>
+     <m:mn>4</m:mn><m:mi>N</m:mi>
+    </m:mrow>
+    <m:mi>B</m:mi>
+   </m:mfrac>
+   <m:mo>+</m:mo><m:mrow><m:mo>(</m:mo>
+    <m:mrow>
+     <m:mfrac>
+      <m:mi>N</m:mi>
+      <m:mi>B</m:mi>
+     </m:mfrac>
+     <m:mo>+</m:mo><m:mn>3</m:mn>
+    </m:mrow>
+   <m:mo>)</m:mo></m:mrow><m:mi>log</m:mi><m:mo stretchy="false">(</m:mo><m:mn>2</m:mn><m:mi>B</m:mi><m:mo stretchy="false">)</m:mo>
+  </m:mrow>
+  <m:annotation encoding="MathType-MTEF">MathType@MTEF@5@5@+=
+  feaagGart1ev2aqatCvAUfeBSjuyZL2yd9gzLbvyNv2CaerbuLwBLn
+  hiov2DGi1BTfMBaeXatLxBI9gBaerbd9wDYLwzYbItLDharqqtubsr
+  4rNCHbGeaGqiVu0Je9sqqrpepC0xbbL8F4rqqrFfpeea0xe9Lq=Jc9
+  vqaqpepm0xbba9pwe9Q8fs0=yqaqpepae9pg0FirpepeKkFr0xfr=x
+  fr=xb9adbaqaaeGaciGaaiaabeqaamaabaabaaGcbaWaaSaaaeaaca
+  aI0aGaamOtaaqaaiaadkeaaaGaey4kaSYaaeWaaeaadaWcaaqaaiaa
+  d6eaaeaacaWGcbaaaiabgUcaRiaaiodaaiaawIcacaGLPaaaciGGSb
+  Gaai4BaiaacEgacaGGOaGaaGOmaiaadkeacaGGPaaaaa@43BE@
+  </m:annotation>
+ </m:semantics>
+</m:math>, where <m:math>
+ <m:semantics>
+  <m:mi>B</m:mi>
+  <m:annotation encoding="MathType-MTEF">MathType@MTEF@5@5@+=
+  feaagGart1ev2aqatCvAUfeBSjuyZL2yd9gzLbvyNv2CaerbuLwBLn
+  hiov2DGi1BTfMBaeXatLxBI9gBaerbd9wDYLwzYbItLDharqqtubsr
+  4rNCHbGeaGqiVu0Je9sqqrpepC0xbbL8F4rqqrFfpeea0xe9Lq=Jc9
+  vqaqpepm0xbba9pwe9Q8fs0=yqaqpepae9pg0FirpepeKkFr0xfr=x
+  fr=xb9adbaqaaeGaciGaaiaabeqaamaabaabaaGcbaGaamOqaaaa@36BD@
+  </m:annotation>
+ </m:semantics>
+</m:math>
+is the block length.</para></section><example id="eip-750"><para id="eip-845">The MathWorks <link url="http://www.mathworks.com/help/dsp/ref/adaptfilt.blms.html">adaptfilt.blms</link> documentation can be used in Matlab to create a BLMS adaptive filter object.</para></example><para id="eip-71"><figure id="blmsfilter" orient="vertical"><title>Example of an FIR filter created using adaptfilt in Matlab</title><subfigure id="subfigure-1">
+      <media id="blmsfilt1" alt="blms filter example">
+          <image mime-type="image/png" src="../../media/magphase.png" width="900" height="225"/>
+        </media>
+   </subfigure>
+<subfigure id="subfigure-2">
+      <media id="blmsfilt2" alt="blms filter example">
+          <image mime-type="image/png" src="../../media/polezeroimpulse.png" width="900" height="225"/>
+        </media>
+   </subfigure>
+
+
+<caption>This particular filter is a BLMS trained on the male voice signal. Notice that the unit circle is in the region of convergence in the pole/zero plot (the filter is BIBO stable).</caption></figure></para><section xmlns:m="http://www.w3.org/1998/Math/MathML" id="eip-29"><title>Filtering in Matlab</title><list id="eip-672" list-type="enumerated" number-style="arabic"><item>Choose a signal to be recorded. We chose a pseudo-dirac, an audiobook recording from <foreign>The Hunger Games</foreign> and a recording from Winston Churchill's <foreign>A History of the English Peoples</foreign>. </item>
+<item>Record the signal being played in a room with desired acoustical properties. This is the desired signal, <m:math>
+ <m:semantics>
+  <m:mrow>
+   <m:mi>d</m:mi><m:mo stretchy="false">(</m:mo><m:mi>n</m:mi><m:mo stretchy="false">)</m:mo>
+  </m:mrow>
+  <m:annotation encoding="MathType-MTEF">MathType@MTEF@5@5@+=
+  feaagGart1ev2aqatCvAUfeBSjuyZL2yd9gzLbvyNv2CaerbuLwBLn
+  hiov2DGi1BTfMBaeXatLxBI9gBaerbd9wDYLwzYbItLDharqqtubsr
+  4rNCHbGeaGqiVu0Je9sqqrpepC0xbbL8F4rqqrFfpeea0xe9Lq=Jc9
+  vqaqpepm0xbba9pwe9Q8fs0=yqaqpepae9pg0FirpepeKkFr0xfr=x
+  fr=xb9adbaqaaeGaciGaaiaabeqaamaabaabaaGcbaGaamizaiaacI
+  cacaWGUbGaaiykaaaa@392B@
+  </m:annotation>
+ </m:semantics>
+</m:math>. We chose a carpeted room in Hanszen College that had little discernible echo.</item>
+<item>Record the signal being played in the echoed room. This is the input signal <m:math>
+ <m:semantics>
+  <m:mrow>
+   <m:mi>x</m:mi><m:mo stretchy="false">(</m:mo><m:mi>n</m:mi><m:mo stretchy="false">)</m:mo>
+  </m:mrow>
+  <m:annotation encoding="MathType-MTEF">MathType@MTEF@5@5@+=
+  feaagGart1ev2aqatCvAUfeBSjuyZL2yd9gzLbvyNv2CaerbuLwBLn
+  hiov2DGi1BTfMBaeXatLxBI9gBaerbd9wDYLwzYbItLDharqqtubsr
+  4rNCHbGeaGqiVu0Je9sqqrpepC0xbbL8F4rqqrFfpeea0xe9Lq=Jc9
+  vqaqpepm0xbba9pwe9Q8fs0=yqaqpepae9pg0FirpepeKkFr0xfr=x
+  fr=xb9adbaqaaeGaciGaaiaabeqaamaabaabaaGcbaGaamiEaiaacI
+  cacaWGUbGaaiykaaaa@393F@
+  </m:annotation>
+ </m:semantics>
+</m:math>. We recorded in the OEDK classroom and in an even more echoic classroom in Wiess College.</item>
+<item>Import both responses into Matlab.</item>
+
+<item>If you use Matlab's built-in adaptive filters. Create the adaptfilt object corresponding to the algorithm with desired parameters.</item>
+<item>Use the <code>maxstep()</code> function to check that your filter is stable. If not, adjust your step size.</item>
+<item>Use the <code>filter()</code> with your filter object, the input signal and the desire signal. </item></list><note id="eip-258" type="important">The desired signal, <m:math>
+ <m:semantics>
+  <m:mrow>
+   <m:mi>d</m:mi><m:mo stretchy="false">(</m:mo><m:mi>n</m:mi><m:mo stretchy="false">)</m:mo>
+  </m:mrow>
+  <m:annotation encoding="MathType-MTEF">MathType@MTEF@5@5@+=
+  feaagGart1ev2aqatCvAUfeBSjuyZL2yd9gzLbvyNv2CaerbuLwBLn
+  hiov2DGi1BTfMBaeXatLxBI9gBaerbd9wDYLwzYbItLDharqqtubsr
+  4rNCHbGeaGqiVu0Je9sqqrpepC0xbbL8F4rqqrFfpeea0xe9Lq=Jc9
+  vqaqpepm0xbba9pwe9Q8fs0=yqaqpepae9pg0FirpepeKkFr0xfr=x
+  fr=xb9adbaqaaeGaciGaaiaabeqaamaabaabaaGcbaGaamizaiaacI
+  cacaWGUbGaaiykaaaa@392B@
+  </m:annotation>
+ </m:semantics>
+</m:math>, needs to be recorded in another room in order to neutralize the effects of the recording equipment and the amplifier. Using the original signal could lead to the filter trying to compensate for effects introduced by the equipment and the amplifier instead of the echoes caused by the room. Furthermore, the desired and input signals need to start at the same time. Cut out any silence beforehand so that the vectors line up, this way the adaptive filter sifts out the echoes at the appropriate times.</note><note id="eip-686" type="aside">We used the <link url="http://audacity.sourceforge.net/">Audacity</link> software to record the sounds, trim the beginning of the sound files, and zero pad them to equal length. We exported these files as .wav files and then, on Matlab, used the <code>wavread()</code> function to import the sounds. </note><note id="eip-217" type="tip">Links to MathWorks documentation for various adaptive filters can be found <link url="http://www.mathworks.com/help/dsp/adaptive-filters.html">here</link>.</note><example id="eip-894"><para id="eip-394"><figure id="han"><title>FIR Filter Coefficients for Each Algorithm</title><media id="filtcoeff" alt="Stem plot of coefficients">
+    <image mime-type="image/jpeg" src="../../media/coefficients.jpg"/>
+  </media>
+  
+<caption>With the same training set (desired signal) each algorithm yields different filter coefficients. Step size: .0006. BLMS block length: 64.
+  </caption></figure></para></example></section>
+  </content>
+</document>

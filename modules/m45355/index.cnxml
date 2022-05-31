@@ -1,0 +1,17 @@
+<document xmlns="http://cnx.rice.edu/cnxml">
+  <title>Introduction</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m45355</md:content-id>
+  <md:title>Introduction</md:title>
+  <md:abstract>Introduction and Motivation for Auto-Tune project</md:abstract>
+  <md:uuid>f136ebb2-62fb-4ebe-b483-15d233ea11ee</md:uuid>
+</metadata>
+
+<content>
+    <para id="import-auto-id1168118361419"><emphasis effect="bold">Motivation</emphasis>
+    </para><para id="import-auto-id1168118446844">Music is governed by a chromatic scale of pitches, an exact ratio of harmonics which sound pleasing to the human ear when arranged in song.  Unfortunately, most individuals, even those with pleasant singing voices, struggle to sing at exactly the correct frequency for a given note on the harmonic scale.  Because the human ear can precisely detect small deviations in pitch, a singer even slightly distanced in pitch from a chromatic tone can result in music which is audibly displeasing to the listener. </para>
+    <para id="import-auto-id1168118660259">To achieve correct pitches in their recordings, many contemporary popular artists such as T-Pain and Rebecca Black use automatic pitch correction software, or Auto-Tune, ensure that their vocal tracks are perfectly in tune.  These programs shift the pitch of each individual note up or down in order to match a note on the chromatic scale, leading to an output which is more pleasing to the listener.  The corrected notes retain the musical properties of the original by also shifting the higher harmonics of the note.  However, many amateur musicians do not have access to this type of software, which can be expensive and difficult to use.  </para>
+    <para id="eip-200"><emphasis effect="bold">Solution</emphasis>
+</para><para id="import-auto-id1168113160705">We have created a software solution which, given a vocal track which is loaded into MatLab, quickly and precisely detects and corrects a vocal track to notes on the chromatic scale.  Our solution successfully pitch corrects a given vocal track by detecting the pitch of each note and shifting it to the nearest note on the chromatic scale.  However, the phase of the original signal is not completely preserved, resulting in distortion in the output.  Our solution is quick and easy to use, requiring no musical knowledge, and results in an in-tune, if somewhat distorted, signal.  </para>
+  </content>
+</document>

@@ -1,0 +1,29 @@
+<document xmlns="http://cnx.rice.edu/cnxml">
+  <title>Project Summary</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m45397</md:content-id>
+  <md:title>Project Summary</md:title>
+  <md:abstract>Summary</md:abstract>
+  <md:uuid>2ec7e7f7-1f17-4873-9f66-f9640e4fb86c</md:uuid>
+</metadata>
+
+<content>
+    <section id="import-auto-id1171137960446">
+      <title>Project Summary</title>
+      <para id="import-auto-id1171147530450">Our project accurately detects a face within an image, identifies the person’s mouth, and determines whether or not they are smiling. Given a set of images of a person input into our system, we can compare their images and determine which photo contains the best smile.
+
+
+ </para><para id="eip-787">The poster can be downloaded in PDF form.
+<media id="poster-pdf" alt="Poster PDf">
+  <download mime-type="application/pdf" src="Poster.pdf" for="online"/>
+</media></para><para id="eip-135">A PDF version of this report can be found here:
+<media id="smile-pdf" alt="smile PDf">
+  <download mime-type="application/pdf" src="Smile Identification via Feature Recognition and Corner Detection.pdf" for="online"/>
+</media></para><para id="eip-849">The demonstration code is located at: https://github.com/dannyvolz/Facial-Detection-and-Expression-Analysis</para><figure id="import-auto-id1171163653910">
+        <media id="import-auto-id1171148732715" alt="">
+          <image mime-type="image/png" src="../../media/graphics1-9907.png" height="482" width="624"/>
+        </media>
+      </figure>
+    </section>
+  </content>
+</document>

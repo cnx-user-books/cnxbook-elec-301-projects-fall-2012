@@ -1,0 +1,332 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML">
+  <title>Results</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m45329</md:content-id>
+  <md:title>Results</md:title>
+  <md:abstract>This module contains the full compilation of testing results for the filter bank project.</md:abstract>
+  <md:uuid>a075281e-c1c5-4a30-b848-f08e106ecf52</md:uuid>
+</metadata>
+
+<content>
+    <section id="eip-926"><title>Testing Parameters</title><para id="id62155">All data was collected on a laptop equipped with an AMD A6-3400M “Llano” quad-core processor which supports a clock rate of up to 2.3 GHz.</para>
+    <table id="id62164" summary=""><tgroup cols="2">
+        <colspec colnum="1" colname="c1"/>
+        <colspec colnum="2" colname="c2"/>
+        <tbody>
+          <row>
+            <entry namest="c1" nameend="c2"><emphasis effect="bold">Test Parameters</emphasis></entry>
+          </row>
+          <row>
+            <entry>Test Filter</entry>
+            <entry>4-pole Butterworth bandpass filter</entry>
+          </row>
+          <row>
+            <entry>Input channels</entry>
+            <entry>256</entry>
+          </row>
+          <row>
+            <entry>Time samples</entry>
+            <entry>600,000</entry>
+          </row>
+          <row>
+            <entry>Data filter cycles</entry>
+            <entry>100</entry>
+          </row>
+          <row>
+            <entry>Compiler</entry>
+            <entry>GCC</entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </table><para id="eip-423">The following results tables show the individual parameters of experiments, averaged run times of the program and an indicator of the real-time processing speed of the program (the formula to generate this figure is shown in the equation below).</para><para id="eip-615"><equation id="eq1">
+<m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mfrac>
+            <m:msub>
+              <m:mi>F</m:mi>
+              <m:mi>s</m:mi>
+            </m:msub>
+            <m:mfrac>
+              <m:mi>N</m:mi>
+              <m:mi>t</m:mi>
+            </m:mfrac>
+          </m:mfrac>
+          <m:mo>=</m:mo>
+          <m:mfrac>
+            <m:mrow>
+              <m:msub>
+                <m:mi>F</m:mi>
+                <m:mi>s</m:mi>
+              </m:msub>
+              <m:mi>t</m:mi>
+            </m:mrow>
+            <m:mi>N</m:mi>
+          </m:mfrac>
+        </m:mrow>
+      </m:math>
+</equation></para><para id="eip-899">where <m:math overflow="scroll"><m:mrow><m:msub><m:mi>F</m:mi><m:mi>s</m:mi></m:msub><m:mo>=</m:mo></m:mrow></m:math> sampling rate of incoming data (samples/sec), <m:math overflow="scroll"><m:mrow><m:mi>N</m:mi><m:mo>=</m:mo></m:mrow></m:math> number of samples processed by filter bank (samples), and <m:math overflow="scroll"><m:mrow><m:mi>t</m:mi><m:mo>=</m:mo></m:mrow></m:math> time to process all samples (sec).</para><!--empty paragraphs get left behind.-->
+</section>
+    <section id="eip-431"><title>Comparison of Optimizations using Compiler Flags and Intrinsics</title><table id="id62702" summary="">
+      <tgroup cols="3">
+        <colspec colnum="1" colname="c1"/>
+        <colspec colnum="2" colname="c2"/>
+        <colspec colnum="3" colname="c3"/>
+        <tbody>
+          <row>
+            <entry namest="c1" nameend="c3">
+              <emphasis effect="bold">Unique Filter Coefficients</emphasis>
+            </entry>
+          </row>
+          <row>
+            <entry>Optimization</entry>
+            <entry>Time (sec)</entry>
+            <entry>secs/sec (25 KS/s)</entry>
+          </row>
+          <row>
+            <entry>None</entry>
+            <entry>619.940</entry>
+            <entry>0.25831</entry>
+          </row>
+          <row>
+            <entry>O3 Compiler</entry>
+            <entry>241.131</entry>
+            <entry>0.10047</entry>
+          </row>
+          <row>
+            <entry>O3 and SSE3</entry>
+            <entry>75.589</entry>
+            <entry>0.03150</entry>
+          </row>
+          <row>
+            <entry>O3 and our SSE3</entry>
+            <entry>69.258</entry>
+            <entry>0.02886</entry>
+          </row>
+          <row>
+            <entry namest="c1" nameend="c3">
+              <emphasis effect="bold">Constant Filter Coefficients</emphasis>
+            </entry>
+          </row>
+          <row>
+            <entry>O3 and SSE3</entry>
+            <entry>55.835</entry>
+            <entry>0.02326</entry>
+          </row>
+          <row>
+            <entry>O3 and our SSE3</entry>
+            <entry>49.271</entry>
+            <entry>0.02053</entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </table>
+</section><section id="eip-806"><title>Implementations of POSIX Threads</title><figure id="uid1"><media id="uid1_media" alt="">
+        <image mime-type="image/png" src="../../media/yeaaaa.png" id="uid1_onlineimage" width="600"><!-- NOTE: attribute width changes image size online (pixels). original width is 1933. --></image>
+        <image mime-type="application/postscript" for="pdf" src="../../media/yeaaaa.eps" id="uid1_printimage" print-width="4in">
+          <!--NOTE: attribute width changes image size in printed PDF (if specified in .tex file)-->
+        </image>
+      </media>
+      
+    <caption>4 tests under
+various PThread control conditions demonstrate similar patterns according to the
+number of PThreads used during code execution.
+<emphasis effect="bold">Compiler Intrinsics</emphasis>: Implementation with naive data structures relying purely on compiler optimizations of SSE3 intrinsics
+<emphasis effect="bold">Our Intrinsics</emphasis>: Implementation with naive data structures using our custom SSE3 intrinsics code
+<emphasis effect="bold">Partial Reordering</emphasis>: Implementation assigning an output vector to each thread utilizing compiler intrinsics
+<emphasis effect="bold">Full Reordering</emphasis>: Intermediate variables are aligned by channel and separated by thread
+</caption></figure>
+<table id="id62932" summary=""><tgroup cols="3">
+        <colspec colnum="1" colname="c1"/>
+        <colspec colnum="2" colname="c2"/>
+        <colspec colnum="3" colname="c3"/>
+        <tbody>
+          <row>
+            <entry namest="c1" nameend="c3">
+              <emphasis effect="bold">POSIX Threads</emphasis>
+            </entry>
+          </row>
+          <row>
+            <entry>Optimization</entry>
+            <entry>Time (sec)</entry>
+            <entry>secs/sec (25 KS/s)</entry>
+          </row>
+          <row>
+            <entry>0 Threads and our SSE3</entry>
+            <entry>48.333</entry>
+            <entry>0.02014</entry>
+          </row>
+          <row>
+            <entry>1 Thread and our SSE3</entry>
+            <entry>50.109</entry>
+            <entry>0.02088</entry>
+          </row>
+          <row>
+            <entry>2 Threads and our SSE3</entry>
+            <entry>88.632</entry>
+            <entry>0.03693</entry>
+          </row>
+          <row>
+            <entry>4 Threads and our SSE3</entry>
+            <entry>138.090</entry>
+            <entry>0.05754</entry>
+          </row>
+          <row>
+            <entry>8 Threads and our SSE3</entry>
+            <entry>62.481</entry>
+            <entry>0.02603</entry>
+          </row>
+          <row>
+            <entry>16 Threads and our SSE3</entry>
+            <entry>103.901</entry>
+            <entry>0.04329</entry>
+          </row>
+          <row>
+            <entry>32 Threads and our SSE3</entry>
+            <entry>78.219</entry>
+            <entry>0.03259</entry>
+          </row>
+          <row>
+            <entry>0 Threads and SSE3</entry>
+            <entry>48.075</entry>
+            <entry>0.02003</entry>
+          </row>
+          <row>
+            <entry>1 Thread and SSE3</entry>
+            <entry>64.302</entry>
+            <entry>0.02679</entry>
+          </row>
+          <row>
+            <entry>2 Threads and SSE3</entry>
+            <entry>96.755</entry>
+            <entry>0.04031</entry>
+          </row>
+          <row>
+            <entry>4 Threads and SSE3</entry>
+            <entry>123.931</entry>
+            <entry>0.05164</entry>
+          </row>
+          <row>
+            <entry>8 Threads and SSE3</entry>
+            <entry>67.629</entry>
+            <entry>0.02818</entry>
+          </row>
+          <row>
+            <entry>16 Threads and SSE3</entry>
+            <entry>141.329</entry>
+            <entry>0.05889</entry>
+          </row>
+          <row>
+            <entry>32 Threads and SSE3</entry>
+            <entry>121.134</entry>
+            <entry>0.05047</entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </table><table id="id63337" summary=""><tgroup cols="3">
+        <colspec colnum="1" colname="c1"/>
+        <colspec colnum="2" colname="c2"/>
+        <colspec colnum="3" colname="c3"/>
+        <tbody>
+          <row>
+            <entry namest="c1" nameend="c3">
+              <emphasis effect="bold">Reordered Output Data</emphasis>
+            </entry>
+          </row>
+          <row>
+            <entry>Optimization</entry>
+            <entry>Time (sec)</entry>
+            <entry>secs/sec (25 KS/s)</entry>
+          </row>
+          <row>
+            <entry>0 Threads and SSE3</entry>
+            <entry>50.106</entry>
+            <entry>0.02088</entry>
+          </row>
+          <row>
+            <entry>1 Thread and SSE3</entry>
+            <entry>49.302</entry>
+            <entry>0.02054</entry>
+          </row>
+          <row>
+            <entry>2 Threads and SSE3</entry>
+            <entry>78.888</entry>
+            <entry>0.02054</entry>
+          </row>
+          <row>
+            <entry>4 Threads and SSE3</entry>
+            <entry>89.939</entry>
+            <entry>0.03747</entry>
+          </row>
+          <row>
+            <entry>8 Threads and SSE3</entry>
+            <entry>35.283</entry>
+            <entry>0.01470</entry>
+          </row>
+          <row>
+            <entry>16 Threads and SSE3</entry>
+            <entry>71.337</entry>
+            <entry>0.02972</entry>
+          </row>
+          <row>
+            <entry>32 Threads and SSE3</entry>
+            <entry>109.112</entry>
+            <entry>0.04546</entry>
+          </row>
+          <row>
+            <entry namest="c1" nameend="c3">
+              <emphasis effect="bold">Reordered Intermediate Variables</emphasis>
+            </entry>
+          </row>
+          <row>
+            <entry>0 Threads and SSE3</entry>
+            <entry>71.166</entry>
+            <entry>0.02965</entry>
+          </row>
+          <row>
+            <entry>1 Thread and SSE3</entry>
+            <entry>57.156</entry>
+            <entry>0.02382</entry>
+          </row>
+          <row>
+            <entry>2 Threads and SSE3</entry>
+            <entry>52.639</entry>
+            <entry>0.02193</entry>
+          </row>
+          <row>
+            <entry>4 Threads and SSE3</entry>
+            <entry>48.939</entry>
+            <entry>0.02039</entry>
+          </row>
+          <row>
+            <entry>8 Threads and SSE3</entry>
+            <entry>33.589</entry>
+            <entry>0.01400</entry>
+          </row>
+          <row>
+            <entry>16 Threads and SSE3</entry>
+            <entry>51.543</entry>
+            <entry>0.02148</entry>
+          </row>
+          <row>
+            <entry>32 Threads and SSE3</entry>
+            <entry>110.716</entry>
+            <entry>0.04613</entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </table>
+</section>
+
+
+<section id="eip-985"><title>Comparison of Initial Optimizations to POSIX Thread Implementation</title><figure id="uid2"><media id="uid2_media" alt="">
+        <image mime-type="image/png" src="../../media/finalcoderuntime.png" id="uid2_onlineimage" width="600"><!-- NOTE: attribute width changes image size online (pixels). original width is 1365. --></image>
+        <image mime-type="application/postscript" for="pdf" src="../../media/finalcoderuntime.eps" id="uid2_printimage" print-width="4in">
+          <!--NOTE: attribute width changes image size in printed PDF (if specified in .tex file)-->
+        </image>
+      </media>
+      
+    <caption>Both tests show code execution times based on different methods of compiler
+optimization. Test 1 allowed for unique filter coefficients and test 2 had constant coefficients. Both tests used inefficient data arrangement.</caption></figure>
+</section>
+    <para id="id62928">Our optimal filter design incorporated a combination of several of the methods we used to optimize our filter bank implementation.  It made use of compiler-level optimization, SSE instructions, and POSIX threads. It processed 60 million samples for each of the 256 channels in 33.589 seconds. Assuming a 25 KHz sampling rate, each second of of data is processed in 14 milliseconds (25 KS/s) and thus acceptable for real-time processing.</para></content>
+</document>

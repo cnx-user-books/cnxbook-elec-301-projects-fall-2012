@@ -1,0 +1,95 @@
+<document xmlns="http://cnx.rice.edu/cnxml">
+  <title>Algorithms</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m45399</md:content-id>
+  <md:title>Algorithms</md:title>
+  <md:abstract/>
+  <md:uuid>d13cd00c-cabf-402b-844a-0cbe92aaef3f</md:uuid>
+</metadata>
+
+<content>
+    <section id="import-auto-id1170814267898">
+      <title>Algorithms</title>
+      <section id="import-auto-id1170813755670">
+        <title>Modified Viola-Jones Face Detection</title>
+        <para xmlns:fo="urn:oasis:names:tc:opendocument:xmlns:xsl-fo-compatible:1.0" id="import-auto-id1170809360304" fo:font-style="normal" fo:font-weight="normal">First we detect the face using a Viola-Jones based algorithm. The exact algorithm we used is outlined by Lienhart, et al. [3]<link target-id=""><emphasis effect="underline"/></link>. This algorithm uses an extended set of Haar Features to determine where a face is in an image. </para>
+        <para xmlns:fo="urn:oasis:names:tc:opendocument:xmlns:xsl-fo-compatible:1.0" id="import-auto-id1170813762281" fo:font-style="normal" fo:font-weight="normal">
+          <figure id="import-auto-id1170814475970">
+            <media id="import-auto-id1170814494265" alt="">
+              <image mime-type="image/jpg" src="../../media/graphics1-2dbd.jpg" height="496" width="624"/>
+            </media>
+          </figure>
+        </para>
+        <para xmlns:fo="urn:oasis:names:tc:opendocument:xmlns:xsl-fo-compatible:1.0" id="import-auto-id1170814603811" fo:font-style="normal" fo:font-weight="normal"><emphasis effect="bold">Figure 1</emphasis><emphasis effect="bold">: </emphasis>Extended set of Haar-like features used in the algorithm we applied. The Intensity values for each feature will be the sum of the white region minus the sum of the black region. [3]<link target-id=""><emphasis effect="underline"/></link></para>
+        <para xmlns:fo="urn:oasis:names:tc:opendocument:xmlns:xsl-fo-compatible:1.0" id="import-auto-id1170813771678" fo:font-style="normal" fo:font-weight="normal">When a Haar-like wavelet passes over an image, edges become intensified as edges will have a large difference between the white and black regions of the wavelets (Fig. 2<link target-id="id1170814478435"><emphasis effect="underline"/></link>) By setting a high enough intensity threshold, the points above the threshold will likely be edges. An image of a face will exhibit many edges at different facial landmarks. In order to ascertain if a windowed region of the image is a face, several sweeps of different Haar features are done in order to ensure high enough accuracy of detecting a face. Detection of a face should also be attempted with several window sizes as face size within an image can vary. </para>
+        <para xmlns:fo="urn:oasis:names:tc:opendocument:xmlns:xsl-fo-compatible:1.0" id="import-auto-id1170813745499" fo:font-style="normal" fo:font-weight="normal">This method would be very time-consuming and computationally expensive if all Haar features were swept over all possible windows of the entire image. In order to speed this up, a cascade of feature classifiers is used (Fig. 3<link target-id="id1170814078286"><emphasis effect="underline"/></link>). At each stage of the cascade, less and less common Haar features with more strict rules are added in order quickly throw out windows that do not contain a face. If the image passes one stage of the cascade, this will weakly indicate the presence of a face. However, if it passes all classifiers, there will be a high confidence level that a face is present. </para>
+        <para xmlns:fo="urn:oasis:names:tc:opendocument:xmlns:xsl-fo-compatible:1.0" id="import-auto-id1170813836070" fo:font-style="normal" fo:font-weight="normal">
+          <figure id="import-auto-id1170814619343">
+            <media id="import-auto-id1170814282627" alt="">
+              <image mime-type="image/jpg" src="../../media/graphics2-c488.jpg" height="219" width="624"/>
+            </media>
+          </figure>
+        </para>
+        <para xmlns:fo="urn:oasis:names:tc:opendocument:xmlns:xsl-fo-compatible:1.0" id="import-auto-id1170825998043" fo:font-style="normal" fo:font-weight="normal"><emphasis effect="bold">Figure 2</emphasis><emphasis effect="bold">: </emphasis>Cascade of feature classifiers. [2]<link target-id=""><emphasis effect="underline"/></link></para>
+        <para xmlns:fo="urn:oasis:names:tc:opendocument:xmlns:xsl-fo-compatible:1.0" id="import-auto-id1170825321672" fo:font-style="normal" fo:font-weight="normal">A nice demonstration of how using a cascade of Haar wavelets for face detection works is hosted by the University of St. Andrews (<link url="http://morph.cs.st-andrews.ac.uk/fof/haarDemo/index.html"><emphasis effect="underline">Haar Wavelet Face Detection Demo</emphasis></link>). This example illustrates very clearly how a weak classifier cascade drastically speeds up computation time. </para>
+      </section>
+      <section id="import-auto-id1170813993217">
+        <title>Shi-Tomasi Corner Detection</title>
+        <para xmlns:fo="urn:oasis:names:tc:opendocument:xmlns:xsl-fo-compatible:1.0" id="import-auto-id1170813913918" fo:font-style="normal" fo:font-weight="normal">Shi-Tomasi corner detection is based upon Harris-Stephens corner detection, just with different threshold parameters. Therefore, we start explaining the algorithm by defining the Harris corner detector operator[1]<link target-id=""><emphasis effect="underline"/></link>: </para>
+        <para xmlns:fo="urn:oasis:names:tc:opendocument:xmlns:xsl-fo-compatible:1.0" id="import-auto-id1170813654686" fo:font-style="normal" fo:font-weight="normal">
+          <figure id="import-auto-id1170824454031">
+            <media id="import-auto-id1170814440270" alt="">
+              <image mime-type="image/png" src="../../media/graphics3-7d40.png" height="77" width="624"/>
+            </media>
+          </figure>
+        </para>
+        <list id="import-auto-id1170801897613" list-type="bulleted">
+          <item>E - Sum of squared differences between the original and moved window </item>
+          <item>u - x direction window displacement </item>
+          <item>v - y direction window displacement </item>
+          <item>w ( x , y ) - Weighting function of the window, either a gaussian or a window of ones. </item>
+          <item>I ( x + u, y + v ) - intensity of the moved window </item>
+          <item>I ( x , y ) - intensity of the original window</item>
+        </list>
+        <para id="import-auto-id1170814252390">The detector essentially scans the image with a window of size x by y , for places where there is a large change in intensity in both the x and y directions.</para>
+        <para id="import-auto-id1170813893872">In order to simplify the above expression, we use a first order Taylor series approximation of </para>
+        <para xmlns:fo="urn:oasis:names:tc:opendocument:xmlns:xsl-fo-compatible:1.0" id="import-auto-id1170826404725" fo:font-style="normal" fo:font-weight="normal">I ( x + u, y + v ) –  I ( x , y ) : </para>
+        <para xmlns:fo="urn:oasis:names:tc:opendocument:xmlns:xsl-fo-compatible:1.0" id="import-auto-id1170815352678" fo:font-style="normal" fo:font-weight="normal">
+          <figure id="import-auto-id1170814372591">
+            <media id="import-auto-id1170829097152" alt="">
+              <image mime-type="image/png" src="../../media/graphics4-9490.png" height="75" width="624"/>
+            </media>
+          </figure>
+        </para>
+        <para id="import-auto-id1170814017980">Then changing to a matrix representation gives: </para>
+        <para xmlns:fo="urn:oasis:names:tc:opendocument:xmlns:xsl-fo-compatible:1.0" id="import-auto-id1170828771261" fo:font-style="normal" fo:font-weight="normal">
+          <figure id="import-auto-id1170813741568">
+            <media id="import-auto-id1170814424476" alt="">
+              <image mime-type="image/png" src="../../media/graphics5-e5a7.png" height="92" width="624"/>
+            </media>
+          </figure>
+        </para>
+        <para id="import-auto-id1170828663349">Then defining M as the structure tensor from above: </para>
+        <figure id="import-auto-id1170814607848">
+          <media id="import-auto-id1170813653007" alt="">
+            <image mime-type="image/png" src="../../media/graphics6-19b8.png" height="138" width="624"/>
+          </media>
+        </figure>
+        <para id="import-auto-id1170814493050">The determination of R , which is the parameter that indicates the importance of the point as a corner is done by taking the minimum of the two eigenvalues of this matrix. </para>
+        <para xmlns:fo="urn:oasis:names:tc:opendocument:xmlns:xsl-fo-compatible:1.0" id="import-auto-id1170815336420" fo:font-style="normal" fo:font-weight="normal">
+          <figure id="import-auto-id1170815346139">
+            <media id="import-auto-id1170813975636" alt="">
+              <image mime-type="image/png" src="../../media/graphics7-bfa4.png" height="151" width="624"/>
+            </media>
+          </figure>
+        </para>
+        <para id="import-auto-id1170826391380">where <figure id="import-auto-id1170814257429"><media id="import-auto-id1170813927676" alt=""><image mime-type="image/png" src="../../media/graphics8-0a93.png" height="28" width="51"/></media></figure> are eigenvalues of M. </para>
+        <para xmlns:fo="urn:oasis:names:tc:opendocument:xmlns:xsl-fo-compatible:1.0" id="import-auto-id1170813838500" fo:font-style="normal" fo:font-weight="normal">This is the Shi-Tomasi modification of the Harris and Stephens corner detection algorithm[5]<link target-id=""><emphasis effect="underline"/></link>. While the Harris and Stephens algorithm was more computationally efficient, the Shi-Tomasi algorithm was found to be more accurate. Since the original Harris and Stephens paper, the computational cost of computing eigenvalues has become less and less significant, so the Shi-Tomasi algorithm is now more commonly used. </para>
+      </section>
+      <section id="import-auto-id1170814062326">
+        <title>Mouth Curvature Detection</title>
+        <para xmlns:fo="urn:oasis:names:tc:opendocument:xmlns:xsl-fo-compatible:1.0" id="import-auto-id1170814697637" fo:font-style="normal" fo:font-weight="normal">Using the corners detected using the Shi-Tomasi algorithm, we use a least squares method to fit a second-order polynomial to the edge points detected [4]<link target-id=""><emphasis effect="underline"/></link>. From the second order term we get a measure of the curvature of the points detected in the mouth region. </para>
+      </section>
+    </section>
+  </content>
+</document>

@@ -1,0 +1,28 @@
+<document xmlns="http://cnx.rice.edu/cnxml">
+
+  <title>Compiler Optimization Flags and Intrinsics</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m45322</md:content-id>
+  <md:title>Compiler Optimization Flags and Intrinsics</md:title>
+  <md:abstract/>
+  <md:uuid>d6f308b9-6abd-43c6-9996-4fe30ae39778</md:uuid>
+</metadata>
+
+<content>
+    <section id="eip-120"><title>Compiler Optimization Flags</title><para id="eip-733">We began our optimization process by exploring the performance enhancements using the compiler with optimization flags. We used the GNU Compiler Collection (GCC) and were able to use the O3 optimization flag. O3 is less focused on compiling the code in a way that yields easy debugging, but enables some very important built in optimizations, including inline function expansion and loop unrolling. 
+</para><list id="eip-68"><item><emphasis>Function inlining</emphasis> tells the compiler to insert the entire body of the function where the function is called, instead of creating the code to call the function. </item>
+<item><emphasis>Loop unrolling</emphasis> eliminates the instructions that control the loop and rewrites the loop as a repeated sequence of similar code, optimizing the program's execution speed at the expense of its binary size.</item></list></section><section id="eip-12"><title>SSE3 Intrinsic Instruction Set</title><para id="eip-338">Utilizing different instruction sets provides another opportunity for significant speed gains.  We utilized the Intel Streaming SIMD (single-instruction, multiple-data) Extensions 3 technology (SSE3) to improve the the efficiency of the floating-point operations of addition and multiplication.  SSE3 instructions are designed for parallel mathematical operations: each processor core contains eight 128-bit SSE registers, which are capable of storing up to 4 floating-point numbers.  SSE operations basically perform operations on all 4 floats at the same time, providing a considerable increase in the computation speed for banks of numbers.  Because digital filtering is essentially a large number of floating-point multiplications and additions, we felt that SSE would be a perfect addition to the project. 
+
+
+</para><para id="eip-85">The SSE3 instruction set was implemented using two different methods:</para><list id="eip-953"><item><emphasis>Compiler Optimized:</emphasis> By including the header file <code display="inline">&lt;xmmintrin.h&gt;</code> and compiling with the O3 optimization flag, the GCC compiler will automatically apply SSE instructions to speed up instrcutions where it deems fit.</item>
+
+<item><emphasis>User-Defined SSE Instructions with Intrinsic Functions:</emphasis> The SSE header file also grants access to intrinsic functions, which allows us to specifically indicate to the compiler how SSE should be used in our program.  We wrote a custom SSE implementation of our filter processing code.  Each SSE operation performs calculations on 4 channels simultaneously.</item></list></section><section id="eip-336"><title>Comparison of Initial Optimizations</title><para id="eip-119">The following results were generated on an AMD A6-3400M quad-core processor. We filtered 256 channels with 600,000 time samples.  We selected a large number of samples to process to prevent the processor from putting the data in low-level cache, which emulates the behavior of real-time data.  The entire program was cycled 100 times to provide temporal resolution of the results, which lets us easily see changes in performance.
+</para><figure id="uid1"><title>Comparison of Initial Optimizations</title><media id="uid1_media" alt="">
+        <image mime-type="image/png" src="../../media/graph1.png" id="uid1_onlineimage" width="600"><!-- NOTE: attribute width changes image size online (pixels). original width is 905. --></image>
+        <image mime-type="application/postscript" for="pdf" src="../../media/graph1.eps" id="uid1_printimage" print-width="4in">
+          <!--NOTE: attribute width changes image size in printed PDF (if specified in .tex file)-->
+        </image>
+      </media>
+      
+    <caption>The data line with unique channel coefficients had a and b filtering coefficients in vectors. The one with constant channel coefficients had fixed coefficients for all channels, which allowed for a quicker run time.</caption></figure><para id="eip-711">Adding O3 optimization resulted in a speed increase of about 2 binary orders of magnitude.  Adding SSE optimizations yielded a speed increase by a factor of more than 3.  Utilizing compiler optimization and specialized instruction sets provided a major boost in our filter bank's performance.</para><para id="eip-246">Note that we performed tests with filter coefficients uniquely defined for each channel, and also with filter coefficients held the same for all channels.  Using the same coefficients for all channels yielded significant speed gains.  Most filter banks for neural signals will perform the same bandpass filtering on all channels, so this is an acceptable change for optimization.</para></section>
+</content></document>

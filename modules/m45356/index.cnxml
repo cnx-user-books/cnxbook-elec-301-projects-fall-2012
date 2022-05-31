@@ -1,0 +1,38 @@
+<document xmlns="http://cnx.rice.edu/cnxml">
+  <title>Introduction</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m45356</md:content-id>
+  <md:title>Introduction</md:title>
+  <md:abstract>This is the introduction to our group project: DWTS - Dancing With Three-Dimensional Sound.</md:abstract>
+  <md:uuid>38ef920f-6107-463e-b569-e2817f675f11</md:uuid>
+</metadata>
+<featured-links>
+  <!-- WARNING! The 'featured-links' section is read only. Do not edit below.
+       Changes to the links section in the source will not be saved. -->
+    <link-group type="supplemental">
+      <link url="http://cnx.org/content/m45358/latest/" strength="3">Background</link>
+      <link url="http://cnx.org/content/m45359/latest/" strength="3">Calculating the Position, Speed, and Orientation of an Object</link>
+      <link url="http://cnx.org/content/m45357/latest/" strength="3">Object Detection Challenges and Solutions</link>
+      <link url="http://cnx.org/content/m45360/latest/" strength="3">3-D Sound Implementation</link>
+      <link url="http://cnx.org/content/m45375/latest/" strength="3">Musical Mapping</link>
+      <link url="http://cnx.org/content/m45362/latest/" strength="3">Results</link>
+      <link url="http://cnx.org/content/m45363/latest/" strength="3">Future Work</link>
+      <link url="http://cnx.org/content/m45364/latest/" strength="3">Conclusions</link>
+      <link url="http://cnx.org/content/m45365/latest/" strength="3">References</link>
+      <link url="http://cnx.org/content/m45366/latest/" strength="3">Poster</link>
+      <link url="http://cnx.org/content/m45373/latest/" strength="3">The Team</link>
+    </link-group>
+  <!-- WARNING! The 'featured-links' section is read only. Do not edit above.
+       Changes to the links section in the source will not be saved. -->
+</featured-links>
+<content>
+    <section id="import-auto-id8658483">
+      <para id="import-auto-id1166793619067">Since the introduction of the American Disabilities Act some years ago, our society has made commendable strides towards ensuring that people with mental and physical handicaps can navigate our world with the same ease as everyone else. However, a significant amount of work remains to be done, especially in the entertainment and performing arts industries. For example, consider a mother who wishes to attend her daughter’s ballet recital, but cannot see the performance due to acute blindness; such a situation struck us as tragically unfair, and became the motivation for our signal-processing project.</para>
+      <para id="import-auto-id1166796728044">Once these sentiments coalesced into a driving force for our team, we set out to discern the best strategy with which to aid the blind in their endeavor to experience performances of dancing. Two potential courses of action immediately presented themselves: either we could utilize signal-processing to directly counteract blindness in the eyes, or we could take advantage of one of the other innate human senses to communicate the phenomenon of dancing in a nontraditional, yet intuitive way. Since none of us were particularly well versed in the science of ocular anatomy, we opted for the latter option, and managed to implement a system that captured the intricacies of dancing by transforming a visual input into three-dimensional sound using a predetermined musical mapping. The general methodology that we adhered to in realizing our system is as follows:</para>
+      <figure id="import-auto-id1166801696387"><media id="import-auto-id1166792141577" alt="">
+          <image mime-type="image/png" src="../../media/Picture 0.png" height="265" width="576"/>
+        </media>
+      <caption>Object Detection and 3-D Sound Synthesis Procedure</caption></figure><para id="import-auto-id1166796750140">The rest of this module will provide an in-depth illustration of these facets of our project.</para>
+    </section>
+  </content>
+</document>

@@ -1,0 +1,30 @@
+<document xmlns="http://cnx.rice.edu/cnxml">
+  <title>Method</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m45395</md:content-id>
+  <md:title>Method</md:title>
+  <md:abstract>Method</md:abstract>
+  <md:uuid>7a889843-1c73-4305-ac8c-97dbf786f2c9</md:uuid>
+</metadata>
+
+<content>
+    <section id="import-auto-id1170835113033">
+      <title>Method </title>
+      <section id="import-auto-id1170835323074">
+        <title>Procedure Overview</title>
+        <para id="import-auto-id1170835252801">Given a set of images of a person input into our system, we would like to be able to compare their images and determine which photo contains the best smile. The images can be of the same person or of multiple distinct individuals. </para>
+        <para id="import-auto-id1170835261379">Using the Viola-Jones feature recognition algorithm, the face of the subject in the photo is identified. Once we have narrowed our region of analysis to the face, Viola-Jones is applied again to locate the mouth of the subject. Next, the Shi-Tomasi corner detection algorithm is run across the mouth region, locating edges and features of the mouth (creases from smiling, teeth, mouth shape). Using the points obtained from corner detection, a second-degree polynomial line of best fit is plotted. By taking the derivative of the line of best fit, the concavity of the points is determined, and from that it can be determined whether or not the subject is smiling in the photo. </para>
+        <figure id="import-auto-id1170835238250">
+          <media id="import-auto-id1170834731409" alt="">
+            <image mime-type="image/jpg" src="../../media/graphics1-8dc4.jpg" height="821" width="624"/>
+          </media>
+        </figure>
+        <para xmlns:fo="urn:oasis:names:tc:opendocument:xmlns:xsl-fo-compatible:1.0" id="import-auto-id1170835101075" fo:font-style="normal" fo:font-weight="normal"><emphasis effect="bold">Figure 1: </emphasis>Program Outline </para>
+      </section>
+      <section id="import-auto-id1170835114671">
+        <title>Smile Identification</title>
+        <para id="import-auto-id1170834949410">In order to determine whether or not a subject is smiling, a combination of techniques are used. The first technique we tried was to simply count all the edge detection points because a smiling person tended to produce more edges than an unsmiling person, mostly due to the presence of teeth in a smile. However, we quickly realized that this method was inaccurate when the subject was giving a close-lipped smile or was open mouthed but not smiling. Our next technique was to plot the edge detection points, given that a threshold minimum is met, and calculate the line of best fit on the resulting scatter plot. This technique combined with our first technique proved to be an effective combination to detect the concavity of the subject’s mouth region and the density of edge points within that region, allowing us to determine whether or not the mouth was shaped into a smile.</para>
+      </section>
+    </section>
+  </content>
+</document>

@@ -1,0 +1,229 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML">
+  <title>Implementation: Tone Mapping Method</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m45499</md:content-id>
+  <md:title>Implementation: Tone Mapping Method</md:title>
+  <md:abstract/>
+  <md:uuid>ce645e8c-a80a-4e83-955d-76665a4c1d17</md:uuid>
+</metadata>
+
+<content>
+    <section id="eip-71"><title>Tone Mapping</title><para id="eip-939">
+
+</para></section><para id="id194797">Tone Mapping is a tool that allows us to map a High Dynamic Range (HDR) image for display on a Low Dynamic Range (LDR) medium, such as an LCD screen. We have implemented Reinhard's algorithms in doing this, which revolve around the idea of scaling the pixel values of the image by a factor to fit in the LDR. In Reinhard's paper, two implementations are found. Let us call these two: Initial Scaling, and Dodge-and-Burning (DAB).</para><para id="id194804">For both implementations, we compress the 3 different channels of Red, Green, and Blue into luminance values by:</para>
+    <equation id="id194812">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:msub>
+            <m:mi>L</m:mi>
+            <m:mi>w</m:mi>
+          </m:msub>
+          <m:mo>=</m:mo>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>2125</m:mn>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mi>R</m:mi>
+          <m:mo>+</m:mo>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>7154</m:mn>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mi>G</m:mi>
+          <m:mo>+</m:mo>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>0721</m:mn>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mi>B</m:mi>
+          <m:mo>;</m:mo>
+        </m:mrow>
+      </m:math>
+    </equation>
+    <para id="id195217">We denote the luminance value by <m:math overflow="scroll"><m:msub><m:mi>L</m:mi><m:mi>w</m:mi></m:msub></m:math> and Red, Green, Blue by <m:math overflow="scroll"><m:mrow><m:mi>R</m:mi><m:mo>,</m:mo><m:mi>G</m:mi><m:mo>,</m:mo><m:mi>B</m:mi></m:mrow></m:math> respectively.</para>
+    <para id="id195251">As we would like to avoid singularities, we adjust all luminance values for each pixel with a small value, <m:math overflow="scroll"><m:mi>ϵ</m:mi></m:math>.</para>
+    <para id="id195263">For the Initial Scaling scheme, we first obtain the key value of the scene by computing:</para>
+    <equation id="id195267">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mi>k</m:mi>
+          <m:mi>e</m:mi>
+          <m:mi>y</m:mi>
+          <m:mo>=</m:mo>
+          <m:mfrac>
+            <m:mn>1</m:mn>
+            <m:mi>N</m:mi>
+          </m:mfrac>
+          <m:mi>e</m:mi>
+          <m:mi>x</m:mi>
+          <m:mi>p</m:mi>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:munder>
+              <m:mo>∑</m:mo>
+              <m:mi>x</m:mi>
+            </m:munder>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:munder>
+                <m:mo>∑</m:mo>
+                <m:mi>y</m:mi>
+              </m:munder>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mi>l</m:mi>
+                <m:mi>o</m:mi>
+                <m:mi>g</m:mi>
+                <m:mrow>
+                  <m:mo>(</m:mo>
+                  <m:mi>d</m:mi>
+                  <m:mi>e</m:mi>
+                  <m:mi>l</m:mi>
+                  <m:mo>+</m:mo>
+                  <m:mi>L</m:mi>
+                  <m:mi>w</m:mi>
+                  <m:mo>)</m:mo>
+                </m:mrow>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>)</m:mo>
+          </m:mrow>
+        </m:mrow>
+      </m:math>
+    </equation>
+    <para id="id195532">where we sum over all x and y values indicating pixel location. Now, we normalize all pixel values with respect to the middle-grey of the scene. The middle-grey is the subjective middle brightness region of the scene and for images of normal brightness, this middle-grey value typically maps to 0.18, and always lies in between 0 and 1. Once we have normalized, we scale all pixel values by to get a LDR image:</para>
+    <equation id="id195539">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:msub>
+            <m:mi>L</m:mi>
+            <m:mi>d</m:mi>
+          </m:msub>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mi>x</m:mi>
+            <m:mo>,</m:mo>
+            <m:mi>y</m:mi>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mfrac>
+            <m:mrow>
+              <m:mi>L</m:mi>
+              <m:mo>(</m:mo>
+              <m:mi>x</m:mi>
+              <m:mo>,</m:mo>
+              <m:mi>y</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mrow>
+              <m:mn>1</m:mn>
+              <m:mo>+</m:mo>
+              <m:mi>L</m:mi>
+              <m:mo>(</m:mo>
+              <m:mi>x</m:mi>
+              <m:mo>,</m:mo>
+              <m:mi>y</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+          </m:mfrac>
+        </m:mrow>
+      </m:math>
+    </equation>
+    <para id="id195602">In the DAB scheme, we obtain two Gaussian functions of different sizes located concentric with each other, where the ratio of variances is set to 1.6 (this value can be changed slightly to meet better quality tone mapping). We convolute the image with both Gaussian functions and calculate:</para>
+    <equation id="id195608">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mi>V</m:mi>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mi>x</m:mi>
+            <m:mo>,</m:mo>
+            <m:mi>y</m:mi>
+            <m:mo>,</m:mo>
+            <m:mi>s</m:mi>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mfrac>
+            <m:mrow>
+              <m:msub>
+                <m:mi>V</m:mi>
+                <m:mn>1</m:mn>
+              </m:msub>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mi>x</m:mi>
+                <m:mo>,</m:mo>
+                <m:mi>y</m:mi>
+                <m:mo>,</m:mo>
+                <m:mi>s</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mo>-</m:mo>
+              <m:msub>
+                <m:mi>V</m:mi>
+                <m:mn>2</m:mn>
+              </m:msub>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mi>x</m:mi>
+                <m:mo>,</m:mo>
+                <m:mi>y</m:mi>
+                <m:mo>,</m:mo>
+                <m:mi>s</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+            </m:mrow>
+            <m:mrow>
+              <m:msup>
+                <m:mn>2</m:mn>
+                <m:mi>φ</m:mi>
+              </m:msup>
+              <m:mi>a</m:mi>
+              <m:mo>/</m:mo>
+              <m:msup>
+                <m:mi>s</m:mi>
+                <m:mn>2</m:mn>
+              </m:msup>
+              <m:mo>+</m:mo>
+              <m:msub>
+                <m:mi>V</m:mi>
+                <m:mn>1</m:mn>
+              </m:msub>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mi>x</m:mi>
+                <m:mo>,</m:mo>
+                <m:mi>y</m:mi>
+                <m:mo>,</m:mo>
+                <m:mi>s</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+            </m:mrow>
+          </m:mfrac>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mn>1</m:mn>
+            <m:mo>)</m:mo>
+          </m:mrow>
+        </m:mrow>
+      </m:math>
+    </equation>
+    <para id="id195743">where <m:math overflow="scroll"><m:msub><m:mi>V</m:mi><m:mn>1</m:mn></m:msub></m:math> and <m:math overflow="scroll"><m:msub><m:mi>V</m:mi><m:mn>2</m:mn></m:msub></m:math> are the Gaussian functions of different sizes, <m:math overflow="scroll"><m:mi>φ</m:mi></m:math> is a parameter (=8 in our case), <m:math overflow="scroll"><m:mi>a</m:mi></m:math> is the subjective middle-grey value of our scene and <m:math overflow="scroll"><m:mi>s</m:mi></m:math> is the scaling ratio of the Gaussian functions.</para>
+    <para id="id195798">In doing so, we hope to find a small outcome that is less than or equal to a tolerance level that we give (in our case 0.05). If this value meets the tolerance level, we try to enlarge the variance (and by doing so enlarge both gaussians) so that we can compute (1) over again to re-evaluate if this larger area still meets the tolerance. We keep doing this until our Gaussians cover the entire image or we meet the largest area that is less than the tolerance level. We then keep the convoluted values of the image with the smaller Gaussian function and use this for our new LDR image.</para>
+    <para id="id195806">What we are essentially doing in this scheme is finding the smallest contrast difference obtainable in the largest area and keeping these values. In effect, we are smoothing the image to fit the LDR yet keeping the edges and details of the image.</para>
+    <para id="id195811">In these two ways, we are able to obtain a LDR from a HDR image.</para>
+  </content>
+</document>

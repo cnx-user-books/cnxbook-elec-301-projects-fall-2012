@@ -1,0 +1,33 @@
+<document xmlns="http://cnx.rice.edu/cnxml">
+  <title>Background</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m45368</md:content-id>
+  <md:title>Background</md:title>
+  <md:abstract/>
+  <md:uuid>c3b9893f-ba6a-45bf-9bea-562048be165d</md:uuid>
+</metadata>
+
+<content>
+    <section id="eip-474"><title>Background</title><para id="eip-873">HDR increases visual fidelity by integrating contrast ratio with observer-based models of color perception. Relative values of real scene radiances are rarely captured by cameras because of non-linearities and clipping. The response curve of a camera maps the real scene radiance to the digitized pixel values. HDR methods use response curve to find real scene radiances. Tone mapping filters such images for display on low dynamic range (LDR) displays. </para></section><figure id="import-auto-id1170344160698">
+      <media id="import-auto-id1170316248603" alt="">
+        <image mime-type="image/png" src="../../media/Picture 1-0ea8.png" height="78" width="675"/>
+      </media>
+    </figure>
+    <para id="import-auto-id1170327581848">
+      <emphasis effect="bold">Radiance Mapping</emphasis>
+    </para>
+    <para id="import-auto-id4997978">The LDR of a single digital photograph contains accurate radiance information only for correctly exposed pixels. Changing the exposure captures radiance information for different sets of pixels. To accurately analyze a sequence of photographs to extract radiance information for the entire scene, we must take into account the way the camera sensor responds to different levels of light. First, we try and get the camera response curve f, which tells us how scene radiance E is mapped to pixel brightness Z. Using the inverse of f allows us to reproduce actual scene radiance E. The curve f is different for each camera and we compute f from a series of exposures.</para>
+    <figure id="import-auto-id1170329190311">
+      <media id="import-auto-id1170318779880" alt="">
+        <image mime-type="image/png" src="../../media/graphics1-3b87.png" height="367" width="482"/>
+      </media>
+    </figure>
+    <para id="import-auto-id1170332539099">
+      <figure id="import-auto-id1170318759731">
+        <media id="import-auto-id1170317627428" alt="">
+          <image mime-type="image/png" src="../../media/graphics2-bab1.png" height="355" width="469"/>
+        </media>
+      </figure>
+    </para>
+  </content>
+</document>

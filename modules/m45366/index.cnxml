@@ -1,0 +1,38 @@
+<document xmlns="http://cnx.rice.edu/cnxml">
+  <title>Poster</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m45366</md:content-id>
+  <md:title>Poster</md:title>
+  <md:abstract>This is the poster we made for our project.</md:abstract>
+  <md:uuid>00150724-a67f-4e5c-be24-f8c6ecd54bd6</md:uuid>
+</metadata>
+<featured-links>
+  <!-- WARNING! The 'featured-links' section is read only. Do not edit below.
+       Changes to the links section in the source will not be saved. -->
+    <link-group type="supplemental">
+      <link url="http://cnx.org/content/m45356/latest/" strength="3">Introduction</link>
+      <link url="http://cnx.org/content/m45358/latest/" strength="3">Background</link>
+      <link url="http://cnx.org/content/m45359/latest/" strength="3">Calculating the Position, Speed, and Orientation of an Object</link>
+      <link url="http://cnx.org/content/m45357/latest/" strength="3">Object Detection Challenges and Solutions</link>
+      <link url="http://cnx.org/content/m45360/latest/" strength="3">3-D Sound Implementation</link>
+      <link url="http://cnx.org/content/m45362/latest/" strength="3">Results</link>
+      <link url="http://cnx.org/content/m45363/latest/" strength="3">Future Work</link>
+      <link url="http://cnx.org/content/m45364/latest/" strength="3">Conclusions</link>
+      <link url="http://cnx.org/content/m45365/latest/" strength="3">References</link>
+      <link url="http://cnx.org/content/m45375/latest/" strength="3">Musical Mapping</link>
+      <link url="http://cnx.org/content/m45373/latest/" strength="3">The Team</link>
+    </link-group>
+  <!-- WARNING! The 'featured-links' section is read only. Do not edit above.
+       Changes to the links section in the source will not be saved. -->
+</featured-links>
+<content>
+    <figure id="import-auto-id1171929919594">
+      <media id="import-auto-id1171915926897" alt="">
+        <image mime-type="image/jpg" src="../../media/Picture 0-dcc0.jpg" height="562" width="624"/>
+      </media>
+     <caption>
+    Our Poster
+    </caption>
+    </figure>
+  </content>
+</document>

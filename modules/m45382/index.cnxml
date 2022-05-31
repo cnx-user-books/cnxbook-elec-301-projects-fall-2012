@@ -1,0 +1,23 @@
+<document xmlns="http://cnx.rice.edu/cnxml">
+  <title>Background</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m45382</md:content-id>
+  <md:title>Background</md:title>
+  <md:abstract>Why we chose to research echo cancellation in the OEDK classroom.</md:abstract>
+  <md:uuid>69239036-92e2-4ce4-8811-a492289a696e</md:uuid>
+</metadata>
+
+<content>
+    <section id="eip-699"><title>Introduction</title><para id="eip-517">Echoes are defined as the repetition of a sound waveform due to changes in the properties of the medium through which the transmitted signal propagates. In telecommunication services, where the presence of echo has a substantial effect on the perceived quality and intelligibility of speech, the notion of <emphasis>echo cancellation</emphasis> is of paramount importance.</para><para id="eip-299">The practice of echo suppression and cancellation began its development half a century ago, with commercial echo cancellation devices being developed at the AT&amp;T Bell Labs in the 1960's. With the onset of wireless cellular networks and other modern telecommunication services, echo cancellation algorithms are still widely implemented.</para><para id="eip-947">Today, echo cancellation processors employ exhaustive digital signal processing algorithms to filter out obstreperous echo signals. In general, these devices sample the input speech signal, create a desired model signal of the echo trajectory in order to approximate the echo signal, and then subtract this desired signal from the echoed input signal to recover a clean, original transmission. </para><para id="eip-269">In our project, our group challenged the question of whether these techniques could be applied in dealing with the complex problem of cancelling a room's echo.</para><para id="eip-109"><figure id="AEC"><media id="AECbd" alt="AEC">
+        <image mime-type="image/png" src="../../media/AEC.png"/>
+      </media>
+    <caption>Block diagram example of typical acoustic echo cancellation.</caption></figure></para></section><section id="eip-643"><title>Project Motivation</title><para id="eip-875">When seniors in Rice's capstone engineering design course present in the Oshman Engineering Design Kitchen (OEDK) classroom, they are recorded for future reference. The room however suffers from excess acoustic reverberation making the recordings difficult to understand.  Many lecturers and students have complained about the sound quality in the classroom. However the OEDK has hired more than three contractors to diagnose the problem. Each had conflicting reports on the cause of the problems (the high ceiling, concrete floors, magnetic walls).</para><example id="eip-543"><para id="eip-999"><media id="hanszenfemale" alt="Noechofemale">
+      <audio mime-type="audio/x-wav" src="OriginalFemale.wav"/>
+   </media> Recording played in acoustically desirable room.
+</para><para id="eip-173"><media id="oedkfemale" alt="echofemale">
+      <audio mime-type="audio/x-wav" src="EchoedFemale.wav"/>
+   </media> The same recording played in OEDK classroom.</para>
+</example><para id="eip-81">Because the problem areas are not uniform, and physically altering the room would be expensive, we approached the problem from a digital signal processing perspective. Implementing an echo cancellation filter to the microphone's signal should improve the quality of the presentation's audio when being played back by students or other future listeners and allow for seniors to receive better feedback on their presentation skills.</para></section><section id="eip-824"><title>Main Goals</title><list id="eip-102"><item>Research and implement methods of echo cancellation, especially those used in telecommunications, to be used for rectifying the classroom's acoustic problem.</item>
+<item>Make a recommendation for approaching echo cancellation in OEDK classroom.</item>
+</list></section></content>
+</document>

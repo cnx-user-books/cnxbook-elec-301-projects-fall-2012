@@ -1,0 +1,23 @@
+<document xmlns="http://cnx.rice.edu/cnxml">
+  <title>Steering Vector</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m45410</md:content-id>
+  <md:title>Steering Vector</md:title>
+  <md:abstract>A brief overview of what a steering vector is and why it is important to beamforming</md:abstract>
+  <md:uuid>cd66d763-5a87-4fb7-9c1a-5520488551a6</md:uuid>
+</metadata>
+
+<content>
+    <section id="import-auto-id1170814246488">
+      <title>The Steering Vector</title>
+      <para id="import-auto-id1170814228871">The steering vector <sub>­­­</sub><emphasis effect="bold"><emphasis effect="italics">e</emphasis></emphasis> represents the set of phase delays experienced by a plane wave as it reaches each element in an array of sensors. The mathematical representation of it is </para>
+      <figure id="import-auto-id1170813761738">
+        <media id="import-auto-id1170809455568" alt="">
+          <image mime-type="image/png" src="../../media/graphics1-8300.png" height="68" width="177"/>
+        </media>
+      </figure>
+      <para id="import-auto-id1170813639886">Where <emphasis effect="italics">j</emphasis> is the imaginary unit, <emphasis effect="bold"><emphasis effect="italics">k</emphasis></emphasis>­<sub>n</sub> is the wave number at the <emphasis effect="italics">n</emphasis>th sensor, and <emphasis effect="bold"><emphasis effect="italics">x­</emphasis></emphasis><sub>n</sub> is the position vector of the<emphasis effect="italics"> n</emphasis>th sensor in (<emphasis effect="italics">x</emphasis>, <emphasis effect="italics">y</emphasis>, <emphasis effect="italics">z</emphasis>) coordinates. If the sensor array is two-dimensional, all z coordinates can be treated as 0 and omitted from the position vector in calculations. The wave number of a plane wave is its spatial frequency, or how many waves exist over a specified distance. It is a function of the frequency of the propagating wave, the material through which it is travelling, and its original location or direction of propagation. For our specific application, we actually use the angular wave number, which is written as (2π/λ) and indicates the number of wavelengths per 2π unit distance.  </para>
+      <para id="import-auto-id1170814797471">The role of the steering vector <emphasis effect="bold"><emphasis effect="italics">e</emphasis></emphasis> in beamforming is to define the assumed propagation direction of the source’s signal. In other words, it is the part of the beamforming process that chooses the direction in which the sensor array creates an output beam.  Because <emphasis effect="bold"><emphasis effect="italics">e</emphasis></emphasis> is designed to cancel the phase shifts at each sensor in the array and the wave number <emphasis effect="bold"><emphasis effect="italics">k</emphasis></emphasis> must, by definition, assume a propagation direction, the steering vector has the effect of moving the each sensor’s output to a particular direction, thus focusing the beam.</para>
+    </section>
+  </content>
+</document>

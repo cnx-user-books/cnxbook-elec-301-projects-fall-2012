@@ -1,0 +1,51 @@
+<document xmlns="http://cnx.rice.edu/cnxml">
+  <title>Experimental Results</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m45379</md:content-id>
+  <md:title>Experimental Results</md:title>
+  <md:abstract>Describes the results of our experiments using the previously-detailed auto-tune implementation. Includes our poster and conclusions from the project, as well as sound samples.</md:abstract>
+  <md:uuid>f5add097-41d5-42fa-86b2-be685c865e7b</md:uuid>
+</metadata>
+
+<content>
+    <section id="import-auto-id1166956656403">
+      <title>Experimental Results</title>
+      <para id="import-auto-id1166942499273">Our implementation was able to correct the pitch of vocal samples, leaving the timbre of the voice mostly intact. Figs. 1 and 2 show spectrograms from a vocal sample of the song “Rolling in the Deep,” originally recorded by Adele, as was sung by an anonymous woman and posted to YouTube. To listen to the results, click below. 
+
+<link url="http://www.mediafire.com/?rh8lkcpvcsh1cq9" window="new"> input </link> 
+
+<link url="http://www.mediafire.com/?ucbo1ivb7xzbj8z" window="new"> output </link> </para><para id="import-auto-id1166959416599"><figure id="inwin"><media id="in" alt="input">
+    <image mime-type="image/png" src="http://i.imgur.com/T1T6J.png"/>
+  </media>
+  
+<caption> "Rolling in the Deep" input spectra.
+  </caption></figure></para>
+      <para id="import-auto-id1166939504458"><figure id="outwin"><media id="out" alt="A dog sitting on a bed">
+    <image mime-type="image/png" src="http://i.imgur.com/oZ79x.png"/>
+  </media>
+  
+<caption> pitch-corrected spectra.
+  </caption></figure></para><para id="import-auto-id1166965734180">The figures show that pitch correction shifts the spectrum slightly, without significant distortion to its overall shape. It is desirable that the two figures are remarkably similar, as we wish to correct the pitch without significant distortion to the sound. Fig. 3 supports this claim by zooming in on the spectra of one window. We can see that a slight frequency shift has occurred, yet the shapes of the input and corrected spectra are identical. Also note that higher frequencies are shifted by a greater amount, which is necessary to account for the human brain’s logarithmic perception of pitch. Recall that oversampling allows for pitch detection accurate to within 0.5Hz, with higher accuracies being possible through more severe oversampling and quadratic regression, at the cost of increased execution time.
+
+</para><para id="eip-453"><figure id="specwin"><media id="dogpic" alt="A dog sitting on a bed">
+    <image mime-type="image/jpeg" src="http://i.imgur.com/oFCsj.jpg"/>
+  </media>
+  
+<caption>Spectra of one window.
+  </caption></figure></para>
+      <para id="import-auto-id1166942808096">We admit one major drawback of our design, that the sound acquires a sort of robotic quality, partially due to the strict correction of tones to an unnatural level of accuracy. Many commercial systems take steps to correct the pitch only partially in some areas, such as in transitions between notes, to yield a more natural sound. This would be difficult, but not impossible to implement with the degree of automation that we desire. Still, best results require a human to work alongside the computer to tell where notes start and where they end, and how strictly to correct in different segments of the track, but this was not the goal of our user-friendly design.</para><para id="import-auto-id1166942386948">Another serious issue causing the robotic sound is phase. While the phase vocoder attempts to preserve phase in the sub-windows during pitch shifting, we do not preserve phase from window to window, in which different shifts occur. Thus, there is a random incoherence every 256 samples that clearly affects the sound.  While the spectral content of the signals has been shown to be accurate, the distorted phase remains a significant issue. Sophisticated algorithms have been developed to overcome this obstacle, but time constraints prevented us from implementing them across different windows, which undergo different shifts. </para>
+      <para id="import-auto-id1166947767945">Finally, a less avoidable distortion comes from spectral leakage, due to windowing. Switching from rectangular to Hamming windows reduced this effect, but even with much more sophisticated designs, it is impossible to mitigate leakage completely. The corrected voice, however, remains quite recognizable, and we have achieved our primary goal of correcting pitch, with minimizing distortion only a secondary concern.</para>
+    </section>
+    <section id="import-auto-id6749967">
+      <title>Conclusions and Future Work</title>
+      <para id="import-auto-id1166965320998">We implemented auto-tune in MATLAB with a high degree of accuracy, requiring almost no input from the user. Oversampling yielded sufficient frequency resolution, while windowing resolved different notes in the time domain. Dominant frequencies were efficiently detected and matched to the nearest note on the chromatic scale, between which a shift ratio was determined. Using a phase vocoder and resampling, we achieved an accurate frequency shift in each window. In the future, much of the remaining distortion could be mitigated by utilizing phase-locking techniques between windows. Our open-source design provides an easy-to-use and accurate pitch correction.</para>
+      </section><para id="eip-689">Click
+<link url="http://www.filedropper.com/poster_2" window="new"> here </link> 
+to download an informative poster explaining our design.</para><section id="eip-220"><title>Individual Contributions</title><para id="eip-569">The contributions of each group member are listed below:
+
+• Navaneeth Ravindranath: wrote 'find nearest note' function, drafted preliminary version of algorithm, wrote 'Implementation' Connexions module
+• Blaine Rister: help with algorithms and code, poster editing, plots, “Experimental Results” and “Installation Instructions” Connexions modules
+• Tanner Songkakul: prototyping helper functions, help with algorithms and code, poster creation, “Introduction” connexions module 
+• Andrew Tam: prototyping helper functions, creating and managing poster graphics, “Challenges” Connexions module
+</para></section></content>
+</document>

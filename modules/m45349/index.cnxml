@@ -1,0 +1,53 @@
+<document xmlns="http://cnx.rice.edu/cnxml">
+  <title>Results</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m45349</md:content-id>
+  <md:title>Results</md:title>
+  <md:abstract/>
+  <md:uuid>0ef50be8-304b-4075-9001-dfa5fb97ac70</md:uuid>
+</metadata>
+
+<content>
+    <section id="cid1">
+      <title>Feature Separation</title>
+      <para id="id193273">The neural network must be fed meaningful information. If there are not clusters within the data and distinguishing relationships between features, than there is nothing for the neural network to learn. Here we show that the features extracted from the LPC are in fact providing useful information to the neural network. A subset of four emotions has been selected for visual clarity. They have been normalized by mean and variance to generate a roughly Gaussian distribution of the frequency location of the fourth formant. Notice that the mean, variance, and skewness of each of the four probability density functions is are distinct.</para>
+      <figure id="uid1"><media id="uid1_media" alt="">
+          <image mime-type="image/png" src="../../media/histogram.png" id="uid1_onlineimage" width="228"><!-- NOTE: attribute width changes image size online (pixels). original width is 456. --></image>
+          <image mime-type="application/postscript" for="pdf" src="../../media/histogram.eps" id="uid1_printimage" print-width="4in">
+            <!--NOTE: attribute width changes image size in printed PDF (if specified in .tex file)-->
+          </image>
+        </media>
+      </figure></section>
+    <section id="cid2">
+      <title>Computation Complexity</title>
+      <para id="id193301">This algorithmic pipeline involves a significant number of computationally heavy tasks. In its original iteration, each sample required 50 seconds of processing time before the neural network was trained. We minimized the order of the filter to introduce an acceptable level of passband ripple, vectorized the LPC windowing implementation, and replaced the find operation used by in formant detection with logical indexing. These measures reduced the average computational time to only about half a second per sample.</para>
+      <figure id="uid2"><media id="uid2_media" alt="">
+          <image mime-type="image/png" src="../../media/optimization.png" id="uid2_onlineimage" width="412"><!-- NOTE: attribute width changes image size online (pixels). original width is 924. --></image>
+          <image mime-type="application/postscript" for="pdf" src="../../media/optimization.eps" id="uid2_printimage" print-width="4in">
+            <!--NOTE: attribute width changes image size in printed PDF (if specified in .tex file)-->
+          </image>
+        </media>
+      </figure></section>
+    <section id="cid3">
+      <title>Neural Network Learning Curves</title>
+      <para id="id193667">To evaluate the performance of the neural network, we split the database into two distinct sections. The training set (70% of the database) was used to train the neural network. A logarithmic distribution of regularization was tested. When each trained set of internodal weights was applied to the test set (30% of the database), we were able to determine the true accuracy of the neural network. We found that the test set accuracy actually peaked at a low value of regularization and then decreased. This is a characteristic signature of having far too small of a database. Given that the size of the database was fixed, we attempted to compensate by minimizing the number of input features to the neural network. It is important to have the ratio between training examples and inputs be large. If we had instead seen a gap between the training and test set performance even at high levels of regularization, we would have known that our choice of input features was inherently faulty.</para>
+      <figure id="uid3"><media id="uid3_media" alt="">
+          <image mime-type="image/png" src="../../media/learningcurves.png" id="uid3_onlineimage" width="241"><!-- NOTE: attribute width changes image size online (pixels). original width is 482. --></image>
+          <image mime-type="application/postscript" for="pdf" src="../../media/learningcurves.eps" id="uid3_printimage" print-width="4in">
+            <!--NOTE: attribute width changes image size in printed PDF (if specified in .tex file)-->
+          </image>
+        </media>
+      </figure></section>
+    <section id="cid4">
+      <title>Algorithm Performance</title>
+      <para id="id193698">We established a human performance baseline by playing a randomized list of 100 samples to three individuals. None were able to significantly outperform chance. Clearly humans struggle to classify a precise emotion from such a large list, especially without any context. If the test is altered to be a binary matching test where the subject is asked to evaluate whether a given emotion is intoned in a given sample, human performance markedly improves. This suggests that in normal everyday interaction, we rely on semantic content and situational context to derive an emotional expectation; then, we simply evaluate the speaker's tone to see if it matches that expectation.</para>
+      <para id="id193707">The algorithm correctly identifies the tone of the speakers voice with 26 percent accuracy. The algorithm was particularly adept at detecting contempt (41%), anxiety (37%), sadness (33%), and boredom (31%). It struggled to identify cold anger (4%).</para>
+      <figure id="uid4"><media id="uid4_media" alt="">
+          <image mime-type="image/png" src="../../media/results.png" id="uid4_onlineimage" width="439"><!-- NOTE: attribute width changes image size online (pixels). original width is 978. --></image>
+          <image mime-type="application/postscript" for="pdf" src="../../media/results.eps" id="uid4_printimage" print-width="4in">
+            <!--NOTE: attribute width changes image size in printed PDF (if specified in .tex file)-->
+          </image>
+        </media>
+      </figure></section>
+  </content>
+</document>

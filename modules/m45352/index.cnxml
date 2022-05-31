@@ -1,0 +1,44 @@
+<document xmlns="http://cnx.rice.edu/cnxml">
+  <title>Theory</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m45352</md:content-id>
+  <md:title>Theory</md:title>
+  <md:abstract>Theory for the Music Visualization project</md:abstract>
+  <md:uuid>b8f96474-7a1d-47ed-93bb-9df839d9c978</md:uuid>
+</metadata>
+
+<content>
+    <section id="import-auto-id1166588576073">
+      <title>Theory</title>
+      <section id="import-auto-id1166579065705">
+        <title>Source Separation: </title>
+        <para id="import-auto-id1166585932203">A classical example for source separation is the "cocktail party problem", where a number of people talk simultaneously and one is trying to follow one of the discussions. </para>
+        <para id="import-auto-id1166596202509">In our case, we deal with music instead of multiple people. Music is often composed of multiple instruments playing different notes at the same time. In order to separate these instruments, there exist many methods in signal processing which perform <emphasis effect="italics">source separation</emphasis>, attempting to determine the different signals that make up the music.</para>
+        <para id="import-auto-id1166590717297">Some of the most famous methods of source separation include Independent Component Analysis (ICA), Markov chains, and using Fast Fourier Transforms (FFTs). For this project we decided to focus on ICA instead of other methods to separate the sources, since it could be implemented in Matlab easily.</para>
+      </section>
+      <section id="import-auto-id1166579080963">
+        <title>ICA Algorithm:</title>
+        <para id="import-auto-id1166579093113">Independent Component Analysis (ICA) takes a 0.5 second frame of the track, sliding this 0.5 second window along the entire song. It then separates this frame into 20 possible sources, determines 3 sources that are maximally independent, and returns those 3 sources. We then perform FFTs on these 3 sources and find the peaks from the resulting spectrums of the signals. </para>
+        <figure id="import-auto-id1166587968238">
+          <media id="import-auto-id1166578400289" alt="">
+            <image mime-type="image/jpg" src="../../media/Picture 1-ce47.jpg" height="307" width="551"/>
+          </media>
+        </figure>
+        <para id="import-auto-id1166590510042">From these frequencies, we determine the peaks, take the two most dominat peaks per source, and create matrix containing the results from each frame. </para>
+        <figure id="import-auto-id1166590703002">
+          <media id="import-auto-id1166587916464" alt="">
+            <image mime-type="image/jpg" src="../../media/Picture 2-6573.jpg" height="300" width="538"/>
+          </media>
+        </figure>
+        <para id="import-auto-id1166590378085">If we see a note that lasts for more than 5 frames, we call it a note and visualize it. In the example above, we can see a constant note in low frequencies, this could be considered the bass line. </para>
+        <para id="import-auto-id8563582">Our ICA algorithm is based off of JadeR algorithm, which was implemented in our Matlab code.</para>
+        <para id="import-auto-id1166590710966">There are many factors we can change in our Matlab code, including:</para>
+        <list id="import-auto-id1166590668378" list-type="bulleted">
+          <item>Number of sources, though this lowers the height of peaks when we find the FFT.</item>
+          <item>Threshold for what we consider "peaks" in our FFTs</item>
+          <item>Number of frames necessary for a frequency to be considered a note.</item>
+        </list>
+      </section>
+    </section>
+  </content>
+</document>

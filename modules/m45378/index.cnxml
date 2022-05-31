@@ -1,0 +1,60 @@
+<document xmlns="http://cnx.rice.edu/cnxml">
+  <title>Challenges</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m45378</md:content-id>
+  <md:title>Challenges</md:title>
+  <md:abstract>An overview of the challenges our group faced during the matlab implementation of Auto-tune pitch correction.</md:abstract>
+  <md:uuid>6ec40346-7fe5-418e-b0a4-e9ea214a543b</md:uuid>
+</metadata>
+<featured-links>
+  <!-- WARNING! The 'featured-links' section is read only. Do not edit below.
+       Changes to the links section in the source will not be saved. -->
+    <link-group type="supplemental">
+      <link url="http://cnx.org/content/m45377/latest/" strength="3">Implementation</link>
+      <link url="http://cnx.org/content/m45379/latest/" strength="3">Experimental Results</link>
+      <link url="http://cnx.org/content/m45380/latest/" strength="3">Try It Yourself!</link>
+    </link-group>
+    <link-group type="prerequisite">
+      <link url="http://cnx.org/content/m45355/latest/" strength="3">Auto-Tune: Introduction</link>
+    </link-group>
+  <!-- WARNING! The 'featured-links' section is read only. Do not edit above.
+       Changes to the links section in the source will not be saved. -->
+</featured-links>
+<content>
+    <section id="import-auto-id1172161957120">
+      <title>Challenges</title>
+      <para id="import-auto-id1172159505036">There were several challenges we had to consider when implementing our autotune function in matlab.</para>
+      <list id="import-auto-id1172156630229" list-type="enumerated" number-style="arabic" start-value="1"><item>
+          <emphasis effect="bold">Isolating a single note</emphasis>
+        </item>
+      </list><para id="import-auto-id1172157193823">We need to divide the time-domain signal into windows small enough that they cannot contain more than one note. Once we have performed windowing in the time domain, we can take the FFT for each window to get the isolated spectrum of the note sung. We then compare it to the closest note on the chromatic scale to determine the amount of shift needed. <figure id="import-auto-id1172161975062"><media id="import-auto-id1172159549812" alt=""><image mime-type="image/png" src="../../media/graphics1-2ae9.png" height="368" width="623"/></media><caption>Spectral content of an entire song. Note the many peaks.</caption></figure></para>
+      <figure id="import-auto-id1172158950090"><media id="import-auto-id1172162044923" alt="">
+          <image mime-type="image/png" src="../../media/Picture 1-1a62.png" height="338" width="624"/>
+        </media>
+      <caption>Spectral content of two notes and their harmonics. Note the distinct peaks. Figure reused from “Finding Piano Note Frequencies” connexions module by Scott Steger, http://cnx.org/content/m14191/latest/?collection=col10462/latest</caption></figure><list id="import-auto-id2286320" list-type="enumerated" number-style="arabic" start-value="2">
+        <item>
+          <emphasis effect="bold">Transform Distortions </emphasis>
+        </item>
+      </list>
+      <para id="import-auto-id1172159043625">Windowing the signal in the time domain requires the use of a filter. All filters create distortions in the frequency domain because of their non-ideal frequency response in the stopband.</para>
+      <figure id="import-auto-id1172157194979"><media id="import-auto-id1172161644776" alt="">
+          <image mime-type="image/png" src="../../media/Picture 4-0d15.png" height="135" width="380"/>
+        </media>
+      <caption>Ideal time-domain window
+<link url="http://accad.osu.edu/~smay/RManNotes/RegularPatterns/transitions.html">
+          <emphasis effect="underline">http://accad.osu.edu/~smay/RManNotes/RegularPatterns/transitions.html</emphasis>
+        </link>
+      </caption></figure><figure id="import-auto-id1172161924554"><media id="import-auto-id1172160807253" alt="">
+          <image mime-type="image/png" src="../../media/Picture 5-0087.png" height="217" width="624"/>
+        </media>
+      <caption>Frequency response of ideal time window. Note the nonzero amplitude outside the main lobe. <link url="https://ccrma.stanford.edu/~jos/sasp/Rectangular_Window.html"><emphasis effect="underline">https://ccrma.stanford.edu/~jos/sasp/Rectangular_Window.html</emphasis></link></caption></figure><para id="import-auto-id1172158005149">In addition to these magnitude distortions, windows can have nonlinear phase. This changes the relative phase between the tones in each note. For any notes comprised of more than a single tone, this phase change will create audible distortion. </para>
+      <list id="import-auto-id1172161951319" list-type="enumerated" number-style="arabic" start-value="3">
+        <item>
+          <para id="import-auto-id1172161967927">
+            <emphasis effect="bold">Time Duration</emphasis>
+          </para>
+        </item>
+      </list>
+      <para id="import-auto-id1172162367557">We change the pitch of our signals via the chipmunk effect; notes are shifted up or down by re-sampling, effectively playing the signal back at a lower or higher sampling rate. This method creates minimum phase distortion, but changes the time duration of the signal. In order to counteract this effect, we must stretch or compress each portion of the song to maintain its original time duration after re-sampling to change the pitch. We can then achieve our desired note shifting by playing the entire song back at its original sampling frequency.</para></section>
+  </content>
+</document>

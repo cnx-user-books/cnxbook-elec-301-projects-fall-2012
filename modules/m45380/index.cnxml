@@ -1,0 +1,26 @@
+<document xmlns="http://cnx.rice.edu/cnxml">
+  <title>Installation Instructions</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m45380</md:content-id>
+  <md:title>Installation Instructions</md:title>
+  <md:abstract>Instructions for using the auto-tune program yourself.</md:abstract>
+  <md:uuid>9fb2fd12-9ecb-45e6-a08a-327d8a6ccd00</md:uuid>
+</metadata>
+
+<content>
+    <section id="import-auto-id1172162400529">
+      <title>Installation Instructions</title>
+      <para id="import-auto-id1172144800425"><link url="http://www.mediafire.com/?m627iuf74xxauij" window="new">This</link> .zip archive contains the main function, autotune.m, as well as the helper routines pitchShift.m, fusionFrames.m, and createFrames.m. To install the program, first you must extract it from the archive. In Windows, this can be done by right-clicking on the .zip and selecting “extract here.” Similar methods exist for other operating systems. Next, copy all of the files to your MATLAB directory, or any other directory in your MATLAB path. If you copy the files as part of a folder, then the folder must be included in your MATLAB path for MATLAB to find the autotune function. </para><para id="import-auto-id1172144847757">The pitch shifting code is a slight modification of the “Guitar Pitch Shifter” from <link url="http://www.guitarpitchshifter.com/matlab.html" window="new">this site</link>. Note that while it is open-source, there may be legal issues with redistributing this code. Do so at your own risk. These issues can be avoided by substituting the pitch shifter for your own pitch shifting code, replacing the call to pitchShift() in autotune.m.</para></section>
+    <section id="import-auto-id2277595">
+      <title>Using the Program</title>
+      <para id="import-auto-id1172156651862">The autotune function takes in five arguments, X, pMin, pMax, w, and Fs. </para><para id="import-auto-id1172153438407">X is the input signal, which is a matrix of amplitudes in either mono (one column) or stereo (two columns). This matrix can be extracted from a .wav file with the wavread command in MATLAB. </para>
+      <para id="import-auto-id1172161125524">pMin is the minimum frequency in which we expect to find a peak, and pMax is the maximum, in Hz. We suggest passing in 60 for pMin and 1050 for pMax to cover the human vocal range, but this interval may need to be expanded for other instruments. In general, the narrowest possible interval covering all played notes is preferable, as this grants the greatest chance of correctly detecting the correct note. </para>
+      <para id="import-auto-id1172166267568">w is the width of the window to correct as if it were an individual note. Note that the current version of the code rounds w to the next power of two, for simplicity. Theoretically, higher values of w would result in less distortion, but also poorer time resolution, where the boundaries between notes would be less precise. We found that 256 was a good value for this parameter.</para>
+      <para id="import-auto-id1172149057733">Finally, Fs is the sampling frequency, in Hz, of the input signal X. This value can be obtained as the second return value of the wavread command, and is commonly either 22050 or 44100. Here is an example of the proper MATLAB commands to auto-tune a vocal sample:</para>
+      <code id="eip-383" display="block">[X, Fs] = wavread('path to input file');  % Read input from .wav
+out = autotune(X, 60, 1050, Fs);          % Process signal
+wavwrite(out, Fs, 'path to output file'); % Write output to .wav</code><para id="import-auto-id1172144809320">Alternatively, the output can be played from the MATLAB command line with the following command:</para>
+      <code id="eip-773" display="block">soundsc(out, Fs);</code><para id="import-auto-id1054682">Note that the current version of the code compresses stereo input to mono output, and that execution time can be greatly reduced by processing only a portion of the input song. Please enjoy our code, and feel free to modify and improve upon it!</para>
+    </section>
+  </content>
+</document>

@@ -1,0 +1,107 @@
+<document xmlns="http://cnx.rice.edu/cnxml">
+  <title>Implementation</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m45400</md:content-id>
+  <md:title>Implementation</md:title>
+  <md:abstract/>
+  <md:uuid>9649b109-41aa-4160-8400-f33fabbf8e76</md:uuid>
+</metadata>
+<featured-links>
+  <!-- WARNING! The 'featured-links' section is read only. Do not edit below.
+       Changes to the links section in the source will not be saved. -->
+    <link-group type="supplemental">
+      <link url="https://github.com/dannyvolz/Facial-Detection-and-Expression-Analysis" strength="3">Code and Images</link>
+    </link-group>
+  <!-- WARNING! The 'featured-links' section is read only. Do not edit above.
+       Changes to the links section in the source will not be saved. -->
+</featured-links>
+<content>
+    <section id="import-auto-id1169782689596">
+      <title>Implementation </title>
+      <para id="import-auto-id1169785420734">In order to implement these algorithms in time and computationally efficient manner, we used the Computer Vision toolbox in MATLAB. We used several features of this toolbox to calculate the parameters we needed for detecting a smile. </para>
+      <section id="import-auto-id1169794631229">
+        <title>Illustrated Example</title>
+        <para id="import-auto-id1169776487126">Using the ubiquitous image of Lena from many face and feature recognition papers and Danny, we complete our first step of detecting the image with the discussed modified Viola-Jones Algorithm. Important pieces of code are included. </para>
+        <para xmlns:fo="urn:oasis:names:tc:opendocument:xmlns:xsl-fo-compatible:1.0" id="import-auto-id1169777998389" fo:font-style="normal" fo:font-weight="normal">
+          <figure id="import-auto-id1169791616680">
+            <media id="import-auto-id1169782654724" alt="">
+              <image mime-type="image/png" src="../../media/graphics1-1589.png" height="624" width="624"/>
+            </media>
+          </figure>
+          <figure id="import-auto-id1169776627995">
+            <media id="import-auto-id1169777615319" alt="">
+              <image mime-type="image/png" src="../../media/graphics2-cac3.png" height="604" width="624"/>
+            </media>
+          </figure>
+        </para>
+        <para id="import-auto-id1169780094499">faceDetector = vision.CascadeObjectDetector(’FrontalFaceCART’); </para>
+        <para id="import-auto-id1169784793280">box = step(faceDetector, &lt;image&gt;); </para>
+        <para xmlns:fo="urn:oasis:names:tc:opendocument:xmlns:xsl-fo-compatible:1.0" id="import-auto-id1169782692750" fo:font-style="normal" fo:font-weight="normal"><emphasis effect="bold">Figure 2: </emphasis> Detected Face. This initializes a pre-trained modified Viola-Jones feature detection cascade (Section3.1<link target-id=""/>). Then the image is input into the cascade system, giving an output of the coordinates of a box that surronds the face. </para><para xmlns:fo="urn:oasis:names:tc:opendocument:xmlns:xsl-fo-compatible:1.0" id="import-auto-id1169783585459" fo:font-style="normal" fo:font-weight="normal">
+          <figure id="import-auto-id1169779540514">
+            <media id="import-auto-id1169776600175" alt="">
+              <image mime-type="image/png" src="../../media/graphics3-cbe7.png" height="624" width="624"/>
+            </media>
+          </figure>
+          <figure id="import-auto-id1169785447163">
+            <media id="import-auto-id1169780843430" alt="">
+              <image mime-type="image/png" src="../../media/graphics4-f59c.png" height="604" width="624"/>
+            </media>
+          </figure>
+        </para>
+        <para id="import-auto-id1169777988455">mregcrop = imcrop(facecrop, [1 floor(2*box(4)/3) box(3) ceil(box(4))]); </para>
+        <para xmlns:fo="urn:oasis:names:tc:opendocument:xmlns:xsl-fo-compatible:1.0" id="import-auto-id1169776372677" fo:font-style="normal" fo:font-weight="normal"><emphasis effect="bold">Figure 4: </emphasis>From the Detected Face, the region for performing the mouth search is created. The region of the lower third of the face is isolated for performing the mouth search. </para><para xmlns:fo="urn:oasis:names:tc:opendocument:xmlns:xsl-fo-compatible:1.0" id="import-auto-id1169776660645" fo:font-style="normal" fo:font-weight="normal">
+          <figure id="import-auto-id1169777455263">
+            <media id="import-auto-id1169776373721" alt="">
+              <image mime-type="image/png" src="../../media/graphics5-38dc.png" height="586" width="586"/>
+            </media>
+          </figure>
+          <figure id="import-auto-id1169776431273">
+            <media id="import-auto-id1169778373903" alt="">
+              <image mime-type="image/png" src="../../media/graphics6-6abe.png" height="567" width="586"/>
+            </media>
+          </figure>
+        </para>
+        <para id="import-auto-id1169776575554">mouthcrop = imcrop(mregcrop, [x y w h]); </para>
+        <para id="import-auto-id1169778704509">mouthDetector = vision.CascadeObjectDetector(’Mouth’); </para>
+        <para id="import-auto-id1169781016173">mbox = step(mouthDetector, mouthcrop); </para>
+        <para xmlns:fo="urn:oasis:names:tc:opendocument:xmlns:xsl-fo-compatible:1.0" id="import-auto-id1169783482204" fo:font-style="normal" fo:font-weight="normal"><emphasis effect="bold">Figure 6: </emphasis>The mouth is found in the bottom third region. This mouth region is then isolated. A mouth search in the mouth region is performed using a similar Viola-Jones based method.</para><figure id="import-auto-id1169777497514">
+          <media id="import-auto-id5431457" alt="">
+            <image mime-type="image/png" src="../../media/graphics7-ad6c.png" height="567" width="586"/>
+          </media>
+        </figure>
+        <para id="import-auto-id1169780855202">cornerDetector = vision.CornerDetector(’Method’, ’Minimum eigenvalue (Shi &amp; Tomasi)’); </para>
+        <para id="import-auto-id1169777438968">points = step(cornerDetector, rgb2gray(mouthcrop)); </para>
+        <para xmlns:fo="urn:oasis:names:tc:opendocument:xmlns:xsl-fo-compatible:1.0" id="import-auto-id1169776354138" fo:font-style="normal" fo:font-weight="normal"><emphasis effect="bold">Figure 7: </emphasis>Our last detection step is determining the location of corners within the mouth box. This is done using the Shi-Tomasi Algorithm (Section 3.2<link target-id=""><emphasis effect="underline"/></link>) </para><figure id="import-auto-id1169778024554">
+          <media id="import-auto-id1169779616637" alt="">
+            <image mime-type="image/png" src="../../media/graphics8-01bd.png" height="604" width="624"/>
+          </media>
+        </figure>
+        <para id="import-auto-id1169776431681">P = polyfit(cpoints(:,1),cpoints(:,2),2); </para>
+        <para id="import-auto-id1169776907544">Y = polyval(P,XI); </para>
+        <para id="import-auto-id1169777009650">plot(XI,Y,’b’,’linewidth’,2,’markersize’,10) </para>
+        <para xmlns:fo="urn:oasis:names:tc:opendocument:xmlns:xsl-fo-compatible:1.0" id="import-auto-id1169777373725" fo:font-style="normal" fo:font-weight="normal"><emphasis effect="bold">Figure 8: </emphasis>From the points detected using the Shi-Tomasi Algorithm, we find the corner density and curvature parameters. </para><para xmlns:fo="urn:oasis:names:tc:opendocument:xmlns:xsl-fo-compatible:1.0" id="import-auto-id1169776594400" fo:font-style="normal" fo:font-weight="normal">Finally, we return the values of our two parameters for further use in a decision tree. The parameters used in the decision tree are discussed in Section 5.2<link target-id=""><emphasis effect="underline"/></link>. </para>
+      </section>
+      <section id="import-auto-id1169782689777">
+        <title>Decision Tree</title>
+        <para id="import-auto-id1169782660776">We use the following decision tree to determine the best image of a set. </para>
+        <figure id="import-auto-id1169782660218">
+          <media id="import-auto-id1169777965518" alt="">
+            <image mime-type="image/png" src="../../media/graphics9.png" height="651" width="395"/>
+          </media>
+        </figure>
+        <para xmlns:fo="urn:oasis:names:tc:opendocument:xmlns:xsl-fo-compatible:1.0" id="import-auto-id1169782771538" fo:font-style="normal" fo:font-weight="normal"><emphasis effect="bold">Figure 9: </emphasis>Decision Algorithm </para><para xmlns:fo="urn:oasis:names:tc:opendocument:xmlns:xsl-fo-compatible:1.0" id="import-auto-id1169778011302" fo:font-style="normal" fo:font-weight="normal">We chose a minimum number of detected corners of 11, based on the idea that a low number of points would not be enough to reliably fit a second order curve. This worked out very well with the data set we analyzed 5.2<link target-id=""><emphasis effect="underline"/></link>. We also chose that a positive curvature parameter must be present for a smile to be identified. This also ended up matching with the testing data very well. </para>
+      </section>
+      <section id="import-auto-id1169778116848">
+        <title>Download the Code</title>
+        <section id="import-auto-id1169783639916">
+          <title>Files</title>
+          <para id="import-auto-id1169776658447">MATLAB Code Dependencies: </para>
+          <list id="import-auto-id1169779878966" list-type="bulleted">
+            <item>MATLAB Computer Vision Toolbox </item>
+            <item>Images of Danny</item>
+          </list>
+        </section>
+      </section>
+    </section>
+  </content>
+</document>

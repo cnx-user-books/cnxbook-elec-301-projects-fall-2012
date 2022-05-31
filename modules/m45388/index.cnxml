@@ -1,0 +1,24 @@
+<document xmlns="http://cnx.rice.edu/cnxml">
+
+<title>Team Echo Ltd.</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m45388</md:content-id>
+  <md:title>Team Echo Ltd.</md:title>
+  <md:abstract>A summary of the team and contributions.</md:abstract>
+  <md:uuid>5af46559-53e8-40f8-9b86-b441204b4780</md:uuid>
+</metadata>
+
+<content>
+  <para id="delete_me"><emphasis>Team Echo Ltd.</emphasis> is a group of Rice Undergraduate Electrical and Computer Engineering majors enrolled in ELEC 301: Introduction to Signals and Systems.
+
+
+  </para><section id="eip-360"><title>Responsibilities</title><list id="eip-799"><item><emphasis>Andres Martin-de-Nicolas:</emphasis> implemented the deconvolution method, collected sound samples, and was in charge of handling sound equipment. </item>
+<item><emphasis>Eric Salazar:</emphasis> implemented the LMS algorithm, took and organized data, ran simulations and wrote entries for poster and several modules.</item>
+<item><emphasis>Luis Flores:</emphasis> implemented the NMLS algorithm, collected sound samples, put together the poster, and helped write and format several modules. </item>
+<item><emphasis>Andrés Cedeño:</emphasis> implemented the BLMS algorithm, researched methods, plotted data, helped collect sound samples and wrote entries for the poster and several modules.</item>
+
+
+
+</list></section></content>
+
+</document>

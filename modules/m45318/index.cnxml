@@ -1,0 +1,22 @@
+<document xmlns="http://cnx.rice.edu/cnxml">
+
+<title>Appendix</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m45318</md:content-id>
+  <md:title>Appendix</md:title>
+  <md:abstract>A poster summarizing our project, as well as acknowledgements.</md:abstract>
+  <md:uuid>31254559-c96e-4a4a-b3f7-ae8f52b428df</md:uuid>
+</metadata>
+
+<content>
+  <section id="eip-933"><title>Poster</title><media id="poster" alt="ELEC 301 Poster">
+	   
+  <image mime-type="image/jpeg" src="../../media/Slide1.jpg" width="1000"/>
+		 
+</media><para id="eip-769">The poster can be downloaded in PDF form.
+<media id="poster-pdf" alt="Poster PDf">
+  <download mime-type="application/pdf" src="Poster.pdf" for="online"/>
+</media></para></section><section id="eip-646"><title>The Team</title><para id="eip-264"><title>Hasitha Dharmasiri</title>Hasitha is a junior studying electrical engineering with a focus in signals and systems. He served as the primary code monkey and researcher for p-thread implementation.
+</para><para id="eip-127"><title>Chelsea Rodrigues</title>Chelsea is a junior studying electrical engineering with a focus in photonics and nanoengineering. She assumed responsibility as the scribe monkey for meetings, learning the upload procedure for Connexions, and researching compiler optimizations. </para><para id="eip-394"><title>Josh Chartier</title>Josh is a junior studying electrical engineering and computational and applied mathematics with a focus in signals and systems. He served as the consultant code monkey and researcher for matrix and SSE3 implementations. </para><para id="eip-804"><title>Vivas Kumar</title>Vivas is a junior studying electrical engineering with a focus in signals and systems. He served as the monkey wrangler and resident expert in all things related to Keynote, Powerpoint, and presenting.</para></section><section id="eip-639"><title>Acknowledgements</title><para id="eip-90">We thank Dr. Richard Baraniuk, Eva Dyer, Dr. Caleb Kemere, and Professor Ray Simar for their advice and contribution to our project. We also thank the Department of Electrical and Computer Engineering at the Brown School of Engineering, Rice University.  </para></section></content>
+
+</document>

@@ -1,0 +1,49 @@
+<document xmlns="http://cnx.rice.edu/cnxml">
+  <title>Design of Visualization</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m45353</md:content-id>
+  <md:title>Design of Visualization</md:title>
+  <md:abstract>Design of the Music Visualization Project</md:abstract>
+  <md:uuid>c938a3dd-6b8d-4e9f-94dc-64d353bfa780</md:uuid>
+</metadata>
+
+<content>
+    <section id="import-auto-id1166735626715">
+      <title>Design of Visualization</title>
+      <section id="import-auto-id1166752959668">
+        <title>General Design:</title>
+        <para id="import-auto-id1166744750691"> Our analysis of the music was performed in Matlab, whilst our visualizations were run using Java, with an IDE called Processing, which contains a user friendly graphics library.</para>
+        <para id="import-auto-id1166740998121">A major part of our design was choosing how to map the data from our results in Matlab to our visualizations in Java. Once the mapping was chosen, we had to keep our visualizations synced with the music, and maintain a constant framerate in the visualizations. An example of our visualization without any input is shown below:</para>
+        <figure id="import-auto-id1166746897698">
+          <media id="import-auto-id1166737058193" alt="">
+            <image mime-type="image/png" src="../../media/Picture 3-ac14.png" height="360" width="360"/>
+          </media>
+        </figure>
+      </section>
+      <section id="import-auto-id1166727584913">
+        <title>Using Matlab:</title>
+        <para id="import-auto-id1166724926596">We chose to get the two most dominant components from every source, giving us a total of six components per frame, and chaining them together to determine what our "notes" were. Then, we displayed them as falling rain, or lines, from the top of the screen, with their frequency determining where they appear (low frequencies to the left, high frequencies to the right), and their duration determining the length of the line that appears. </para>
+        <figure id="import-auto-id1166744453037">
+          <media id="import-auto-id1166735589817" alt="">
+            <image mime-type="image/png" src="../../media/Picture 4-d0b0.png" height="360" width="562"/>
+          </media>
+        </figure>
+      </section>
+      <section id="import-auto-id1166739595868">
+        <title>Using Java:</title>
+        <para id="import-auto-id1166749104400">We chose to use the FFT of the song to control the color wheel at the center of the screen. The low frequencies of the song were mapped closer to blue, whilst the higher frequencies were closer to red. The amplitude of each frequency determines the radial expansion of each line in our color wheel. </para>
+        <figure id="import-auto-id1166733192626">
+          <media id="import-auto-id1166743699493" alt="">
+            <image mime-type="image/png" src="../../media/Picture 5-88da.png" height="360" width="562"/>
+          </media>
+        </figure>
+        <para id="import-auto-id1166726306848">Finally, we used a process called BeatDetect, which was part of the library in Processing, to create our last animation. BeatDetect ran FFT on two (normally one) low frequency bands of the song to determine the higher amplitudes found, and calls them a beat, then, at each beat in the song it will release around 200 particles radially from the center of the color wheel.</para>
+        <figure id="import-auto-id1166737058608">
+          <media id="import-auto-id1166746696246" alt="">
+            <image mime-type="image/png" src="../../media/Picture 6-3fcb.png" height="360" width="562"/>
+          </media>
+        </figure>
+      </section>
+    </section>
+  </content>
+</document>

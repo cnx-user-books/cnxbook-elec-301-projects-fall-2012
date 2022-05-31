@@ -1,0 +1,78 @@
+<document xmlns="http://cnx.rice.edu/cnxml">
+  <title>Linear Predictive Coding</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m45345</md:content-id>
+  <md:title>Linear Predictive Coding</md:title>
+  <md:abstract/>
+  <md:uuid>fd4cc72c-13ce-48cd-80ff-252deeca5d11</md:uuid>
+</metadata>
+
+<content>
+    <section id="import-auto-id1167530435234">
+      <title>LPC Implementation</title>
+      <para id="import-auto-id1167517241887">Linear Predictive Coding or LPC is usually applied for speech compression but we will be utilizing its very output dependent form for analysis of our signal. The fundamental principle behind LPC is that one can predict or approximate the future elements of a signal based on linear combinations of the previous signal elements and, of course, and an input excitation signal.</para>
+      <figure id="import-auto-id8033308"><media id="import-auto-id1167530455340" alt="">
+          <image mime-type="image/png" src="../../media/graphics1-fbce.png" height="56" width="304"/>
+        </media>
+      <caption>All equations are from: <link url="http://cs.haifa.ac.il/~nimrod/Compression/Speech/S4LinearPredictionCoding2009.pdf"><emphasis effect="underline">http://cs.haifa.ac.il/~nimrod/Compression/Speech/S4LinearPredictionCoding2009.pdf</emphasis></link>.</caption></figure><para id="import-auto-id1167517034197">The effectiveness of this model stems from fact that the processes that generate speech in the human body are relatively slow and that the human voice is quite limited in frequency range. The physical model of the vocal tract in LPC is a buzzer, corresponding the glottis which produces the baseline buzz in the human voice, at the end of a tube which has linear characteristics.</para>
+      <figure id="import-auto-id8622132"><media id="import-auto-id1167529351108" alt="">
+          <image mime-type="image/png" src="../../media/graphics2-30bc.png" height="331" width="372"/>
+        </media>
+      <caption>Courtesy of https://engineering.purdue.edu/CFDLAB/projects/voice.html</caption></figure><para id="import-auto-id1167531658589">In “systems” speak we clearly see the form of a feedback filter emerging so to further analyze the system we take its Z-transform and find a transfer function from U[z] to S[z].</para>
+      <figure id="import-auto-id1167529194317">
+        <media id="import-auto-id1167523854495" alt="">
+          <image mime-type="image/png" src="../../media/graphics3-2d31.png" height="58" width="328"/>
+        </media>
+      </figure>
+      <para id="import-auto-id1167518065205">The result is clearly an all pole filter and in standard application one would feed in the generating signal and get out a compressed version of the output.</para>
+      <figure id="import-auto-id1167529363871">
+        <media id="import-auto-id1167522405371" alt="">
+          <image mime-type="image/png" src="../../media/graphics4-dd2a.png" height="182" width="465"/>
+        </media>
+      </figure>
+      <para id="import-auto-id1167520954410">The key barrier to implementing this filter is of course determining the “a” values or the coefficients of our linear superposition approximation of the output signal. Ultimately when we form the linear superposition, we want to choose coefficients that yield a compressed signal with the minimum deviation from the original signal; equivalently we want to minimize the difference(error) between the two signals.</para>
+      <figure id="import-auto-id1167520546595">
+        <media id="import-auto-id1167521338727" alt="">
+          <image mime-type="image/png" src="../../media/graphics5-cd38.png" height="34" width="185"/>
+        </media>
+      </figure>
+      <para id="import-auto-id1167523946788">From the form of s(n) we can derive and equivalent condition on the auto-correlation R[j].</para>
+      <figure id="import-auto-id1167524369617">
+        <media id="import-auto-id1167517414104" alt="">
+          <image mime-type="image/png" src="../../media/graphics6-fa23.png" height="64" width="221"/>
+        </media>
+      </figure>
+      <para id="import-auto-id1167532462581">Where: </para>
+      <figure id="import-auto-id1167537121337">
+        <media id="import-auto-id1167526554681" alt="">
+          <image mime-type="image/png" src="../../media/graphics7-d110.png" height="37" width="218"/>
+        </media>
+      </figure>
+      <para id="import-auto-id1167521542238">Thus, we have p such equations, one for each R(j) and so we can more easily describe our conditions in terms of a matrix equation.</para>
+      <figure id="import-auto-id1167541599720">
+        <media id="import-auto-id1167535502337" alt="">
+          <image mime-type="image/png" src="../../media/graphics8-4d52.png" height="139" width="363"/>
+        </media>
+      </figure>
+      <para id="import-auto-id1167521696562">The matrix we now need to invert and multiply has a unique constant diagonal structure which classifies it as a Toeplitz matrix. There have been multiple methods developed for solving equations with Toeplitz matrices and one of the most efficient method, the method we used, is the the Levinson Durbin algorithm. This method is a bit involved but fundamentally it solves the system of equations by  solving smaller sub-matrix equations and iterating up to get a recursive solution for all the coefficients.</para>
+    </section>
+    <section id="import-auto-id1167517774620">
+      <title>Application</title>
+      <para id="import-auto-id1167541604039">To reapply this method, this filter, towards our goal of speech analysis we first note that the form of the filter primarily dependent on the output rather than the input. The coefficients that we derived using the Levinson Durbin algorithm only use properties (the auto-correlation) of the output signal rather than the input signal. This means that this filter, in a way, is more natural as a method for going form output to input rather than the reverse, all we need do is take the reciprocal of the transfer function.</para>
+      <figure id="import-auto-id8459732">
+        <media id="import-auto-id1167533828406" alt="">
+          <image mime-type="image/jpg" src="../../media/graphics9.jpg" height="75" width="276"/>
+        </media>
+      </figure>
+      <para id="import-auto-id1167537856269">We go from an all pole filter to an all zero filter which now takes in a speech signal and returns the generating signal. This transfer function is actually more useful for our purposes because of our method of analyzing speech signals. We are primarily looking to identify the formants in the speech signal, the fundamental components of phonemes that make up human alphabets. These formants directly correspond to the resonant modes of the vocal tract, so we are effectively trying to achieve a  natural mode decomposition of a complex resonant cavity.</para>
+      <figure id="import-auto-id1167531642722"><media id="import-auto-id1167528669332" alt="">
+          <image mime-type="image/png" src="../../media/graphics10.png" height="255" width="289"/>
+        </media>
+      <caption>Courtesy of http://hyperphysics.phy-astr.gsu.edu/hbase/music/vocres.html</caption></figure><para id="import-auto-id1167541651606">Therefore these formants are more easily identifiable in the generating signal (since there are inherently a property of the generating cavity). With the filter generated by LPC we can now reconstruct a linear approximation of the generation signal using the speech signals from our soundbank. Our full signal of course can be represented by a spectrogram and the formant correspond to the local maxima of each time slice of the spectrogram.</para>
+      <figure id="import-auto-id1167517706662"><media id="import-auto-id1167523635180" alt="">
+          <image mime-type="image/png" src="../../media/graphics11.png" height="161" width="448"/>
+        </media>
+      <caption>Spectrogram (left); One slice of the spectrogram, with peaks and troughs highlighted (right)</caption></figure><para id="import-auto-id1167522397872">What we chose to extract from these spectrograms were the amplitude and frequency data of the first 4 formants present in the signal, as these are usually the most dominant, as well as the same information about the minima in between the peaks.  This is the information we will need to feed into our classifier for emotion classification.</para>
+    </section>
+    </content>
+</document>

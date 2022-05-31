@@ -1,0 +1,16 @@
+<document xmlns="http://cnx.rice.edu/cnxml">
+  <title>Overview of the Approach</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m45320</md:content-id>
+  <md:title>Overview of the Approach</md:title>
+  <md:abstract/>
+  <md:uuid>4c5b2561-163b-4d10-8760-452b15d60315</md:uuid>
+</metadata>
+
+<content>
+    <para id="eip-396">To begin improving the existing filter bank in Open Ephys, we chose to design and implement a 4-pole Butterworth bandpass filter in C++. In our optimization process, we were sure to write our code in a fashion that easily lent itself to implementing other filter specifications without requiring an overhaul of the code. Our optimization process first required us to select an appropriate filter structure for implementation. We were then free to experiment with compiler optimization flags, intrinsic instruction sets, multithreading, and matrix implementations. </para><figure id="import-auto-id2008173"><media id="import-auto-id1171761445970" alt="">
+        <image mime-type="image/png" src="../../media/methodology.png" height="466" width="576"/>
+      </media>
+      
+    <caption>Outline of our approach to this project.</caption></figure></content>
+</document>

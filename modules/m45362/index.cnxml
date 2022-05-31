@@ -1,0 +1,32 @@
+<document xmlns="http://cnx.rice.edu/cnxml">
+  <title>Results</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m45362</md:content-id>
+  <md:title>Results</md:title>
+  <md:abstract>This module includes the results of our project.</md:abstract>
+  <md:uuid>40dfbaf6-5df2-4ac9-8b9e-75f69ff1abad</md:uuid>
+</metadata>
+<featured-links>
+  <!-- WARNING! The 'featured-links' section is read only. Do not edit below.
+       Changes to the links section in the source will not be saved. -->
+    <link-group type="supplemental">
+      <link url="http://cnx.org/content/m45356/latest/" strength="3">Introduction</link>
+      <link url="http://cnx.org/content/m45358/latest/" strength="3">Background</link>
+      <link url="http://cnx.org/content/m45359/latest/" strength="3">Calculating the Position, Speed, and Orientation of an Object</link>
+      <link url="http://cnx.org/content/m45357/latest/" strength="3">Object Detection Challenges and Solutions</link>
+      <link url="http://cnx.org/content/m45375/latest/" strength="3">Musical Mapping</link>
+      <link url="http://cnx.org/content/m45360/latest/" strength="3">3-D Sound Implementation</link>
+      <link url="http://cnx.org/content/m45363/latest/" strength="3">Future Work</link>
+      <link url="http://cnx.org/content/m45364/latest/" strength="3">Conclusions</link>
+      <link url="http://cnx.org/content/m45366/latest/" strength="3">Poster</link>
+      <link url="http://cnx.org/content/m45365/latest/" strength="3">References</link>
+      <link url="http://cnx.org/content/m45373/latest/" strength="3">The Team</link>
+    </link-group>
+  <!-- WARNING! The 'featured-links' section is read only. Do not edit above.
+       Changes to the links section in the source will not be saved. -->
+</featured-links>
+<content>
+    <para id="import-auto-id1167902598052">We successfully tracked the circuit boards and the anteater when the video image was clear, which thereby enabled us to track the movement of the dancer’s head and hands. However, the requirement that the video image must be clear put many restrictions on the possible dance moves allowed.</para>
+    <para id="import-auto-id1167893502531">After obtaining the positions of the objects, as well as their orientations and velocities from the OpenSurf function, we used musical mapping and 3-D sound effects to create an audio file that demonstrated the movements of Zhiting’s hands and head while she was dancing as represented by the movements of the two circuit boards and the anteater. We combined this audio file with the movie we made using Windows Movie Maker. We let a graduate student listen to the movie file we made while closing his eyes in our poster presentation; he then told us how the hands were moved. His answer was close to the real movements of the dancer’s hands. However, the movement of the left hand was not tracked very well, so instead of being heard from the left side of the head, the horn sound was heard from the right side of the head most of the time. Furthermore, the similarity between the horn sound and the oboe sound made it difficult to distinguish between the movements of the left hand and the head.  </para>
+  </content>
+</document>

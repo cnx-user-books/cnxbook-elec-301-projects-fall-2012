@@ -1,0 +1,175 @@
+<document xmlns="http://cnx.rice.edu/cnxml">
+  <title>Reverberation in Enclosed Spaces</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m45387</md:content-id>
+  <md:title>Reverberation in Enclosed Spaces</md:title>
+  <md:abstract>Quick overview of reverberation times and how they pertain to echoes in the OEDK classroom.</md:abstract>
+  <md:uuid>831164cf-ae6c-4b5c-bdf0-be9bbdbbdd57</md:uuid>
+</metadata>
+
+<content>
+    <section id="import-auto-id1167258898513">
+      <title>Reverberation</title><para id="import-auto-id1167263738063">When sound is made in an enclosed space, echoes of the signal reflect of the room’s surfaces and form a <emphasis>reverberated signal</emphasis>, a superposition of the signal generated and delayed versions of itself with amplitude decay. These reverberations make listening unpleasant and can sometimes make a presentation unintelligible. The OEDK classroom suffers greatly from reverberations which are distracting when listening to recordings of presentations. </para><figure id="import-auto-id1167266833939"><title>Two Room Impulse Responses</title><media id="import-auto-id1167258292527" alt="">
+          <image mime-type="image/jpg" src="../../media/reverb.jpg" width="1012" height="249"/>
+        </media>
+      <caption>Echoes of the impulse can especially be seen in the echoic room, where the signal takes longer to decay.</caption></figure></section>
+    <section id="import-auto-id1167266738668">
+      <title>Reverberation Time</title>
+      <para id="import-auto-id1167263689297">The <emphasis>reverberation time</emphasis> of a room is the time it takes for sound to decay by 60 decibels. The reverberation time of a room can be approximated by the <emphasis>Sabine Equation</emphasis>:</para><equation xmlns:m="http://www.w3.org/1998/Math/MathML" id="eip-333"><m:math>
+ <m:semantics>
+  <m:mrow>
+   <m:mi>R</m:mi><m:msub>
+    <m:mi>T</m:mi>
+    <m:mrow>
+     <m:mn>60</m:mn>
+    </m:mrow>
+   </m:msub>
+   <m:mo>=</m:mo><m:mfrac>
+    <m:mrow>
+     <m:mn>4</m:mn><m:mi>ln</m:mi><m:msup>
+      <m:mrow>
+       <m:mn>10</m:mn>
+      </m:mrow>
+      <m:mn>6</m:mn>
+     </m:msup>
+     
+    </m:mrow>
+    <m:mi>c</m:mi>
+   </m:mfrac>
+   <m:mfrac>
+    <m:mi>V</m:mi>
+    <m:mrow>
+     <m:mi>S</m:mi><m:mi>a</m:mi>
+    </m:mrow>
+   </m:mfrac>
+   <m:mo>≈</m:mo><m:mn>0.1611</m:mn><m:msup>
+    <m:mrow>
+     <m:mtext> m</m:mtext>
+    </m:mrow>
+    <m:mrow>
+     <m:mo>−</m:mo><m:mn>1</m:mn>
+    </m:mrow>
+   </m:msup>
+   <m:mfrac>
+    <m:mi>V</m:mi>
+    <m:mrow>
+     <m:mi>S</m:mi><m:mi>a</m:mi>
+    </m:mrow>
+   </m:mfrac>
+   
+  </m:mrow>
+  <m:annotation encoding="MathType-MTEF">MathType@MTEF@5@5@+=
+  feaagGart1ev2aqatCvAUfeBSjuyZL2yd9gzLbvyNv2CaerbuLwBLn
+  hiov2DGi1BTfMBaeXatLxBI9gBaerbd9wDYLwzYbItLDharqqtubsr
+  4rNCHbGeaGqiVu0Je9sqqrpepC0xbbL8F4rqqrFfpeea0xe9Lq=Jc9
+  vqaqpepm0xbba9pwe9Q8fs0=yqaqpepae9pg0FirpepeKkFr0xfr=x
+  fr=xb9adbaqaaeGaciGaaiaabeqaamaabaabaaGcbaGaamOuaiaads
+  fadaWgaaWcbaGaaGOnaiaaicdaaeqaaOGaeyypa0ZaaSaaaeaacaaI
+  0aGaciiBaiaac6gacaaIXaGaaGimamaaCaaaleqabaGaaGOnaaaaaO
+  qaaiaadogaaaWaaSaaaeaacaWGwbaabaGaam4uaiaadggaaaGaeyis
+  ISRaaGimaiaac6cacaaIXaGaaGOnaiaaigdacaaIXaGaaeiiaiaab2
+  gadaahaaWcbeqaaiabgkHiTiaaigdaaaGcdaWcaaqaaiaadAfaaeaa
+  caWGtbGaamyyaaaaaaa@4F34@
+  </m:annotation>
+ </m:semantics>
+</m:math>
+</equation><para xmlns:m="http://www.w3.org/1998/Math/MathML" id="import-auto-id1167256686145">where <m:math>
+ <m:semantics>
+  <m:mi>c</m:mi>
+  <m:annotation encoding="MathType-MTEF">MathType@MTEF@5@5@+=
+  feaagGart1ev2aqatCvAUfeBSjuyZL2yd9gzLbvyNv2CaerbuLwBLn
+  hiov2DGi1BTfMBaeXatLxBI9gBaerbd9wDYLwzYbItLDharqqtubsr
+  4rNCHbGeaGqiVu0Je9sqqrpepC0xbbL8F4rqqrFfpeea0xe9Lq=Jc9
+  vqaqpepm0xbba9pwe9Q8fs0=yqaqpepae9pg0FirpepeKkFr0xfr=x
+  fr=xb9adbaqaaeGaciGaaiaabeqaamaabaabaaGcbaGaam4yaaaa@36DE@
+  </m:annotation>
+ </m:semantics>
+</m:math>
+is a constant relating to the speed of sound in the room, <m:math>
+ <m:semantics>
+  <m:mi>V</m:mi>
+  <m:annotation encoding="MathType-MTEF">MathType@MTEF@5@5@+=
+  feaagGart1ev2aqatCvAUfeBSjuyZL2yd9gzLbvyNv2CaerbuLwBLn
+  hiov2DGi1BTfMBaeXatLxBI9gBaerbd9wDYLwzYbItLDharqqtubsr
+  4rNCHbGeaGqiVu0Je9sqqrpepC0xbbL8F4rqqrFfpeea0xe9Lq=Jc9
+  vqaqpepm0xbba9pwe9Q8fs0=yqaqpepae9pg0FirpepeKkFr0xfr=x
+  fr=xb9adbaqaaeGaciGaaiaabeqaamaabaabaaGcbaGaamOvaaaa@36D1@
+  </m:annotation>
+ </m:semantics>
+</m:math>
+is the volume of the room, <m:math>
+ <m:semantics>
+  <m:mi>S</m:mi>
+  <m:annotation encoding="MathType-MTEF">MathType@MTEF@5@5@+=
+  feaagGart1ev2aqatCvAUfeBSjuyZL2yd9gzLbvyNv2CaerbuLwBLn
+  hiov2DGi1BTfMBaeXatLxBI9gBaerbd9wDYLwzYbItLDharqqtubsr
+  4rNCHbGeaGqiVu0Je9sqqrpepC0xbbL8F4rqqrFfpeea0xe9Lq=Jc9
+  vqaqpepm0xbba9pwe9Q8fs0=yqaqpepae9pg0FirpepeKkFr0xfr=x
+  fr=xb9adbaqaaeGaciGaaiaabeqaamaabaabaaGcbaGaam4uaaaa@36CE@
+  </m:annotation>
+ </m:semantics>
+</m:math>
+is the surface area, and <m:math>
+ <m:semantics>
+  <m:mi>a</m:mi>
+  <m:annotation encoding="MathType-MTEF">MathType@MTEF@5@5@+=
+  feaagGart1ev2aqatCvAUfeBSjuyZL2yd9gzLbvyNv2CaerbuLwBLn
+  hiov2DGi1BTfMBaeXatLxBI9gBaerbd9wDYLwzYbItLDharqqtubsr
+  4rNCHbGeaGqiVu0Je9sqqrpepC0xbbL8F4rqqrFfpeea0xe9Lq=Jc9
+  vqaqpepm0xbba9pwe9Q8fs0=yqaqpepae9pg0FirpepeKkFr0xfr=x
+  fr=xb9adbaqaaeGaciGaaiaabeqaamaabaabaaGcbaGaamyyaaaa@36DC@
+  </m:annotation>
+ </m:semantics>
+</m:math>
+is the average of the Sabine Absorption coefficients of all the objects in the room.</para><para id="import-auto-id1167263692645">The Sabine absorption coefficient is a ratio of how much sound is absorbed or reflected off the surface of an object. This ratio changes based on the frequency of the sound. Rooms tend have more reverb at lower frequencies. </para>
+      <para id="import-auto-id1167257232083">Empirically, the reverberation time of a room can be measured by recording the response of the room to a unit impulse or pink/white noise and seeing how long it takes for the sound to decay by 60 decibels. The measured reverberation times of the OEDK classroom, an acoustically desirable room, and a heavily echoic room are displayed below.</para><table id="import-auto-id1167273820828" summary="Reverberation Times in Three Rooms"><title>Measured Reverberation Times in 3 Rooms</title>
+<tgroup cols="3"><colspec colnum="1" colname="c1"/>
+          <colspec colnum="2" colname="c2"/>
+          <colspec colnum="3" colname="c3"/>
+          <thead>
+            <row>
+              <entry>
+                <para id="import-auto-id1167281536092">
+                  <emphasis effect="bold">Room</emphasis>
+                </para>
+              </entry>
+              <entry>
+                <para id="import-auto-id1167260846806">
+                  <emphasis effect="bold">Reverberation Time (s)</emphasis>
+                </para>
+              </entry>
+              <entry>
+                <para id="import-auto-id1167270730310">
+                  <emphasis effect="bold">Description</emphasis>
+                </para>
+              </entry>
+            </row>
+          </thead>
+          <tbody>
+            <row>
+              <entry>Acoustically Desirable Room</entry>
+              <entry>.23</entry>
+              <entry>Carpeted room in Hanszen College filled with soft furniture.</entry>
+            </row>
+            <row>
+              <entry>OEDK Classroom</entry>
+              <entry>.57</entry>
+              <entry>Large classroom with concrete floor, magnetic walls, and a high ceiling.</entry>
+            </row>
+            <row>
+              <entry>Heavily Echoic Room</entry>
+              <entry>.62</entry>
+              <entry>Tiled classroom in Weiss College with glass walls and single table.</entry>
+            </row>
+          </tbody>
+        
+</tgroup>
+</table><example id="eip-7"><para id="eip-999"><media id="hanszenimpulse" alt="Noechoimpulse">
+      <audio mime-type="audio/x-wav" src="LowReverbImpulse.wav"/>
+   </media> Impulse in Acoustically Desirable Room.
+</para><para id="eip-173"><media id="oedkimpulse" alt="echoimpulse">
+      <audio mime-type="audio/x-wav" src="HighReverbImpulse.wav"/>
+   </media> The same impulse played in Heavily Echoic Room. The difference in reverberation time is audible.</para></example><para id="import-auto-id1167263460453">Reverberation time is a good way to diagnose how badly a room echoes a generated signal. The actual echo cancellation process involves digitally filtering out the decaying copies of the generated speech signals that cause the room’s poor reverberation times. </para>
+    </section>
+  </content>
+</document>

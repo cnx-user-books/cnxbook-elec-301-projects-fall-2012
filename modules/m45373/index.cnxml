@@ -1,0 +1,35 @@
+<document xmlns="http://cnx.rice.edu/cnxml">
+  <title>The Team</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m45373</md:content-id>
+  <md:title>The Team</md:title>
+  <md:abstract>This module is about our team and our contributions to the project.</md:abstract>
+  <md:uuid>d318c178-fedf-4034-a677-4c273bbcc046</md:uuid>
+</metadata>
+<featured-links>
+  <!-- WARNING! The 'featured-links' section is read only. Do not edit below.
+       Changes to the links section in the source will not be saved. -->
+    <link-group type="supplemental">
+      <link url="http://cnx.org/content/m45356/latest/" strength="3">Introduction</link>
+      <link url="http://cnx.org/content/m45358/latest/" strength="3">Background</link>
+      <link url="http://cnx.org/content/m45359/latest/" strength="3">Calculating the Position, Speed, and Orientation of an Object</link>
+      <link url="http://cnx.org/content/m45357/latest/" strength="3">Object Detection Challenges and Solutions</link>
+      <link url="http://cnx.org/content/m45375/latest/" strength="3">Musical Mapping</link>
+      <link url="http://cnx.org/content/m45360/latest/" strength="3">3-D Sound Implementation</link>
+      <link url="http://cnx.org/content/m45362/latest/" strength="3">Results</link>
+      <link url="http://cnx.org/content/m45363/latest/" strength="3">Future Work</link>
+      <link url="http://cnx.org/content/m45364/latest/" strength="3">Conclusions</link>
+      <link url="http://cnx.org/content/m45366/latest/" strength="3">Poster</link>
+      <link url="http://cnx.org/content/m45365/latest/" strength="3">References</link>
+    </link-group>
+  <!-- WARNING! The 'featured-links' section is read only. Do not edit above.
+       Changes to the links section in the source will not be saved. -->
+</featured-links>
+<content>
+    <para id="import-auto-id1170199701206">This project was done by Zhiting Cai, Emmanuel Herrera, Reed Shoho, and Minh Nguyen. All of us are junior ECE students with an emphasis on signals and systems. </para>
+    <para id="import-auto-id1170235085366">In this project, Minh Nguyen was responsible for implementing musical instruments in Matlab, synthesizing 3-D sound, and writing the function that mimics the Doppler effect to encode angular velocity into sound. He then combined all functions written by our group to code the Top_function and create the audio file for the final demo.  Furthermore, he wrote the 3-D sound section of the poster. He also wrote the 3-D sound synthesis module and the conclusion module of the final report. Lastly, he collected the reports from other group members to publish them on Connexions.</para>
+    <para id="import-auto-id1170231665826">Emmanuel Herrera carried out initial testing of a wide array of image detection methods including Haar Cascades, ORB and FREAK object descriptors, SIFT, and SURF.  Additionally, he wrote the code to synthesize varying dissonance in the output sound depending on object orientation and did the work required to make this code compatible with output of the object tracking functions.  Lastly, he wrote the Connexions module about "overview on SIFT/SURF," the text on our poster related to image tracking, and part of the future work.</para>
+    <para id="import-auto-id1170235084688">In the earlier stages of this project, Zhiting Cai experimented with a bulb filter to do object detection. She then implemented the Matlab adaptation of the OpenSurf algorithm, calculated parameters for music module inputs, ran feature tracking experiments on videos, and devised the working conditions for the image processing module. She also worked on the content of the image processing and future work sections of our poster, and wrote the OpenSurf adaptation and problems and solutions for Connexions. </para>
+    <para id="import-auto-id1170238639940">Reed Shoho was responsible for mapping the objects used by the dancer to musical instruments, as well as creating the various velocity ranges used by our system. The instantiation of each of these velocity ranges required him to implement a musical tri-tone utilizing a specific pair of musical notes. He was also responsible for the formatting and layout of the group’s research poster, in addition to composing the “Motivation” and “Musical Mapping” sections of that poster. Finally, he authored the introduction to the project’s Connexions module, in addition to writing the “Musical Mapping” section and serving as an editor for other group members’ writing to ensure greater clarity throughout the module.</para>
+  </content>
+</document>

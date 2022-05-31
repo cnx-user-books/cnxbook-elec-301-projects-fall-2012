@@ -1,0 +1,194 @@
+<document xmlns="http://cnx.rice.edu/cnxml">
+  <title>References and Code</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m45385</md:content-id>
+  <md:title>References and Code</md:title>
+  <md:abstract>Works Cited and Matlab code used in the project.</md:abstract>
+  <md:uuid>4e2255e6-a921-421f-99c0-783ef2614643</md:uuid>
+</metadata>
+
+<content>
+    <section id="eip-147"><title>References</title><para id="eip-828">Churchill, Winston. "A History of the English Speaking Peoples." Skyhorse Publishing, 2011. Audiobook.</para><para id="eip-315">Collins, Suzanne, and McCormick, Carolyn. "Mockingjay (The Hunger Games, Book 3)." Scholastic Press, 2010. Audiobook.</para><para id="eip-446">Hutson, Michael. "Acoustic Echo Cancellation Using Digital Signal Processing." Diss. University of Queensland, 2003. Abstract. Web.
+</para><para id="eip-372">Sayed, Ali H. <emphasis effect="italics">Fundamentals of Adaptive Filtering</emphasis>. Hoboken, NJ: J. Wiley &amp; Sons, 2003. Print. </para><para id="eip-835">Stan, Embrechts Guy-Bart, and Archambeau Dominique Jean-Jacque. "Comparison of Diﬀerent Impulse Response Measurement Techniques." Diss. University of Liege, Belgium, 2002. Abstract. Web.</para></section><section id="eip-108"><title>Matlab Code</title><code id="eip-870" display="block"><title>BLMS.m Example</title>
+    %%%Andres Cedeno Dec. 14,2012%%%
+    %%%Apply BLMS Algorithm to an echoed .wav file%%%
+
+    [desired,fs] = wavread('No Echo Male.wav'); %read in non-echoed signal
+    [input,fs] = wavread('Echo Male.wav'); %read in echoed signal
+    t = 1/fs:1/fs:length(desired)/fs; %create time vector for plot
+
+
+    mu = 0.0006;              % Step size
+    n  = 128;               % Block length
+
+    hb = adaptfilt.blmsfft(64,mu,1,n); %create filter object
+
+
+
+
+    [mumax,mumaxmse] = maxstep(hb,desired) %see if filter is stable with choice of step size
+    [y,e] = filter(hb,input,desired); %filter the input signal with adaptive filter
+
+
+    out = [y(n:end); y(1:n-1)]; %account for shift caused by block convolution
+    error = desired-out; %error is desired minus output
+
+    % wavwrite(y,fs,32,'DeechoedMale')
+
+    %Plot each signal.
+    subplot(4,1,1); plot(input);
+    title('Input Signal with Echo');
+    ylabel('Signal Value'); grid on;
+    subplot(4,1,2); plot(desired);
+    title('Desired Output Signal');
+    ylabel('Signal Value'); grid on;
+    subplot(4,1,3); plot(out);
+    title('Filter Output Signal');
+    ylabel('Signal Value'); grid on;
+    subplot(4,1,4); plot(error);
+    title('Error');
+    ylabel('Signal Value'); grid on;
+
+    %calculate root mean square of error signal
+    rms = sqrt(mean(error.^2))
+
+    %Other filters for stem plot comparison
+    % hl = adaptfilt.lms(64,mu);
+    % hn = adaptfilt.nlms(64,mu);
+    % [mumax,mumaxmse] = maxstep(hl,desired)
+    % [mumax,mumaxmse] = maxstep(hn,desired)
+    % [y,e] = filter(hn,input,desired);
+    % [y,e] = filter(hl,input,desired);
+    % figure(2)
+    % stem(hl.coefficients,'g')
+    % hold on
+    % stem(hb.coefficients,'r')
+    % stem(hn.coefficients)</code><code id="eip-177" display="block"><title>LMS.m Example</title>
+    clear all;
+    order = 1000; % Filter size
+    step = 0.007; % Step size
+    readfile = 'Wiessmale.wav';
+    iterations = length(readfile);
+    Fs = 44100; % Sampling rate
+
+    sinput = wavread(readfile);
+    sdesired = wavread('Hanmale.wav');
+
+    current = zeros(order,1);
+    in = zeros(order, 1); % Initialize input vector
+
+    for i=1:iterations 
+        in(1) = sinput(i);
+        out(i) = dot(current, in); % Adaptive filter output
+        error = sdesired(i)-out(i); % Estimate error
+        current = current + 2*step*error*in; % Update filter coefficients
+
+    for n=order:-1:2 % Iterate through input vector
+        in(n)=in(n-1);
+    end
+
+        serror(i)=error;
+        cost(i)=error*error;
+
+    end
+
+    subplot(3,1,1); plot(input_signal);
+    title('Input Signal with Echo');
+    ylabel('Signal Value'); grid on;
+    subplot(3,1,2); plot(desired_signal);
+    title('Desired Output Signal');
+    ylabel('Signal Value'); grid on;
+    subplot(3,1,3); plot(filter_output);
+    title('Filter Output Signal');
+    ylabel('Signal Value'); grid on;
+
+    figure
+
+    subplot(2,1,1); plot(impulse);
+    title('Impulse Response');
+    ylabel('Signal Value'); grid on;
+    subplot(2,1,2); plot(error_signal);
+    title('Error');
+    ylabel('Signal Value'); grid on;</code><code id="eip-812" display="block"><title>NLMS.m Example</title>
+    clear all;
+    order = 3000; % Filter size
+    step = 0.007; % Step size
+    readfile = 'Weissimp.wav';
+    iterations = length(readfile);
+    Fs = 44100; % Sampling rate
+
+    sinput = wavread(readfile);
+    sdesired = wavread('Hanimp.wav');
+
+    current = zeros(order,1);
+    in = zeros(order, 1); % Initialize input vector
+
+    for i=1:iterations
+        in(1)=sinput(i);
+        out(i)=dot(current, in); % Adaptive filter output
+        error = sdesired(i)-out(i); % Estimate error
+        step = 1/(dot(in, in)); 
+        current = current + step*error*in; % Update filter coefficients
+
+    for n=order:-1:2 % Iterate through input vector
+        in(n)=in(n-1);
+    end
+        serror(i)=error;
+        cost(i)=error*error;
+    end
+
+    subplot(3,1,1); plot(sinput);
+    title('Input Signal with Echo');
+    ylabel('Signal Value'); grid on;
+    subplot(3,1,2); plot(sdesired);
+    title('Desired Output Signal');
+    ylabel('Signal Value'); grid on;
+    subplot(3,1,3); plot(out);
+    title('Filter Output Signal');
+    ylabel('Signal Value'); grid on;
+
+    figure
+
+    subplot(2,1,1); plot(impulse);
+    title('Impulse Response');
+    ylabel('Signal Value'); grid on;
+    subplot(2,1,2); plot(serror);
+    title('Error');
+    ylabel('Signal Value'); grid on;</code><code id="eip-369" display="block"><title>Code for Deconvolution</title>
+    %%%%%%%%%%%%%%%%%%
+    % Used to reconstruct the original signal x(t) given an impulse
+    % response of a room h(t) and the echoed audio recording y(t). Does so
+    % by deconvolving y(t) by h(t). Also attempts to remove the frequency
+    % content of any room/equipment noise
+    %
+    % @param ht -- impulse response of the room (column vector)
+    % @param yt -- noisy echoed signal (column vector)
+    % @param nt -- the background noise introduced by recording 
+    %              equipment and room (column vector)
+    % @return xt -- the original signal, reconstructed (column vector)
+    %
+    % @author Andrew Martin
+    %%%%%%%%%%%%%%%%%%
+    function [ xt ] = find_xt(ht,yt,nt)
+
+        %zero pad the shorter two signals to the length of the longest
+        max_length = max(length(ht),max(length(yt),length(nt)));
+        ht = [ht ; zeros(max_length - length(ht),1)];
+        yt = [yt ; zeros(max_length - length(yt),1)];
+        nt = [nt ; zeros(max_length - length(nt),1)];
+        
+        %fft to frequency domain
+        Yf = fft(yt);
+        Hf = fft(ht);
+        Nf = fft(nt);
+        
+        %subtract noise freq content out and divide by impulse response
+        %added epsilon to Hf to avoid divisions by 0
+        Xf = (Yf-Nf)./(Hf+eps);
+        
+        %ifft to the time domain
+        xt = ifft(Xf);
+
+    end
+</code></section></content>
+</document>

@@ -1,0 +1,17 @@
+<document xmlns="http://cnx.rice.edu/cnxml">
+  <title>Conclusion</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m45496</md:content-id>
+  <md:title>Conclusion</md:title>
+  <md:abstract/>
+  <md:uuid>4929a29b-4480-4e96-9019-acd0d2aee859</md:uuid>
+</metadata>
+
+<content>
+    <section id="eip-179"><title>Conclusion</title><para id="eip-872">
+
+</para></section><para id="import-auto-id1167193655463">Through this project, we’re able to use several Low Dynamic Range(LDR) pictures and their exposure times to create a High Dynamic Range(HDR) picture and display it successfully on LDR display. </para>
+    <section id="eip-401"><title>Limitations and Future Work</title><para id="eip-985">
+
+</para></section><para id="import-auto-id1167187397163">Our project has three major limitations. First of all, since there are parameters in the HDR and Tone Mapping algorithms such as lambda, the scaling factor of the smoothness term in equation() are subjective to different pictures,so it’s hard for us to figure out the parameters. Every time when we input a different series of LDR pictures, we have to readjust the parameters. Therefore, in the future, we hope to come up with an algorithm that could calculate the parameters according to our input pictures. </para><para id="import-auto-id1167203065434">The second limitation happens when we take a series of pictures with different exposure times, so we have to ensure that everything in the scene has to stay in the same position. Otherwise, the HDR picture will get blurred. It gets harder when we increase the exposure time, since we’re exposed more to hand shaking and the changes of environment. For this, we come up with two solutions for this limitation. On one hand, we can “integrate” the HDR algorithm into hardware. For example, we can build an app in Android so phones are able to take several pictures by themselves and thus our pictures are less vulnerable toward vibration. On the other hand, we can build another algorithm which could pre-process our pictures to ensure that everything stays in the same position. Additionally, for over-exposure pictures, we could increase the ISO(photosensitivity of sensors) to decrease the exposure time. </para><para id="import-auto-id1167184405399">Our third limitation comes from assumption of our algorithm. When we take those LDR pictures, we assume that the irradiance of each point doesn’t change. In other words, since we’re doing 1-1 mapping(one exposure time to one irradiance), if we change the lighting of environment, it will mess up with the recovering of device’s response curve. Therefore, we’re unable to add radiance from camera flash. This will largely reduce HDR’s real application. We hope to come up with a method to deal with this case. </para><para id="import-auto-id2569749">Finally, we hope to extend our algorithm so that it will be able to manipulate other camera variables, such as aperture size and ISO as we mentioned above. These algorithms will allow us to have more degree of freedom on our control of pictures.</para></content>
+</document>

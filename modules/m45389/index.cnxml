@@ -1,0 +1,354 @@
+<document xmlns="http://cnx.rice.edu/cnxml">
+  <title>The Deconvolution Method</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m45389</md:content-id>
+  <md:title>The Deconvolution Method</md:title>
+  <md:abstract>The inverse filter approach to echo cancellation.</md:abstract>
+  <md:uuid>0113c10f-31f8-4ef6-b0b9-585746d9f90a</md:uuid>
+</metadata>
+
+<content>
+    <section xmlns:m="http://www.w3.org/1998/Math/MathML" id="eip-606"><title>Deconvolution</title><para id="eip-10">The output of a linear time-invariant (LTI) system is the convolution of the input signal with the impulse response of the system. If the classroom is modeled as an LTI system, then the output echoed signal, <m:math>
+ <m:semantics>
+  <m:mrow>
+   <m:mi>y</m:mi><m:mo stretchy="false">(</m:mo><m:mi>t</m:mi><m:mo stretchy="false">)</m:mo>
+  </m:mrow>
+  <m:annotation encoding="MathType-MTEF">MathType@MTEF@5@5@+=
+  feaagGart1ev2aqatCvAUfeBSjuyZL2yd9gzLbvyNv2CaerbuLwBLn
+  hiov2DGi1BTfMBaeXatLxBI9gBaerbd9wDYLwzYbItLDharqqtubsr
+  4rNCHbGeaGqiVu0Je9sqqrpepC0xbbL8F4rqqrFfpeea0xe9Lq=Jc9
+  vqaqpepm0xbba9pwe9Q8fs0=yqaqpepae9pg0FirpepeKkFr0xfr=x
+  fr=xb9adbaqaaeGaciGaaiaabeqaamaabaabaaGcbaGaamyEaiaacI
+  cacaWG0bGaaiykaaaa@3946@
+  </m:annotation>
+ </m:semantics>
+</m:math>, is the convolution of the input signal, <m:math>
+ <m:semantics>
+  <m:mrow>
+   <m:mi>x</m:mi><m:mo stretchy="false">(</m:mo><m:mi>t</m:mi><m:mo stretchy="false">)</m:mo>
+  </m:mrow>
+  <m:annotation encoding="MathType-MTEF">MathType@MTEF@5@5@+=
+  feaagGart1ev2aqatCvAUfeBSjuyZL2yd9gzLbvyNv2CaerbuLwBLn
+  hiov2DGi1BTfMBaeXatLxBI9gBaerbd9wDYLwzYbItLDharqqtubsr
+  4rNCHbGeaGqiVu0Je9sqqrpepC0xbbL8F4rqqrFfpeea0xe9Lq=Jc9
+  vqaqpepm0xbba9pwe9Q8fs0=yqaqpepae9pg0FirpepeKkFr0xfr=x
+  fr=xb9adbaqaaeGaciGaaiaabeqaamaabaabaaGcbaGaamiEaiaacI
+  cacaWG0bGaaiykaaaa@3945@
+  </m:annotation>
+ </m:semantics>
+</m:math>, with the room's impulse response, <m:math>
+ <m:semantics>
+  <m:mrow>
+   <m:mi>h</m:mi><m:mo stretchy="false">(</m:mo><m:mi>t</m:mi><m:mo stretchy="false">)</m:mo>
+  </m:mrow>
+  <m:annotation encoding="MathType-MTEF">MathType@MTEF@5@5@+=
+  feaagGart1ev2aqatCvAUfeBSjuyZL2yd9gzLbvyNv2CaerbuLwBLn
+  hiov2DGi1BTfMBaeXatLxBI9gBaerbd9wDYLwzYbItLDharqqtubsr
+  4rNCHbGeaGqiVu0Je9sqqrpepC0xbbL8F4rqqrFfpeea0xe9Lq=Jc9
+  vqaqpepm0xbba9pwe9Q8fs0=yqaqpepae9pg0FirpepeKkFr0xfr=x
+  fr=xb9adbaqaaeGaciGaaiaabeqaamaabaabaaGcbaGaamiAaiaacI
+  cacaWG0bGaaiykaaaa@3935@
+  </m:annotation>
+ </m:semantics>
+</m:math>.</para><figure id="bd1fig"><media id="bd1med" alt="">
+          <image mime-type="image/png" src="../../media/bd1.png" height="112" width="358"/>
+        </media>
+<caption>Block diagram of the echoic room as an LTI system with impulse response <m:math>
+ <m:semantics>
+  <m:mrow>
+   <m:mi>h</m:mi><m:mo stretchy="false">(</m:mo><m:mi>t</m:mi><m:mo stretchy="false">)</m:mo>
+  </m:mrow>
+  <m:annotation encoding="MathType-MTEF">MathType@MTEF@5@5@+=
+  feaagGart1ev2aqatCvAUfeBSjuyZL2yd9gzLbvyNv2CaerbuLwBLn
+  hiov2DGi1BTfMBaeXatLxBI9gBaerbd9wDYLwzYbItLDharqqtubsr
+  4rNCHbGeaGqiVu0Je9sqqrpepC0xbbL8F4rqqrFfpeea0xe9Lq=Jc9
+  vqaqpepm0xbba9pwe9Q8fs0=yqaqpepae9pg0FirpepeKkFr0xfr=x
+  fr=xb9adbaqaaeGaciGaaiaabeqaamaabaabaaGcbaGaamiAaiaacI
+  cacaWG0bGaaiykaaaa@3935@
+  </m:annotation>
+ </m:semantics>
+</m:math>
+ where <m:math>
+ <m:semantics>
+  <m:mrow>
+   <m:mi>y</m:mi><m:mo stretchy="false">(</m:mo><m:mi>t</m:mi><m:mo stretchy="false">)</m:mo>
+  </m:mrow>
+  <m:annotation encoding="MathType-MTEF">MathType@MTEF@5@5@+=
+  feaagGart1ev2aqatCvAUfeBSjuyZL2yd9gzLbvyNv2CaerbuLwBLn
+  hiov2DGi1BTfMBaeXatLxBI9gBaerbd9wDYLwzYbItLDharqqtubsr
+  4rNCHbGeaGqiVu0Je9sqqrpepC0xbbL8F4rqqrFfpeea0xe9Lq=Jc9
+  vqaqpepm0xbba9pwe9Q8fs0=yqaqpepae9pg0FirpepeKkFr0xfr=x
+  fr=xb9adbaqaaeGaciGaaiaabeqaamaabaabaaGcbaGaamyEaiaacI
+  cacaWG0bGaaiykaaaa@3946@
+  </m:annotation>
+ </m:semantics>
+</m:math>
+ is the echoed version of the input <m:math>
+ <m:semantics>
+  <m:mrow>
+   <m:mi>x</m:mi><m:mo stretchy="false">(</m:mo><m:mi>t</m:mi><m:mo stretchy="false">)</m:mo>
+  </m:mrow>
+  <m:annotation encoding="MathType-MTEF">MathType@MTEF@5@5@+=
+  feaagGart1ev2aqatCvAUfeBSjuyZL2yd9gzLbvyNv2CaerbuLwBLn
+  hiov2DGi1BTfMBaeXatLxBI9gBaerbd9wDYLwzYbItLDharqqtubsr
+  4rNCHbGeaGqiVu0Je9sqqrpepC0xbbL8F4rqqrFfpeea0xe9Lq=Jc9
+  vqaqpepm0xbba9pwe9Q8fs0=yqaqpepae9pg0FirpepeKkFr0xfr=x
+  fr=xb9adbaqaaeGaciGaaiaabeqaamaabaabaaGcbaGaamiEaiaacI
+  cacaWG0bGaaiykaaaa@3945@
+  </m:annotation>
+ </m:semantics>
+</m:math>
+.</caption></figure><para id="eip-8">The process of <emphasis>deconvolution</emphasis> involves designing an inverse filter ĥ(t) that is convolved with the echoed output signal to retrieve the original signal <m:math>
+ <m:semantics>
+  <m:mrow>
+   <m:mi>x</m:mi><m:mo stretchy="false">(</m:mo><m:mi>t</m:mi><m:mo stretchy="false">)</m:mo>
+  </m:mrow>
+  <m:annotation encoding="MathType-MTEF">MathType@MTEF@5@5@+=
+  feaagGart1ev2aqatCvAUfeBSjuyZL2yd9gzLbvyNv2CaerbuLwBLn
+  hiov2DGi1BTfMBaeXatLxBI9gBaerbd9wDYLwzYbItLDharqqtubsr
+  4rNCHbGeaGqiVu0Je9sqqrpepC0xbbL8F4rqqrFfpeea0xe9Lq=Jc9
+  vqaqpepm0xbba9pwe9Q8fs0=yqaqpepae9pg0FirpepeKkFr0xfr=x
+  fr=xb9adbaqaaeGaciGaaiaabeqaamaabaabaaGcbaGaamiEaiaacI
+  cacaWG0bGaaiykaaaa@3945@
+  </m:annotation>
+ </m:semantics>
+</m:math>. This can be done in either the time domain or frequency domain:</para><list id="eip-34"><item><emphasis>Time domain:</emphasis> Use the <code>deconv()</code> method in Matlab on the echoed signal and the impulse response of the classroom in order to extract the de-echoed signal.</item>
+<item><emphasis>Frequency domain:</emphasis> Take the Fast Fourier Transform (FFT) of both the impulse response of the room and the echoed signal. Point-wise divide the echoed signal by the transfer function, then take the inverse FFT of the result to extract the de-echoed signal. </item> 
+</list><figure id="bd2fig"><media id="bd2med" alt="">
+          <image mime-type="image/png" src="../../media/bd2.png" height="112" width="358"/>
+        </media>
+<caption>Inputting the echoed signal into the inverse filter yields the de-echoed signal.</caption></figure><para id="eip-540">However in practice, the system adds noise to input signal, meaning that if the signal-to-noise ratio is too low, the inverse filter will yield a noisy signal that poorly approximates the input.</para></section><section id="import-auto-id2415172">
+      <title>Finding the Impulse Response</title>
+      <para id="import-auto-id1167185075058">A system is characterized at all frequencies by taking its <emphasis>impulse response</emphasis>. This is done by exciting a system with a <emphasis>Dirac delta function</emphasis>. The Dirac Delta Function is defined as:</para><equation xmlns:m="http://www.w3.org/1998/Math/MathML" id="eip-880">
+<m:math display="block">
+ <m:semantics>
+  <m:mrow>
+   <m:mi>δ</m:mi><m:mo stretchy="false">(</m:mo><m:mi>x</m:mi><m:mo stretchy="false">)</m:mo><m:mo>=</m:mo><m:mrow><m:mo>{</m:mo> <m:mrow>
+    <m:mtable>
+     <m:mtr>
+      <m:mtd>
+       <m:mrow>
+        <m:mo>+</m:mo><m:mi>∞</m:mi><m:mo>,</m:mo>
+       </m:mrow>
+      </m:mtd>
+      <m:mtd>
+       <m:mrow>
+        <m:mi>x</m:mi><m:mo>=</m:mo><m:mn>0</m:mn>
+       </m:mrow>
+      </m:mtd>
+     </m:mtr>
+     <m:mtr>
+      <m:mtd>
+       <m:mrow>
+        <m:mn>0</m:mn><m:mo>,</m:mo>
+       </m:mrow>
+      </m:mtd>
+      <m:mtd>
+       <m:mrow>
+        <m:mi>x</m:mi><m:mo>≠</m:mo><m:mn>0</m:mn>
+       </m:mrow>
+      </m:mtd>
+     </m:mtr>
+     
+    </m:mtable>
+   </m:mrow> <m:mo>}</m:mo></m:mrow>
+  </m:mrow>
+  <m:annotation encoding="MathType-MTEF">MathType@MTEF@5@5@+=
+  feaagGart1ev2aaatCvAUfeBSjuyZL2yd9gzLbvyNv2CaerbuLwBLn
+  hiov2DGi1BTfMBaeXatLxBI9gBaerbd9wDYLwzYbItLDharqqtubsr
+  4rNCHbGeaGqiVu0Je9sqqrpepC0xbbL8F4rqqrFfpeea0xe9Lq=Jc9
+  vqaqpepm0xbba9pwe9Q8fs0=yqaqpepae9pg0FirpepeKkFr0xfr=x
+  fr=xb9adbaqaaeGaciGaaiaabeqaamaabaabaaGcbaaeaaaaaaaaa8
+  qacqaH0oazcaGGOaGaamiEaiaacMcacqGH9aqpdaGadaqaauaabeqa
+  ciaaaeaacqGHRaWkcqGHEisPcaGGSaaabaGaamiEaiabg2da9iaaic
+  daaeaacaaIWaGaaiilaaqaaiaadIhacqGHGjsUcaaIWaaaaaGaay5E
+  aiaaw2haaaaa@47FF@
+  </m:annotation>
+ </m:semantics>
+</m:math>
+</equation><equation xmlns:m="http://www.w3.org/1998/Math/MathML" id="eip-965"><m:math display="block">
+ <m:semantics>
+  <m:mrow>
+   <m:mstyle displaystyle="true">
+    <m:mrow><m:munderover>
+     <m:mo>∫</m:mo>
+     <m:mrow>
+      <m:mo>−</m:mo><m:mi>∞</m:mi>
+     </m:mrow>
+     <m:mi>∞</m:mi>
+    </m:munderover>
+    <m:mrow>
+     <m:mi>δ</m:mi><m:mo stretchy="false">(</m:mo><m:mi>x</m:mi><m:mo stretchy="false">)</m:mo><m:mi>d</m:mi><m:mi>x</m:mi><m:mo>=</m:mo><m:mn>1</m:mn>
+    </m:mrow>
+   </m:mrow>
+   
+  </m:mstyle>
+ </m:mrow>
+ <m:annotation encoding="MathType-MTEF">MathType@MTEF@5@5@+=
+ feaagGart1ev2aaatCvAUfeBSjuyZL2yd9gzLbvyNv2CaerbuLwBLn
+ hiov2DGi1BTfMBaeXatLxBI9gBaerbd9wDYLwzYbItLDharqqtubsr
+ 4rNCHbGeaGqiVu0Je9sqqrpepC0xbbL8F4rqqrFfpeea0xe9Lq=Jc9
+ vqaqpepm0xbba9pwe9Q8fs0=yqaqpepae9pg0FirpepeKkFr0xfr=x
+ fr=xb9adbaqaaeGaciGaaiaabeqaamaabaabaaGcbaWaa8qCaeaacq
+ aH0oazcaGGOaGaamiEaiaacMcacaWGKbGaamiEaiabg2da9iaaigda
+ aSqaaiabgkHiTiabg6HiLcqaaiabg6HiLcqdcqGHRiI8aaaa@43CF@
+ </m:annotation>
+</m:semantics>
+</m:math>
+</equation><note id="eip-248">The Dirac Delta Function is a distribution that is infinitely tall and infinitely narrow at 0, and the area under the Dirac Delta Function is defined to be 1.</note><para id="import-auto-id1167193153404">However, it is practically impossible to excite a room with the ideal Dirac Delta function. Consequently, we used three methods to approximate the room's impulse response:</para><list xmlns:m="http://www.w3.org/1998/Math/MathML" id="import-auto-id1167164838040" list-type="bulleted" bullet-style="bullet"><item><emphasis>Balloon Pop:</emphasis> filling a latex balloon with air and bursting it. </item>
+        <item><emphasis>Pseudo Dirac:</emphasis> using the <code>dirac()</code> function in Matlab to generate a vector of zeros with a single one in the center, then playing it using the <code>sound()</code> function.</item>
+        <item><emphasis>Sine-sweep Method:</emphasis> <list id="import-auto-id1167185294634" list-type="enumerated" number-style="arabic"><item>Generate a logarithmically increasing sine signal over a desired frequency range (20 Hz to 20 KHz for this application)</item><item>Create an inverse chirp filter that time reverses the chirp and shifts it to become a causal signal (so that it exists in positive time). Then, divide the magnitude of the spectrum of the inverse filter by the square of the magnitude of the spectrum of the chirp signal.</item></list><note id="eip-462">The time shift inverts the phase of the chirp leading to linear phase after the convolution and the second set of operations neutralizes the squaring of the magnitude of the spectrum caused by the convolution.</note><list id="eip-644" list-type="bulleted" bullet-style="3."><item>Convolve the chirp response of the room with the inverse chirp filter to get the impulse response of the room.</item></list><para id="eip-337">This logarithmically increasing sine signal can be characterized in the time domain by the following equation:</para><equation id="eip-602"><m:math display="block">
+ <m:semantics>
+  <m:mrow>
+   <m:mi>x</m:mi><m:mo stretchy="false">(</m:mo><m:mi>t</m:mi><m:mo stretchy="false">)</m:mo><m:mo>=</m:mo><m:mi>sin</m:mi><m:mrow><m:mo>[</m:mo> <m:mrow>
+    <m:msup>
+     <m:mstyle mathsize="140%" displaystyle="true"><m:mrow>
+      <m:mstyle scriptlevel="+1">
+       <m:mfrac>
+        <m:mrow>
+         <m:mi>T</m:mi><m:msub>
+          <m:mi>ω</m:mi>
+          <m:mn>1</m:mn>
+         </m:msub>
+         
+        </m:mrow>
+        <m:mrow>
+         <m:mi>ln</m:mi><m:mo stretchy="false">(</m:mo><m:mstyle scriptlevel="+1">
+          <m:mfrac>
+           <m:mrow>
+            <m:msub>
+             <m:mi>ω</m:mi>
+             <m:mn>2</m:mn>
+            </m:msub>
+            
+           </m:mrow>
+           <m:mrow>
+            <m:msub>
+             <m:mi>ω</m:mi>
+             <m:mn>1</m:mn>
+            </m:msub>
+            
+           </m:mrow>
+          </m:mfrac>
+         </m:mstyle>
+         <m:mo stretchy="false">)</m:mo>
+        </m:mrow>
+       </m:mfrac>
+      </m:mstyle>
+      
+     </m:mrow></m:mstyle>
+     <m:mrow>
+      <m:mrow><m:mo>(</m:mo>
+       <m:mrow>
+        <m:msup>
+         <m:mi>e</m:mi>
+         <m:mrow>
+          <m:mstyle scriptlevel="+1">
+           <m:mfrac>
+            <m:mi>t</m:mi>
+            <m:mi>T</m:mi>
+           </m:mfrac>
+          </m:mstyle>
+          <m:mi>ln</m:mi><m:mo stretchy="false">(</m:mo><m:mstyle scriptlevel="+1">
+           <m:mfrac>
+            <m:mrow>
+             <m:msub>
+              <m:mi>ω</m:mi>
+              <m:mn>2</m:mn>
+             </m:msub>
+             
+            </m:mrow>
+            <m:mrow>
+             <m:msub>
+              <m:mi>ω</m:mi>
+              <m:mn>1</m:mn>
+             </m:msub>
+             
+            </m:mrow>
+           </m:mfrac>
+          </m:mstyle>
+          <m:mo stretchy="false">)</m:mo>
+         </m:mrow>
+        </m:msup>
+        <m:mo>−</m:mo><m:mn>1</m:mn>
+       </m:mrow>
+      <m:mo>)</m:mo></m:mrow>
+     </m:mrow>
+    </m:msup>
+    
+   </m:mrow> <m:mo>]</m:mo></m:mrow>
+  </m:mrow>
+  <m:annotation encoding="MathType-MTEF">MathType@MTEF@5@5@+=
+  feaagGart1ev2aaatCvAUfeBSjuyZL2yd9gzLbvyNv2CaerbuLwBLn
+  hiov2DGi1BTfMBaeXatLxBI9gBaerbd9wDYLwzYbItLDharqqtubsr
+  4rNCHbGeaGqiVu0Je9sqqrpepC0xbbL8F4rqqrFfpeea0xe9Lq=Jc9
+  vqaqpepm0xbba9pwe9Q8fs0=yqaqpepae9pg0FirpepeKkFr0xfr=x
+  fr=xb9adbaqaaeGaciGaaiaabeqaamaabaabaaGcbaGaamiEaiaacI
+  cacaWG0bGaaiykaiabg2da9iGacohacaGGPbGaaiOBamaadmaabaWa
+  aubiaeqaleqabaWaaeWaaeaacaWGLbWaaWbaaWqabeaadaWcbaqaai
+  aadshaaeaacaWGubaaaiGacYgacaGGUbGaaiikamaaleaabaGaeqyY
+  dC3aaSbaaeaacaaIYaaabeaaaeaacqaHjpWDdaWgaaqaaiaaigdaae
+  qaaaaacaGGPaaaaSGaeyOeI0IaaGymaaGaayjkaiaawMcaaaqdbaWa
+  aSqaa4qaaiaadsfacqaHjpWDdaWgaaqaaiaaigdaaeqaaaqaaiGacY
+  gacaGGUbGaaiikamaaleaabaGaeqyYdC3aaSbaaeaacaaIYaaabeaa
+  aeaacqaHjpWDdaWgaaqaaiaaigdaaeqaaaaacaGGPaaaaaaaaOGaay
+  5waiaaw2faaaaa@5A8E@
+  </m:annotation>
+ </m:semantics>
+</m:math>
+</equation><para id="eip-435">where <m:math>
+ <m:semantics>
+  <m:mrow>
+   <m:msub>
+    <m:mi>ω</m:mi>
+    <m:mn>1</m:mn>
+   </m:msub>
+   
+  </m:mrow>
+  <m:annotation encoding="MathType-MTEF">MathType@MTEF@5@5@+=
+  feaagGart1ev2aqatCvAUfeBSjuyZL2yd9gzLbvyNv2CaerbuLwBLn
+  hiov2DGi1BTfMBaeXatLxBI9gBaerbd9wDYLwzYbItLDharqqtubsr
+  4rNCHbGeaGqiVu0Je9sqqrpepC0xbbL8F4rqqrFfpeea0xe9Lq=Jc9
+  vqaqpepm0xbba9pwe9Q8fs0=yqaqpepae9pg0FirpepeKkFr0xfr=x
+  fr=xb9adbaqaaeGaciGaaiaabeqaamaabaabaaGcbaGaeqyYdC3aaS
+  baaSqaaiaaigdaaeqaaaaa@38AA@
+  </m:annotation>
+ </m:semantics>
+</m:math>
+ is the initial radian frequency and <m:math>
+ <m:semantics>
+  <m:mrow>
+   <m:msub>
+    <m:mi>ω</m:mi>
+    <m:mn>2</m:mn>
+   </m:msub>
+   
+  </m:mrow>
+  <m:annotation encoding="MathType-MTEF">MathType@MTEF@5@5@+=
+  feaagGart1ev2aqatCvAUfeBSjuyZL2yd9gzLbvyNv2CaerbuLwBLn
+  hiov2DGi1BTfMBaeXatLxBI9gBaerbd9wDYLwzYbItLDharqqtubsr
+  4rNCHbGeaGqiVu0Je9sqqrpepC0xbbL8F4rqqrFfpeea0xe9Lq=Jc9
+  vqaqpepm0xbba9pwe9Q8fs0=yqaqpepae9pg0FirpepeKkFr0xfr=x
+  fr=xb9adbaqaaeGaciGaaiaabeqaamaabaabaaGcbaGaeqyYdC3aaS
+  baaSqaaiaaikdaaeqaaaaa@38AB@
+  </m:annotation>
+ </m:semantics>
+</m:math>
+ is the ﬁnal radian frequency of the sweep of duration <m:math><m:ci>T</m:ci></m:math>.</para></item>
+      </list><example id="eip-513"><title>Sine Sweep</title><para id="eip-139"><media id="sinesweep" alt="sine sweep">
+      <audio mime-type="audio/x-wav" src="oedksweep.wav"/>
+   </media>
+   </para></example><figure id="import-auto-id1167158404015"><media id="import-auto-id1167159908504" alt="">
+          <image mime-type="image/png" src="../../media/Picture 8-afd0.png" height="412" width="531"/>
+        </media>
+      <caption>The impulse response of the classroom is gleaned from the convolution of the room's response to the logarithmically increasing sine signal with the pre-calculated inverse chirp filter.</caption></figure><para id="eip-585">To measure the response, we used:</para><list id="eip-492"><item>A small guitar amplifier with a relatively flat response facing the desks</item>
+<item>A directional cardioid microphone 2 meters from the amplifier at a thirty degree angle</item>
+<item>A microphone preamplifier</item>
+<item>An Apple Macbook Pro Laptop using Audacity for recording</item></list><figure id="import-auto-id1167158231226"><media id="import-auto-id1167158193803" alt="">
+          <image mime-type="image/jpg" src="../../media/graphics1-2c8f.jpg" height="259" width="461"/>
+        </media>
+      <caption>Our equipment setup in the OEDK classroom. The microphone is placed in the same location used for recording presentations.</caption></figure></section><section id="eip-303"><title>Problems</title><para id="eip-946">Several factors make this model unrealistic:</para><list id="eip-686"><item>Realistically, speakers move around and face different directions when they move. Our impulse responses are highly specific to the position of the signal's source. The information we get is based on the amplifier being stationary and facing a single direction.</item>
+<item>The impulse response is also time-varying. If even one person leaves, the average absorption coefficient of all the objects in the room changes and, per the Sabine equation, the reverberation time of the room also changes. People and objects are continually shifting, constantly affecting how the sound reflects around the room.</item>
+</list><para id="eip-835">Time-varying adaptive filters are more sensible for problems such as suppressing reverberations in the OEDK classroom. </para></section>
+  </content>
+</document>

@@ -1,0 +1,14 @@
+<document xmlns="http://cnx.rice.edu/cnxml">
+  <title>Future</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m45581</md:content-id>
+  <md:title>Future</md:title>
+  <md:abstract/>
+  <md:uuid>f2de8a33-9ff6-4c2e-9528-0190f2d672d5</md:uuid>
+</metadata>
+
+<content>
+    <para id="import-auto-id1171922454960">One of the more interesting results we found is that even with very low correct ratio, some extracted picture message are still recognizable to human perception. Therefore, based on different type of message data, we need to incorporate different evaluation methods for “correction”. One of the ways to achieve this is by using SSIM- Structure Similarity Index Method, which takes the correlation of neighboring pixels into consideration, and thus make it closer to human perception.</para>
+    <para id="import-auto-id1171912603884">The other area of future development is compression method. In our project, we only implemented SVD compression. In the future we could also bring other lossy compression methods such as JPEG, which is more common in daily use. </para>
+  </content>
+</document>

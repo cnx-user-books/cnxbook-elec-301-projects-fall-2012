@@ -1,0 +1,42 @@
+<document xmlns="http://cnx.rice.edu/cnxml">
+  <title>References</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m45365</md:content-id>
+  <md:title>References</md:title>
+  <md:abstract>This module contains the references we used in our project.</md:abstract>
+  <md:uuid>94b3a01a-20a5-4c2d-86e5-53994d41b2ef</md:uuid>
+</metadata>
+<featured-links>
+  <!-- WARNING! The 'featured-links' section is read only. Do not edit below.
+       Changes to the links section in the source will not be saved. -->
+    <link-group type="supplemental">
+      <link url="http://cnx.org/content/m45356/latest/" strength="3">Introduction</link>
+      <link url="http://cnx.org/content/m45358/latest/" strength="3">Background</link>
+      <link url="http://cnx.org/content/m45359/latest/" strength="3">Calculating the Position, Speed, and Orientation of an Object</link>
+      <link url="http://cnx.org/content/m45357/latest/" strength="3">Object Detection Challenges and Solutions</link>
+      <link url="http://cnx.org/content/m45375/latest/" strength="3">Musical Mapping</link>
+      <link url="http://cnx.org/content/m45360/latest/" strength="3">3-D Sound Implementation</link>
+      <link url="http://cnx.org/content/m45362/latest/" strength="3">Results</link>
+      <link url="http://cnx.org/content/m45363/latest/" strength="3">Future Work</link>
+      <link url="http://cnx.org/content/m45364/latest/" strength="3">Conclusions</link>
+      <link url="http://cnx.org/content/m45366/latest/" strength="3">Poster</link>
+      <link url="http://cnx.org/content/m45373/latest/" strength="3">The Team</link>
+    </link-group>
+  <!-- WARNING! The 'featured-links' section is read only. Do not edit above.
+       Changes to the links section in the source will not be saved. -->
+</featured-links>
+<content>
+    <list id="import-auto-id1171920256562" list-type="enumerated" number-style="arabic"><item>http://sound.media.mit.edu/resources/KEMAR.html</item>
+      <item>http://www.mathworks.com/matlabcentral/fileexchange/28300-opensurf-including-image-warp</item>
+      <item>http://www.aishack.in/2010/05/sift-scale-invariant-feature-transform/</item>
+      <item>http://www.cs.cf.ac.uk/Dave/CM0268/Lecture_Examples/</item>
+      <item>http://iie.fing.edu.uy/~rocamora/wind_synthesis/doc/</item>
+      <item>http://en.wikipedia.org/wiki/Head-related_transfer_function</item>
+      <item>http://ses.library.usyd.edu.au/handle/2123/8218</item>
+      <item>http://www.jstor.org/stable/3680062</item>
+      <item>http://www.seventhstring.com/resources/notefrequencies.html</item>
+      <item>http://www-ece.rice.edu/~jdw/241/file.35.html</item>
+      <item>http://eyeborg.wix.com/neil-harbisson#!videoart</item>
+      <item>http://www.coranac.com/tonc/text/affine.htm</item>
+    </list></content>
+</document>

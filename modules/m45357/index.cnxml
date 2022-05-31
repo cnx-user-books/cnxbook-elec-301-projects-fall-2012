@@ -1,0 +1,196 @@
+<document xmlns="http://cnx.rice.edu/cnxml">
+  <title>Object Detection Challenges and Solutions</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m45357</md:content-id>
+  <md:title>Object Detection Challenges and Solutions</md:title>
+  <md:abstract>This module is about the challenges we faced when detecting objects and the solutions to them.</md:abstract>
+  <md:uuid>12dc62e6-87c1-4bed-84c1-e49784f91f4c</md:uuid>
+</metadata>
+<featured-links>
+  <!-- WARNING! The 'featured-links' section is read only. Do not edit below.
+       Changes to the links section in the source will not be saved. -->
+    <link-group type="supplemental">
+      <link url="http://cnx.org/content/m45356/latest/" strength="3">Introduction</link>
+      <link url="http://cnx.org/content/m45358/latest/" strength="3">Background</link>
+      <link url="http://cnx.org/content/m45359/latest/" strength="3">Calculating the Position, Speed, and Orientation of an Object</link>
+      <link url="http://cnx.org/content/m45375/latest/" strength="3">Musical Mapping</link>
+      <link url="http://cnx.org/content/m45360/latest/" strength="3">3-D Sound Implementation </link>
+      <link url="http://cnx.org/content/m45362/latest/" strength="3">Results</link>
+      <link url="http://cnx.org/content/m45363/latest/" strength="3">Future Work</link>
+      <link url="http://cnx.org/content/m45364/latest/" strength="3">Conclusions</link>
+      <link url="http://cnx.org/content/m45366/latest/" strength="3">Poster</link>
+      <link url="http://cnx.org/content/m45365/latest/" strength="3">References</link>
+      <link url="http://cnx.org/content/m45373/latest/" strength="3">The Team</link>
+    </link-group>
+  <!-- WARNING! The 'featured-links' section is read only. Do not edit above.
+       Changes to the links section in the source will not be saved. -->
+</featured-links>
+<content>
+    <section id="import-auto-id1166715106298">
+      <title>Resolution Difference Between Template and Video</title>
+      <para id="import-auto-id4974702">In the beginning, we made the template image and the video separately. In our experiment we used the large green breadboard as the object to be tracked. We first took a picture of the breadboard lying on the table using a high-resolution camera. Then, we switched the camera to video mode with a size of only 480×640 and recorded a video with someone moving the board around. We ran the code and the tracking result was disappointing. </para>
+      <figure id="import-auto-id1166724454172">
+        <media id="import-auto-id1166734764624" alt="">
+          <image mime-type="image/png" src="../../media/Picture 1-41a1.png" height="261" width="336"/>
+        </media>
+       <caption>
+      Template with high resolution
+      </caption>
+      </figure>
+      <figure id="import-auto-id1166749809743">
+        <media id="import-auto-id1166726062826" alt="">
+          <image mime-type="image/png" src="../../media/Picture 2-32a6.png" height="274" width="492"/>
+        </media>
+       <caption>
+       Tracked result – off target (the “matched” points do not even make sense) 
+      </caption>
+      </figure>
+      <para id="import-auto-id1166743697446">Then we realized that lots of details in the template image could not even be seen on the object in the video. For example, the screws and pinholes were not at all visible. Hence, we decided to crop out the template from a screenshot of the video so as to ensure the same level of detail. And it worked!</para>
+      <figure id="import-auto-id1166724877193"><media id="import-auto-id1166727566084" alt="">
+          <image mime-type="image/png" src="../../media/Picture 3-20d6.png" height="124" width="168"/>
+        </media>
+       <caption>
+       Template that is cropped out from the same source video
+      </caption>
+      </figure><figure id="import-auto-id1166746930018">
+        <media id="import-auto-id1166727568541" alt="">
+          <image mime-type="image/png" src="../../media/Picture 4-5314.png" height="252" width="456"/>
+        </media>
+       <caption>
+       Tracking result of a video frame
+      </caption>
+      </figure>
+      </section>
+    <section id="import-auto-id1166746951963">
+      <title>Motion Blur and Video with Lower Resolution</title>
+      <para id="import-auto-id1166746926209">Another problem with matching video frames is that when the shutter speed is relatively slow, the image in each frame blurs and the features of the object are no longer distinguishable. </para>
+      <para id="import-auto-id1166729009540">
+        <figure id="import-auto-id1166738958179">
+          <media id="import-auto-id1166716381091" alt="">
+            <image mime-type="image/png" src="../../media/Picture 5-804f.png" height="134" width="90"/>
+          </media>
+         <caption>
+         Motion-Blurred Image
+        </caption>
+        </figure>
+        <figure id="import-auto-id1166742212574">
+          <media id="import-auto-id1166733601720" alt="">
+            <image mime-type="image/png" src="../../media/Picture 6-376a.png" height="292" width="396"/>
+          </media>
+         <caption>
+         Motion-Blurred Image
+        </caption>
+        </figure>
+      </para>
+      <para id="import-auto-id1166722680433">
+        <figure id="import-auto-id1166742114805">
+          <media id="import-auto-id1166722706797" alt="">
+            <image mime-type="image/png" src="../../media/Picture 7-8991.png" height="132" width="90"/>
+          </media>
+         <caption>
+          Clear image
+        </caption>
+        </figure>
+        <figure id="import-auto-id1166737798272">
+          <media id="import-auto-id1166727572392" alt="">
+            <image mime-type="image/png" src="../../media/Picture 8-1138.png" height="285" width="402"/>
+          </media>
+         <caption>
+         Clear image
+        </caption>
+        </figure>
+      </para>
+      <para id="import-auto-id1166724276445">To avoid motion blur, we had to slow down our movements when recording the video. Otherwise, the tracked position would be completely off. </para>
+      <para id="import-auto-id1166746476365">However, the overall resolution and quality of the video matter, too. We tried converting one of our video files online because one member’s MATLAB cannot read in a .mov file. But after converting the file, the quality of the tracking result went down dramatically. We believe that it was partially due to the even lower resolution of the converted file. When the resolution is too low, a sharp corner can no longer be distinguished from a round corner. On the other hand, there could also be a problem introduced by the compression method that was used by that website, because clearly we could see non-uniformity in the once uniform white board area. This compression method actually introduced additional features or errors into the video frames. </para>
+      <para id="import-auto-id1166723332528">
+        <figure id="import-auto-id1166717840588">
+          <media id="import-auto-id1638314" alt="">
+            <image mime-type="image/png" src="../../media/Picture 9-df84.png" height="81" width="108"/>
+          </media>
+         <caption>
+         Before video conversion
+        </caption>
+        </figure>
+        <figure id="import-auto-id1622602">
+          <media id="import-auto-id1166724444150" alt="">
+            <image mime-type="image/png" src="../../media/Picture 10-aefd.png" height="257" width="444"/>
+          </media>
+         <caption>
+         Before video conversion
+        </caption>
+        </figure>
+      </para>
+      <para id="import-auto-id4901858">
+        <figure id="import-auto-id1166721872881">
+          <media id="import-auto-id1166732515762" alt="">
+            <image mime-type="image/png" src="../../media/Picture 11-b4db.png" height="81" width="108"/>
+          </media>
+         <caption>
+         After video conversion (also notice that the ratio of the image is changed)
+        </caption>
+        </figure>
+        <figure id="import-auto-id1166723362851">
+          <media id="import-auto-id1166722773397" alt="">
+            <image mime-type="image/png" src="../../media/Picture 12.png" height="297" width="384"/>
+          </media>
+         <caption>
+         After video conversion (also notice that the ratio of the image is changed)
+        </caption>
+        </figure>
+      </para>
+      </section>
+    <section id="import-auto-id1166733190646">
+      <title>Complex Background</title>
+      <para id="import-auto-id1166727566798">Since the resolution of our recording devices was not very good, a complex background could also be problematic, because there would be plenty of similar features in the background, but there would not be enough details to fully distinguish them. As a result, we had to use a simple background, such as a wall, and had to avoid wearing shirts full of complex patterns. </para>
+      <figure id="import-auto-id1166734154803">
+        <media id="import-auto-id1166728483083" alt="">
+          <image mime-type="image/png" src="../../media/Picture 13.png" height="106" width="132"/>
+        </media>
+       <caption>
+       Features of template are inaccurately matched to similar features in the background
+      </caption>
+      </figure>
+      <figure id="import-auto-id1166733504006">
+        <media id="import-auto-id1166716041259" alt="">
+          <image mime-type="image/png" src="../../media/Picture 14.png" height="283" width="396"/>
+        </media>
+       <caption>
+       Features of template are inaccurately matched to similar features in the background
+      </caption>
+      </figure>
+      </section>
+    <section id="import-auto-id1166750005666">
+      <title>Objects Without Distinct Features </title>
+      <para id="import-auto-id1166725396284">An object that doesn’t have distinct SURF features is extremely problematic. We were experimenting with a blue pencil box. If the pencil box, lying on the table by itself, was used as the template image, OpenSurf would not output any feature descriptor that was above the threshold. Not until we lowered the threshold all the way down to 0.00001 (it was always set to 0.0008 for our project) did we find six features (normally more than a dozen for a small template and more than a hundred for a full video frame), and even those six features were degenerated!</para>
+      <figure id="import-auto-id1166749944426">
+        <media id="import-auto-id1166724242554" alt="">
+          <image mime-type="image/png" src="../../media/Picture 15.png" height="56" width="96"/>
+        </media>
+       <caption>
+       Only six repeated features are found when threshold is set to 0.00001
+      </caption>
+      </figure>
+      <para id="import-auto-id1166726325698">If we cropped the template in such a way that some background was included, then only the outline or features in the background would be detected, and looking for matching features in the testing image would not make any sense. As is shown below, the matching failed. </para>
+      <para id="import-auto-id1166723352564">
+        <figure id="import-auto-id1166736345947">
+          <media id="import-auto-id1166742645411" alt="">
+            <image mime-type="image/png" src="../../media/Picture 16.png" height="89" width="65"/>
+          </media>
+         <caption>
+        All tracking points are attracted to irrelevant edges.
+        </caption>
+        </figure>
+        <figure id="import-auto-id1166732718884">
+          <media id="import-auto-id1166738880048" alt="">
+            <image mime-type="image/png" src="../../media/Picture 17.png" height="291" width="396"/>
+          </media>
+         <caption>
+         All tracking points are attracted to irrelevant edges.
+        </caption>
+        </figure>
+      </para>
+      <para id="import-auto-id1166721748246">In order to avoid all of the problems that occurred during our experiments, we decided that for the demo video we would only have one dancer, so as to get a closer shot and a higher resolution. The person would wear plain clothing, act in front of a wall, and move slowly and avoid out-of-plane rotation in order to increase the accuracy of object tracking. </para>
+      <para id="import-auto-id1166724244961">However, because the feature matching is not very robust, and even one or two mismatches would introduce huge error into the orientation of the object, the output angular velocity is extremely noisy. That is why we finally decided to discard the angular velocity data.</para>
+      </section>
+  </content>
+</document>

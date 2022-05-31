@@ -1,0 +1,44 @@
+<document xmlns="http://cnx.rice.edu/cnxml">
+  <title>Implementation: HDR Method</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m45500</md:content-id>
+  <md:title>Implementation: HDR Method</md:title>
+  <md:abstract/>
+  <md:uuid>b3f0049e-5ee4-40b8-8a4e-04356e8b8eea</md:uuid>
+</metadata>
+
+<content>
+    <section id="eip-527"><title>HDR</title><para id="eip-393">
+
+</para></section><para id="import-auto-id1167097464953"><figure id="fchart"><media id="Chart" alt="Figure1.">
+    <image mime-type="image/jpeg" src="../../media/Flowchart.jpg" height="100" width="500"/>
+  </media>
+  
+<caption>Image Acquisition Pipeline
+  </caption></figure></para><para id="import-auto-id1167106746572">From Figure 1: Image Acquisition Pipeline, we could see how the scene radiance(X) is non-linearly mapped into its final digital values(Z). In other words, f(X)=Z, the composition of the characteristic curve of a device and all the nonlinear mapping, is a nonlinear function. Non-linearity is mostly introduced by later processing steps such as analog to digital conversion and remapping. Therefore, our method to construct a High Dynamic Range(HDR) picture is to first recover the response curve, f(X)=Z and then by using the pixel values from the series of (LDR) pictures, we’re able to get the scene radiance, which is like a reversed process. Finally, our HDR picture will be constructed from these values of scene radiance.</para><para id="import-auto-id1167110092378">Our general process will be:</para><para id="import-auto-id1167114659756">1.	We’ll take pictures with different exposure times.</para><para id="import-auto-id1167098322780">a)	Knowing the exposure X and the exposure time delta t, we’re able to recover 
+        irradiance through formula E = X/delta t. 
+
+</para><para id="import-auto-id1167129009978">b)	Since f(X)=Z and function f could be reasonably conceived as increasing function, 
+        its inverse function is well defined. Then, we have</para><para id="import-auto-id1167100441513"><figure id="inv"><media id="inverse" alt="Figure2.">
+    <image mime-type="image/jpeg" src="../../media/Inverse.jpg" height="50" width="200"/>
+  </media>
+  
+</figure></para><para id="import-auto-id1167123214182">c)	Using the formulas in a) and b), we have</para><para id="import-auto-id1167099378628"><figure id="zij"><media id="Zij" alt="Figure3.">
+    <image mime-type="image/jpeg" src="../../media/ZIJ.jpg" height="50" width="200"/>
+  </media>
+  
+</figure></para><para id="import-auto-id1167131623233">where i is the index of sample(pixel) and j is the index of pictures with different exposure times. The formula also equals to </para><para id="import-auto-id1167107875201"><figure id="finvz"><media id="finvzij" alt="Figure4.">
+    <image mime-type="image/jpeg" src="../../media/FinverseZIJ.jpg" height="50" width="200"/>
+  </media>
+  
+</figure></para><para id="import-auto-id1167123721686">taking natural log on both sides, we will have </para><para id="import-auto-id1167099813487"><figure id="LNF"><media id="lnF" alt="Figure5.">
+    <image mime-type="image/jpeg" src="../../media/lnf.jpg" height="50" width="300"/>
+  </media>
+</figure></para><para id="import-auto-id1167099369259">Making X=g(Z) the inverse function of Z=f(X), we get </para><para id="import-auto-id1167110525766"><figure id="gzif"><media id="GZ" alt="Figure5.">
+    <image mime-type="image/jpeg" src="../../media/gz.jpg" height="50" width="300"/>
+  </media>
+</figure></para><para id="import-auto-id1167113062209">d)	Thus, we transform our problem into a problem minimizing least-squared error between g(Z) and ln(E) and ln(delta t), which could be summarized by the following formula:</para><para id="import-auto-id1167111107463"><figure id="big"><media id="BigT" alt="Figure1.">
+    <image mime-type="image/jpeg" src="../../media/Big.jpg" height="100" width="500"/>
+  </media>
+</figure></para><para id="import-auto-id1167134768960">Note that the second term here is for smoothing g(Z). And lambda is a scaling factor subject to different pictures. </para><para id="import-auto-id1167099482206">3.	After we get the response curve by solving the equation above, when we use the pixel values Z of those LDR pictures, we’ll be able to get the values of irradiance X at each point of the scene. In other words, we’re trying to figure out in different areas, which group of pixel values from different LDR pictures with different exposure times is closest to the corresponding irradiance and best to reveal details of that area. Thus, it enables us to construct HDR picture in which pixel values in different areas are extracted from the LDR picture that captures its details best.</para><para id="import-auto-id1167099547669">4.	We finish our task to construct a HDR picture here. However, we still have to solve another problem, which is to display a HDR picture on a LDR display. And this leads to the second part of our implementation: Tone- mapping.</para></content>
+</document>

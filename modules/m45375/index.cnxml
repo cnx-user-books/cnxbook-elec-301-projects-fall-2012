@@ -1,0 +1,45 @@
+<document xmlns="http://cnx.rice.edu/cnxml">
+  <title>Musical Mapping</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m45375</md:content-id>
+  <md:title>Musical Mapping</md:title>
+  <md:abstract>This module describes how we do musical mapping in our project.</md:abstract>
+  <md:uuid>8cb9301d-76ad-4839-9b9e-bd712bf10f78</md:uuid>
+</metadata>
+<featured-links>
+  <!-- WARNING! The 'featured-links' section is read only. Do not edit below.
+       Changes to the links section in the source will not be saved. -->
+    <link-group type="supplemental">
+      <link url="http://cnx.org/content/m45356/latest/" strength="3">Introduction</link>
+      <link url="http://cnx.org/content/m45358/latest/" strength="3">Background</link>
+      <link url="http://cnx.org/content/m45359/latest/" strength="3">Calculating the Position, Speed, and Orientation of an Object</link>
+      <link url="http://cnx.org/content/m45357/latest/" strength="3">Object Detection Challenges and Solutions</link>
+      <link url="http://cnx.org/content/m45360/latest/" strength="3">3-D Sound Implementation</link>
+      <link url="http://cnx.org/content/m45362/latest/" strength="3">Results</link>
+      <link url="http://cnx.org/content/m45363/latest/" strength="3">Future Work</link>
+      <link url="http://cnx.org/content/m45364/latest/" strength="3">Conclusions</link>
+      <link url="http://cnx.org/content/m45366/latest/" strength="3">Poster</link>
+      <link url="http://cnx.org/content/m45365/latest/" strength="3">References</link>
+      <link url="http://cnx.org/content/m45373/latest/" strength="3">The Team</link>
+    </link-group>
+  <!-- WARNING! The 'featured-links' section is read only. Do not edit above.
+       Changes to the links section in the source will not be saved. -->
+</featured-links>
+<content>
+    <para id="import-auto-id1166958322751">The musical mapping that formed the backbone of our system focused on three main components: the type of object in question, its velocity, and its orientation. Each of the three distinct objects that were held by the dancer as she moved corresponded to a different musical instrument, as outlined in the table below.</para>
+    <figure id="import-auto-id1166954959260">
+      <media id="import-auto-id1166949421796" alt="">
+        <image mime-type="image/png" src="../../media/graphics1-81a2.png" height="109" width="507"/>
+      </media>
+    </figure>
+    <para id="import-auto-id2248579">Once each object was linked to the appropriate instrument, we needed to construct a relationship between the velocity of an object at any given time and a distinct pair of notes. Due to the fact that it is unfeasible to have a different pair of notes for every possible velocity, we opted to assign pairs of notes to certain velocity ranges, as seen in Figure 1, below.</para>
+    <para id="import-auto-id3711400">Figure 1: Object Velocity Ranges<figure id="import-auto-id1166954322619"><media id="import-auto-id1166952921500" alt=""><image mime-type="image/png" src="../../media/graphics2-aadd.png" height="183" width="576"/></media></figure></para>
+    <para id="import-auto-id1166950279117">One essential feature of these pairs of notes is that the interval between the two notes for any given velocity range forms what is known in music theory as a tri-tone. This means that while either of the two notes in a certain velocity range played alone will sound comfortable to the listener, when they are combined into a chord, the resultant sound will be characterized by an extraordinary amount of dissonance. Indeed, the dissonance that is created is so pronounced that a tri-tone has historically been known as the “Diablo de Musica”. While such an explicit clashing effect may appear to be a significant setback to the overall performance of our system, we found that it can actually be extremely effective as a representation of an object’s orientation. Thus, our system (as can be seen in the code attached later in this module) delineates the orientation of the three objects used by the dancer according to the methodology specified in Table 2.</para>
+    <figure id="import-auto-id6629200">
+      <media id="import-auto-id1166955540068" alt="">
+        <image mime-type="image/png" src="../../media/graphics3-f731.png" height="100" width="575"/>
+      </media>
+    </figure>
+    <para id="import-auto-id1166959913134">Accordingly, if an object is placed in a vertical position, only one of the two notes in the appropriate velocity range will be played by our system. Similarly, if an object is placed in a horizontal position, only the other note will be heard in the resultant sound. However, if an object is placed in a position between vertical and horizontal (i.e. at an angle), a mixture of the two notes in the appropriate velocity range will be played, with more weight placed on the note nearest the object’s actual orientation. Thus, if an object is positioned nearly vertically, the note corresponding to the vertical position will predominate; if an object is oriented nearly horizontally, the opposite note will be emphasized more heavily. If an object is oriented at a perfect forty-five degree angle, each of the notes will be played with equal emphasis.</para>
+  </content>
+</document>

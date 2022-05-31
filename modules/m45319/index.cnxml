@@ -1,0 +1,24 @@
+<document xmlns="http://cnx.rice.edu/cnxml">
+
+<title>Introduction and Motivation</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m45319</md:content-id>
+  <md:title>Introduction and Motivation</md:title>
+  <md:abstract/>
+  <md:uuid>66fc4868-48c6-4087-8d91-f8d31d4b164c</md:uuid>
+</metadata>
+<featured-links>
+  <!-- WARNING! The 'featured-links' section is read only. Do not edit below.
+       Changes to the links section in the source will not be saved. -->
+    <link-group type="supplemental">
+      <link url="http://open-ephys.org/" strength="3">open ephys</link>
+    </link-group>
+  <!-- WARNING! The 'featured-links' section is read only. Do not edit above.
+       Changes to the links section in the source will not be saved. -->
+</featured-links>
+<content>
+  <para id="eip-158">With the advent of optogenetic tools for neural stimulation and study, the need for enhanced neural recording and processing procedures has grown substantially. One key necessity is to implant and record from many electrodes in the brain at once so as to enhance spatial resolution for a closer analysis of stimuli responses. For optogentic and similar time sensitive experiments, it is quintessential that  the data be processed in real time so that appropriate feedback can be delivered. This requires streamlined recording and processing. An open source project under the name "Open Ephys" seeks to  accomplish this by creating a light and flexible platform for acquiring electrophysiological data, controlling experimental stimuli, and processing recorded activity.  
+
+ </para><para id="eip-855">One feature of the project is a GUI for adding filters and scopes to incoming recordings. In its current state, when attempting to collect data from a moderate number of channels (greater than 32), CPU usage spikes and a slow down in processing the input becomes significant. Our goal is to enhance the current filter library to accommodate real-time filtering for a large number of channels such as 256. We designed an optimized filter in C++ by exploring various forms of difference equations, taking advantage of compiler optimizations, exploiting the computer architecture and multi-threading technologies, in addition to experimenting with matrix implementations.</para></content>
+
+</document>

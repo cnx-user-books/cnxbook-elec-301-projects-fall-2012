@@ -1,0 +1,184 @@
+<document xmlns="http://cnx.rice.edu/cnxml">
+  <title>Results</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m45401</md:content-id>
+  <md:title>Results</md:title>
+  <md:abstract/>
+  <md:uuid>f27e6880-f989-49a2-8f86-8415b904bfa9</md:uuid>
+</metadata>
+
+<content>
+    <section id="import-auto-id1169006010167">
+      <title>Results </title>
+      <section id="import-auto-id1169006083365">
+        <title>Distinguishing the Best Smile from a Set</title>
+        <para id="import-auto-id1169017288628">Using several more images of Danny, we can determine which image of him has his best smile. </para>
+        <section id="import-auto-id1169006147792">
+          <para xmlns:fo="urn:oasis:names:tc:opendocument:xmlns:xsl-fo-compatible:1.0" id="import-auto-id1169006139537" fo:font-style="normal" fo:font-weight="normal">
+            <figure id="import-auto-id1169018203189">
+              <media id="import-auto-id1169006045185" alt="">
+                <image mime-type="image/jpg" src="../../media/graphics1-37da.jpg" height="384" width="576"/>
+              </media>
+            </figure>
+            <figure id="import-auto-id1169005794375">
+              <media id="import-auto-id1169016911914" alt="">
+                <image mime-type="image/jpg" src="../../media/graphics2-1ca7.jpg" height="384" width="576"/>
+              </media>
+            </figure>
+            <figure id="import-auto-id1169016941546">
+              <media id="import-auto-id1169017478003" alt="">
+                <image mime-type="image/jpg" src="../../media/graphics3-bee5.jpg" height="384" width="576"/>
+              </media>
+            </figure>
+            <figure id="import-auto-id1169017877346">
+              <media id="import-auto-id1169006090726" alt="">
+                <image mime-type="image/jpg" src="../../media/graphics4-6989.jpg" height="384" width="576"/>
+              </media>
+            </figure>
+          </para>
+          <para xmlns:fo="urn:oasis:names:tc:opendocument:xmlns:xsl-fo-compatible:1.0" id="import-auto-id1169005234399" fo:font-style="normal" fo:font-weight="normal"><emphasis effect="bold">Figure 1: </emphasis>Input images for distinguishing the best smile of the set </para>
+          <para id="import-auto-id1169017534272">When determining the best smile from this set of given photos, the following calculated data is used in the code’s decision tree. </para>
+          <table id="import-auto-id8809728" summary="">
+            <tgroup cols="3">
+              <colspec colnum="1" colname="c1"/>
+              <colspec colnum="2" colname="c2"/>
+              <colspec colnum="3" colname="c3"/>
+              <thead>
+                <row>
+                  <entry>Image</entry>
+                  <entry>Corner Density</entry>
+                  <entry>Mouth Curvature</entry>
+                </row>
+              </thead>
+              <tbody>
+                <row>
+                  <entry>1 </entry>
+                  <entry>63 </entry>
+                  <entry>0.0043 </entry>
+                </row>
+                <row>
+                  <entry>2 </entry>
+                  <entry>78 </entry>
+                  <entry>-0.0010 </entry>
+                </row>
+                <row>
+                  <entry>3 </entry>
+                  <entry>24 </entry>
+                  <entry>0.0045 </entry>
+                </row>
+                <row>
+                  <entry>4 </entry>
+                  <entry>6 </entry>
+                  <entry>-0.0010 </entry>
+                </row>
+              </tbody>
+            </tgroup>
+          </table>
+          <para xmlns:fo="urn:oasis:names:tc:opendocument:xmlns:xsl-fo-compatible:1.0" id="import-auto-id1169015507847" fo:font-style="normal" fo:font-weight="normal"><emphasis effect="bold">Table 1: </emphasis>Corner Density and Mouth Curvature Parameters for Images 1-4 </para>
+          <para id="import-auto-id1169014887307">Photos one and two both contain high numbers of corner points, but number one has a greater curvature. Photo four does not meet the minimum threshold number of data points, so its curvature is irrelevant. Since photo three meets the minimum threshold and has the greatest curvature, it is selected as the best smile photo of the set. </para>
+          <section id="import-auto-id1169006031821">
+            <title>Distribution of our Smile Detection Parameters</title>
+            <para xmlns:fo="urn:oasis:names:tc:opendocument:xmlns:xsl-fo-compatible:1.0" id="import-auto-id1169006124494" fo:font-style="normal" fo:font-weight="normal">We wanted to run more extensive tests to see if our determination of smiling subjects works on a large set of subjects. We obtained the FEI face database (<link url="http://fei.edu.br/~cet/facedatabase.html"><emphasis effect="underline">Link</emphasis></link>)[6]<link target-id=""><emphasis effect="underline"/></link>, which has images of 200 subjects. In one image the subject is smiling, and in the other the subject maintains a neutral expression. We gathered results on the distribution of each parameter, and also whether the program correctly predicted which image of the two was a smile. </para>
+          </section>
+        </section>
+        <section id="import-auto-id1169015038579">
+          <para xmlns:fo="urn:oasis:names:tc:opendocument:xmlns:xsl-fo-compatible:1.0" id="import-auto-id1169014570457" fo:font-style="normal" fo:font-weight="normal">
+            <figure id="import-auto-id8836201">
+              <media id="import-auto-id8836653" alt="">
+                <image mime-type="image/png" src="../../media/graphics5-88f2.png" height="490" width="576"/>
+              </media>
+            </figure>
+            <figure id="import-auto-id1169023897963">
+              <media id="import-auto-id1169018147321" alt="">
+                <image mime-type="image/png" src="../../media/graphics6-657a.png" height="492" width="576"/>
+              </media>
+            </figure>
+          </para>
+          <para xmlns:fo="urn:oasis:names:tc:opendocument:xmlns:xsl-fo-compatible:1.0" id="import-auto-id1169006022816" fo:font-style="normal" fo:font-weight="normal"><emphasis effect="bold">Figure 6: </emphasis>Corner Density distributions for the 200 Non-Smiling and 200 Smiling photos from the database. (NOTE: The x-axes have significantly different scales) </para><para xmlns:fo="urn:oasis:names:tc:opendocument:xmlns:xsl-fo-compatible:1.0" id="import-auto-id1169014858821" fo:font-style="normal" fo:font-weight="normal">
+            <figure id="import-auto-id1169006144290">
+              <media id="import-auto-id1169006019171" alt="">
+                <image mime-type="image/png" src="../../media/graphics7-4509.png" height="482" width="576"/>
+              </media>
+            </figure>
+            <figure id="import-auto-id1169006167910">
+              <media id="import-auto-id1169006015812" alt="">
+                <image mime-type="image/png" src="../../media/graphics8-7869.png" height="488" width="576"/>
+              </media>
+            </figure>
+          </para>
+          <para xmlns:fo="urn:oasis:names:tc:opendocument:xmlns:xsl-fo-compatible:1.0" id="import-auto-id1169016485148" fo:font-style="normal" fo:font-weight="normal"><emphasis effect="bold">Figure 8: </emphasis>Mouth Curvature distributions for the 200 Non-Smiling and 200 Smiling photos from the database. (NOTE: The y-axes have significantly different scales) </para><para id="import-auto-id1169017901589">One important trend noticed in the distribution is that the concavity parameter has a high probability of being positive when analyzing a smiling photo. The parameter is negative less than 5% of the time for analyzed smiling images. We used this to validate our requirement that the curvature of an image must be positive to be identified as the most smiling photo of a set. </para>
+          <para id="import-auto-id1169006060408">Another thing that we notice is while a neutral photo will not always provide line a predictable curvature parameter, there will often be a lack of detected edges. We confirmed discarding images with a low number of detected mouth corners was also a good strategy. At the threshold of 10 that we used (must have greater than 10 corners), about 78% of smiling photos will be kept as candiates for the most smiling photo, while 81% of non-smiling photos will be eliminated as candidates. Using both terms, we see the separation at there is relatively high separation that can be achieved from using both the corner density and mouth curvature parameters. </para>
+          <table id="import-auto-id8751714" summary="">
+            <tgroup cols="3">
+              <colspec colnum="1" colname="c1"/>
+              <colspec colnum="2" colname="c2"/>
+              <colspec colnum="3" colname="c3"/>
+              <thead>
+                <row>
+                  <entry/>
+                  <entry>Corner Density</entry>
+                  <entry>Mouth Curvature</entry>
+                </row>
+              </thead>
+              <tbody>
+                <row>
+                  <entry>Smiling Face </entry>
+                  <entry>16.3 </entry>
+                  <entry>0.0124 </entry>
+                </row>
+                <row>
+                  <entry>Unsmiling Face</entry>
+                  <entry>7.7 </entry>
+                  <entry>0.0016 </entry>
+                </row>
+              </tbody>
+            </tgroup>
+          </table>
+          <para xmlns:fo="urn:oasis:names:tc:opendocument:xmlns:xsl-fo-compatible:1.0" id="import-auto-id1169007392733" fo:font-style="normal" fo:font-weight="normal"><emphasis effect="bold">Table 2</emphasis><emphasis effect="bold">: </emphasis>Mean Corner Density and Mouth Curvature for images from the FEI database.</para>
+          <para xmlns:fo="urn:oasis:names:tc:opendocument:xmlns:xsl-fo-compatible:1.0" id="import-auto-id1169006005521" fo:font-style="normal" fo:font-weight="normal">The final step of if multiple images are able to pass all thresholds, is selecting the image with the highest mouth curvature. As seen in Table 2<link target-id="id1169006290869"><emphasis effect="underline"/></link>, the average mouth curvature of a smiling face is over 7 times that of an unsmiling face. </para>
+          <section id="import-auto-id1169012802370">
+            <title>Performance Analysis</title>
+            <table id="import-auto-id1169023921729" summary="">
+              <tgroup cols="4">
+                <colspec colnum="1" colname="c1"/>
+                <colspec colnum="2" colname="c2"/>
+                <colspec colnum="3" colname="c3"/>
+                <colspec colnum="4" colname="c4"/>
+                <thead>
+                  <row>
+                    <entry/>
+                    <entry>Number (of 200)</entry>
+                    <entry>Total %</entry>
+                    <entry>Procedure Accuracy</entry>
+                  </row>
+                </thead>
+                <tbody>
+                  <row>
+                    <entry>Correct Recognitions</entry>
+                    <entry>121 </entry>
+                    <entry>61% </entry>
+                    <entry>93% </entry>
+                  </row>
+                  <row>
+                    <entry>False Positives </entry>
+                    <entry>9 </entry>
+                    <entry>5% </entry>
+                    <entry>7% </entry>
+                  </row>
+                  <row>
+                    <entry>Inconclusive </entry>
+                    <entry>70 </entry>
+                    <entry>35% </entry>
+                    <entry>– </entry>
+                  </row>
+                </tbody>
+              </tgroup>
+            </table>
+            <para xmlns:fo="urn:oasis:names:tc:opendocument:xmlns:xsl-fo-compatible:1.0" id="import-auto-id1169006116204" fo:font-style="normal" fo:font-weight="normal"><emphasis effect="bold">Table 3</emphasis><emphasis effect="bold">: </emphasis>Percentage out of total database images from the FEI database, as well success and failure rate of the images the program attempted to analyze. </para>
+            <para xmlns:fo="urn:oasis:names:tc:opendocument:xmlns:xsl-fo-compatible:1.0" id="import-auto-id1169006497917" fo:font-style="normal" fo:font-weight="normal">Using the decision tree outlined in Section 4.2<link target-id=""><emphasis effect="underline"/></link>, we got the result in table 3<link target-id="id1169018203189"><emphasis effect="underline"/></link>. Of the 200 subjects analyzed, 70 were deemed inconclusive because they could not be properly analyzed as either the face or mouth detection algorithm didn’t work properly, or less than 11 corners in both images. The remaining 130 photos were analyzed with only 9 false positives, and a 93% success rate of those analyzed.</para>
+          </section>
+        </section>
+      </section>
+    </section>
+  </content>
+</document>

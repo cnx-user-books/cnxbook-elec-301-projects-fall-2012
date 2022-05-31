@@ -1,0 +1,162 @@
+<document xmlns="http://cnx.rice.edu/cnxml">
+  <title>Background</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m45358</md:content-id>
+  <md:title>Background</md:title>
+  <md:abstract>This module contains the background of our object detection algorithm and 3-D sound synthesis system.</md:abstract>
+  <md:uuid>00e2b539-92b7-4d86-9407-cca7cb190c6f</md:uuid>
+</metadata>
+<featured-links>
+  <!-- WARNING! The 'featured-links' section is read only. Do not edit below.
+       Changes to the links section in the source will not be saved. -->
+    <link-group type="supplemental">
+      <link url="http://cnx.org/content/m45356/latest/" strength="3">Introduction</link>
+      <link url="http://cnx.org/content/m45359/latest/" strength="3">Calculating the Position, Speed, and Orientation of an Object</link>
+      <link url="http://cnx.org/content/m45357/latest/" strength="3">Object Detection Challenges and Solutions</link>
+      <link url="http://cnx.org/content/m45375/latest/" strength="3">Musical Mapping</link>
+      <link url="http://cnx.org/content/m45360/latest/" strength="3">3-D Sound Implementation</link>
+      <link url="http://cnx.org/content/m45362/latest/" strength="3">Results</link>
+      <link url="http://cnx.org/content/m45363/latest/" strength="3">Future Work</link>
+      <link url="http://cnx.org/content/m45364/latest/" strength="3">Conclusions</link>
+      <link url="http://cnx.org/content/m45366/latest/" strength="3">Poster</link>
+      <link url="http://cnx.org/content/m45365/latest/" strength="3">References</link>
+      <link url="http://cnx.org/content/m45373/latest/" strength="3">The Team</link>
+    </link-group>
+  <!-- WARNING! The 'featured-links' section is read only. Do not edit above.
+       Changes to the links section in the source will not be saved. -->
+</featured-links>
+<content>
+    <section id="import-auto-id1166724900148">
+      <title>Object Detection</title>
+      <para id="import-auto-id1166699406482">Finding an object in an image can be done in various ways. One of the most common methods used is matching certain features in the image to those in the object that is being searched for. Traditionally, these features have included mostly edges and corners because these are relatively easy to find, but unfortunately these features are also often sensitive to even small amounts of noise and are also often neither scale nor rotation invariant. Another method of object detection in an image is color matching. This method works reliably and efficiently, but is very sensitive to things in the background and thus, in general, a very plain background must be used in order to track the desired object correctly. For this reason, we found that a good tradeoff between speed of computation and sensitivity to noise was the Speeded Up Robust Features (SURF) algorithm. Using this algorithm allows the program to track an object by simply providing a picture of the desired object, and it works both outdoors and indoors without any overly tight constraints on the environment. </para>
+      <para id="import-auto-id1166727894979">
+        <emphasis effect="bold">Procedure</emphasis>
+      </para>
+      <para id="import-auto-id1166699167739">The SURF algorithm is actually based on the earlier Scale Invariant Feature Transform (SIFT) algorithm, but has a few modifications that make the former a lot faster to compute. In order to use these algorithms, one first simply takes a picture of the object that is to be tracked; this image is called the "template." Then, the algorithm finds "keypoints" on another image; these are places with interesting features that might be useful for tracking an object, but not necessarily the object we're looking for. Each of these keypoints includes a scale, orientation, coordinates, and other identifying information ("descriptors"). In order to actually find where the object we're looking for is, one finds the keypoints whose descriptors are closest to those calculated for the template image. This is usually done by finding the keypoints in the test image with the least squares difference in their descriptor values as compared to those in the template descriptors. </para>
+      <para id="import-auto-id1166742180006">SIFT will be described first because it is simpler, and then the differences between SIFT and SURF will be noted.  </para>
+      <para id="import-auto-id1166706444200">
+        <emphasis effect="bold">Creating the Scale-Space</emphasis>
+      </para>
+      <para id="import-auto-id1166699583029">The first step in the SIFT algorithm is to create what is known as a "scale-space." This basically creates a set of images that consist of versions of the original image, blurred to different extents. This is important because oftentimes there are objects of very different scales in an image. An example of this would be a large tree with lots of small leaves on it. Adding higher amounts of blur means that only larger objects will remain detectable while small amounts of blur will preserve small details. Additionally, this step is critical for maintaining scale invariance so that the object can be detected when it is farther or closer to the camera in the video than when the template image was taken. Blurring of the image is done by taking the 2-D convolution of the image with a Gaussian function. This has the same effect as passing the image through a low pass filter in the frequency domain. It is important to note that most current methods of generating scale-spaces use the Gaussian and not other types of low pass filters to perform this blurring because it has been mathematically proven that the Gaussian filter does not add any features to the source image that were not originally there. Other types of filters might potentially add things like edges in places where there were originally none. </para>
+      <para id="import-auto-id1166701749234">The convolution in question is: </para>
+      <para id="import-auto-id1612604">The Gaussian function is:</para>
+      <figure id="import-auto-id1166702715734">
+        <media id="import-auto-id1166705361392" alt="">
+          <image mime-type="image/jpg" src="../../media/Picture 7.jpg" height="45" width="226"/>
+        </media>
+        <caption>
+        Gaussian Function
+        </caption>
+      </figure>
+      <para id="import-auto-id1166741164285">Note that in G(x, y, σ), x and y actually represent the distance of the current pixel from the origin in the x and y directions, respectively. For I(x, y), x and y are simply the coordinates of the current pixel. As σ increases, the amount of blur and thus the type of scale that is preserved increases. Some example Matlab code is as follows:</para>
+      <para id="import-auto-id1166695400146">Source = im2double(rgb2gray(imresize(imread('MainImage.jpg'),[480,640])));</para>
+      <para id="import-auto-id1166738137094">Variance = 100;</para>
+      <para id="import-auto-id1166732611623">for x=1:480</para>
+      <para id="import-auto-id1166695561250">for y=1:640</para>
+      <para id="import-auto-id1166722065360">R(x,y) = (1/sqrt(2*pi*Variance))*exp((-(abs(x-240)^2+abs(y-320)^2))/(2*Variance));</para>
+      <para id="import-auto-id1166710172600">end</para>
+      <para id="import-auto-id1166695987546">end</para>
+      <para id="import-auto-id1166725804939">Blurred = conv2(Source,R)/(2*sqrt(Variance));</para>
+      <para id="import-auto-id1166704756850">imshow(Blurred)</para>
+      <figure id="import-auto-id1166699895649">
+        <media id="import-auto-id1166727781130" alt="">
+          <image mime-type="image/png" src="../../media/Picture 11-9278.png" height="222" width="298"/>
+        </media>
+      </figure>
+      <figure id="import-auto-id1166696013207">
+        <media id="import-auto-id1166734776576" alt="">
+          <image mime-type="image/png" src="../../media/Picture 10-e4d4.png" height="224" width="292"/>
+        </media>
+      </figure>
+      <para id="import-auto-id1166699785528">The convolution of the image with the Gaussian will not be the same size as the original image, so cropping is necessary to get something like the bottom image. Additionally, convolving by the Gaussian function in 2-D is separable, which means that using a convolution matrix to get the 2-D convolution gives the same result as applying a 1-D convolution in both directions. This is useful because it makes computation much, much faster, but it is also a bit more involved. Matlab takes care of all these issues through the fspecial and imfilter functions. For example, the previous code can be replaced with the following:</para>
+      <para id="import-auto-id1166709273710">Source = im2double(rgb2gray(imresize(imread('MainImage.jpg'),[480,640])));</para>
+      <para id="import-auto-id1166709396056">Variance = 100;</para>
+      <para id="import-auto-id1166696524324">h = fspecial('gaussian',[480,640],sqrt(Variance));</para>
+      <para id="import-auto-id1166699487531">imfilter(Source,h); %convolves source with h and performs necessary cropping</para>
+      <para id="import-auto-id1166736559348">imshow(ans);</para>
+      <para id="import-auto-id1166721215365">
+        <emphasis effect="bold">Later Steps</emphasis>
+      </para>
+      <para id="import-auto-id1166743701571">SIFT operates on grayscale images because for each pixel only one byte of information is required (intensity) so the convolutions are a lot faster. It is also worth mentioning that the size of the Gaussian filter used doesn't need to be the size of the entire image, but larger filters result in stronger blur. In SIFT, the original image is downsampled by increasing factors of 2, and each of these images is then blurred to different levels. The number of downsampled images is called the number of "octaves", and can be chosen by the programmer. Normally 4 octaves are used with 5 levels of blur each for a total of 20 images. </para>
+      <para id="import-auto-id1166727585291">The next step involves taking the difference of these blurred images. In each octave, each image has its neighbor with a higher level of blur subtracted from itself except the last one since there is nothing after it. The effect of this step is leaving an image where edges, corners, and other features have higher contrast than places that are less well defined. </para>
+      <para id="import-auto-id1166727939004">Example:</para>
+      <para id="import-auto-id1166699106495"> h1 = fspecial('gaussian',[8,8],1.5);</para>
+      <para id="import-auto-id1166699538490"> h2 = fspecial('gaussian',[8,8],10);</para>
+      <para id="import-auto-id1166698338325"> LowBlur = imfilter(Source,h1);</para>
+      <para id="import-auto-id1166743466022"> HighBlur = imfilter(Source,h2);</para>
+      <para id="import-auto-id1166739095362"> imshow(HighBlur-LowBlur);</para>
+      <figure id="import-auto-id1166733554232">
+        <media id="import-auto-id1166713640103" alt="">
+          <image mime-type="image/png" src="../../media/graphics1-716f.png" height="259" width="347"/>
+        </media>
+        <caption>
+          Difference of Gaussians
+        </caption>
+      </figure>
+      <para id="import-auto-id1166701627445"/>
+      <para id="import-auto-id1166695355117">From these Difference of Gaussian (DoG) images, minima and maxima are located; these are the initial sets of keypoints. Next, a contrast check is done that throws away keypoints that are not above some threshold contrast with respect to their neighboring pixels; this helps increase the accuracy of the algorithm. Lastly, for each keypoint, descriptors including scale and orientation are calculated by using neighboring pixels.</para>
+      <para id="import-auto-id1166699196299">An important difference between SIFT and SURF is that SURF does not downsample images by factors of 2 and instead just keeps a "stack" of images at the same resolution, but with different levels of blur. Then, instead of finding the difference of Gaussians, SURF approximates second-order derivatives by using boxcar filters; this results in a much higher calculation speed, but with sometimes lower rates of detection accuracy.</para>
+      <para id="import-auto-id1166736990317">Fortunately, there are many implementations of SURF available in various programming languages. In initial testing during this project, OpenCV's C++ implementation of the algorithm was used, and it was almost fast enough to track in real time using a 640x480 resolution webcam input. Since a lot of the sound code we already had was done in Matlab, however, we instead opted for Dirk-Jan Kroon's Matlab adaptation of OpenSURF, originally a very fast C++ implementation by Chris Evans.</para>
+      <para id="import-auto-id1166733502517">
+        <emphasis effect="bold">Example Results</emphasis>
+      </para>
+      <figure id="import-auto-id1166704925176">
+        <media id="import-auto-id1166721664865" alt="">
+          <image mime-type="image/png" src="../../media/graphics2-e5bb.png" height="341" width="383"/>
+        </media>
+        <caption>
+         Matched keypoints: Scene on left, Template on right
+        </caption>
+      </figure>
+    </section>
+    <section id="import-auto-id1166753665551">
+      <title>The 3-D Sound Effect</title>
+      <para id="import-auto-id2534937">
+        <emphasis effect="bold">Definition </emphasis>
+      </para>
+      <para id="import-auto-id1166742322287">The 3-D sound effect allows the listener to locate the exact position of an object in space. The position is described in terms of an azimuth and elevation. The following figure illustrates the concepts of azimuth and elevation, as well as the spatial coordinate system we used in our project.</para>
+      <figure id="import-auto-id1166702785381">
+        <media id="import-auto-id1166695784181" alt="">
+          <image mime-type="image/png" src="../../media/Picture 6-aa33.png" height="442" width="624"/>
+        </media>
+       <caption>
+        The Spatial Coordinate System Implemented in Our Project
+       </caption>
+      </figure>
+      <para id="import-auto-id1166753584376">One of the most common ways to synthesize 3-D sound is to use the head-related transfer function, which includes information about the interaural time difference (ITD), interaural intensity difference, and spectral coloration of a sound made by the torso, head, outer ears, or pinna. The interaural time difference is defined to be the difference in time between when the wavefront arrives at the left ear and when the wavefront arrives at the right ear (Figure 7). The source of sound is perceived to be closer to the ear at which the first wavefront arrives. As such, a larger ITD corresponds to a larger lateral displacement.</para></section> 
+    <figure id="import-auto-id1166740462843">
+      
+        <media id="import-auto-id1166724418442" alt="">
+          <image mime-type="image/png" src="../../media/graphics3-3772.png" height="390" width="611"/>
+        </media>
+       <caption>
+        Interaural Time Difference
+      </caption>
+      </figure>
+      <para id="import-auto-id1166724547901">Using ITD, we can decide the azimuth of the sound source. Unfortunately, when the frequency is above 1500 Hz, the wavelength of the sound is approximately the diameter of the head. Therefore, different azimuths might have the same ITD, and aliasing will occur (Figure 8). </para><figure id="import-auto-id1166742730619">
+        <media id="import-auto-id1166695563167" alt="">
+          <image mime-type="image/png" src="../../media/graphics4-6bb7.png" height="381" width="624"/>
+        </media>
+       <caption>
+Ambiguity of ITDs in determining the later position for high frequencies: a) Below 1500 Hz and b) Above 1500 Hz 
+      </caption>
+      </figure>
+      <para id="import-auto-id1166733137995">In order to uniquely determine the lateral position of the sound source, the interaural intensity difference (IID) is introduced to the HRTF. The interaural intensity difference is defined as the amplitude difference between the wavefront that arrived at the left ear and the wavefront that arrived at the right ear (Figure 9).  </para><figure id="import-auto-id1166741493884">
+        <media id="import-auto-id1166696377920" alt="">
+          <image mime-type="image/png" src="../../media/Picture 2-6f81.png" height="354" width="562"/>
+        </media>
+       <caption>
+       Interaural Intensity Difference
+       </caption>
+      </figure>
+      <para id="import-auto-id1166699837118">Utilizing both ITD and IID, we can find the azimuth of the sound source, but not its position in space. In fact, there are infinitely many points in space which have the same ITD and IID. Those points form a so-called “cone of confusion” (Figure 10).</para><figure id="import-auto-id1166699152706">
+        <media id="import-auto-id1166745842935" alt="">
+          <image mime-type="image/png" src="../../media/Picture 3-7982.png" height="230" width="391"/>
+        </media>
+       <caption>
+        Cone of Confusion: All points on the cone at the same distance from the cone’s apex share the same ITD and IID.
+       </caption>
+      </figure>
+      <para id="import-auto-id1166714025544">In order to distinguish sounds originating from points on a cone of confusion, the HRTF we used in our project includes the spectral cues produced by the structure of the ears. With the ITD, IID, and these spectral cues, our system can exactly locate the position of sound source in space.</para>
+  </content>
+</document>

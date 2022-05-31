@@ -1,0 +1,67 @@
+<document xmlns="http://cnx.rice.edu/cnxml">
+  <title>Hardware Setup</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m45334</md:content-id>
+  <md:title>Hardware Setup</md:title>
+  <md:abstract>Hardware_Setup</md:abstract>
+  <md:uuid>541272bd-dbd0-44f8-80ea-593af19a1acf</md:uuid>
+</metadata>
+
+<content>
+    <section id="import-auto-id1171355959080">
+      <title>Hardware Setup</title>
+      <para id="import-auto-id1171357164570">Our system is made up of 4 monochannel mics, a breadboard with 4 amplifiers (OP741), a 4 channel Analog to Digital converter (ADC, NI 9234) connected via a chasis (NI cDAQ-9174) to the computer through USB connectors. The overview of our system is shown in the figure below. Gathering of data from ADC is done through the LabVIEW program, and calculation of the x and y coordinates via the microphone delays is also done inside the program.</para>
+      <figure id="import-auto-id1171356081539">
+        <media id="import-auto-id1171352477346" alt="">
+          <image mime-type="image/jpg" src="../../media/graphics1-0f34.jpg" height="389" width="382"/>
+        </media>
+      </figure>
+      <section id="import-auto-id1171356068862">
+        <title>Microphones and Amplifiers </title>
+        <para id="import-auto-id1171357155727">Since the microphones are monochannel, their sound transduced voltage data is output through a single 3.5mm audio jack. The amplifier circuit is done using OP741 with the circuit shown below, with a gain of -100X per channel. Gain is calculated through the following equation </para>
+        <figure id="import-auto-id1171357061290">
+          <media id="import-auto-id1171355788022" alt="">
+            <image mime-type="image/png" src="../../media/Picture 1-2a0f.png" height="39" width="199"/>
+          </media>
+        </figure>
+        <figure id="import-auto-id1171356101418">
+          <media id="import-auto-id1171360294884" alt="">
+            <image mime-type="image/png" src="../../media/Object 4.png" height="257" width="602"/>
+          </media>
+        </figure>
+      </section>
+      <section id="import-auto-id1171357167606">
+        <title>Analog to Digital Convertor</title>
+        <para id="import-auto-id1171357132286">The Analog to Digital convertor (ADC) system is obtained from National Instrument. The input module is NI 9234 while the USB chasis is NI cDAQ-9174. The ADC is capable of obtaining up to 51.2kSamples/sec, which will allow us to process up to 39.0625μs of time difference accurately.</para>
+        <para id="import-auto-id1171352239705">
+          <figure id="import-auto-id1171352395095">
+            <media id="import-auto-id1171355981246" alt="">
+              <image mime-type="image/jpg" src="../../media/graphics2-79ae.jpg" height="229" width="277"/>
+            </media>
+          </figure>
+          <figure id="import-auto-id1171355965971">
+            <media id="import-auto-id1171355959037" alt="">
+              <image mime-type="image/jpg" src="../../media/graphics3-9795.jpg" height="245" width="243"/>
+            </media>
+          </figure>
+        </para>
+      </section>
+    </section>
+    <section id="import-auto-id1171355994937">
+      <title>User Interface Setup</title>
+      <para id="import-auto-id1171356053788">The labview interface is built using the system blocks shown below. Data is collected in chunks of 12.8k samples which correspond to 0.5seconds of acquisition per calculation. Using those data, we set a threshold value, which will trigger LabVIEW to output a the time at which the threshold is crossed. As each microphone picks up the sound at a different time, the time at which their voltage crosses the threshold is different. Using this delay, we are able calculate the x and y coordinate which will be output to a point in a graph.</para>
+      <para id="import-auto-id1171359328747">
+        <figure id="import-auto-id1171355796288">
+          <media id="import-auto-id1171352332936" alt="">
+            <image mime-type="image/jpg" src="../../media/graphics4-86c1.jpg" height="277" width="299"/>
+          </media>
+        </figure>
+        <figure id="import-auto-id1171356069638">
+          <media id="import-auto-id1171355836365" alt="">
+            <image mime-type="image/jpg" src="../../media/graphics5-5481.jpg" height="288" width="602"/>
+          </media>
+        </figure>
+      </para>
+    </section>
+  </content>
+</document>

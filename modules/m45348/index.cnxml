@@ -1,0 +1,228 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML">
+  <title>Feature Extraction</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m45348</md:content-id>
+  <md:title>Feature Extraction</md:title>
+  <md:abstract/>
+  <md:uuid>5f7ae3ae-9520-4e62-a75a-ac6a97914648</md:uuid>
+</metadata>
+
+<content>
+    <section id="cid1">
+      <title>Formants</title>
+      <para id="id222286">We have found the pitch contour, essentially the amplitude envelope of the Fourier transform. The peaks in this frequency response correspond to resonant modes of the human vocal tract. We want to analyze how the location and magnitude of these peaks relate to emotional content. Therefore, we need to find the peaks and valleys in each LPC slice of every sample.</para>
+    </section>
+    <section id="cid2">
+      <title>Peak and Valley Detection</title>
+      <para id="id222302">Because the LPC produces a smooth pitch contour, we employed a simple first derivative maximum and minimum test. Implemented with a for-loop, this proves to be exceedingly slow when even a short phrase is divided into about 40 time windows, each with several thousand frequency bins. We vectorized this operation with offset matrices and logical indexing.</para>
+      <para id="id222308">Maximum</para>
+      <equation id="uid1">
+        <m:math overflow="scroll" mode="display">
+          <m:mtable displaystyle="true">
+            <m:mtr>
+              <m:mtd columnalign="right">
+                <m:mrow>
+                  <m:mi>c</m:mi>
+                  <m:mi>o</m:mi>
+                  <m:mi>n</m:mi>
+                  <m:mi>t</m:mi>
+                  <m:mi>o</m:mi>
+                  <m:mi>u</m:mi>
+                  <m:mi>r</m:mi>
+                  <m:mo>(</m:mo>
+                  <m:mo>:</m:mo>
+                  <m:mo>,</m:mo>
+                  <m:mn>1</m:mn>
+                  <m:mo>:</m:mo>
+                  <m:mi>e</m:mi>
+                  <m:mi>n</m:mi>
+                  <m:mi>d</m:mi>
+                  <m:mo>-</m:mo>
+                  <m:mn>2</m:mn>
+                  <m:mo>)</m:mo>
+                </m:mrow>
+              </m:mtd>
+              <m:mtd columnalign="left">
+                <m:mrow>
+                  <m:mo>&lt;</m:mo>
+                  <m:mi>c</m:mi>
+                  <m:mi>o</m:mi>
+                  <m:mi>n</m:mi>
+                  <m:mi>t</m:mi>
+                  <m:mi>o</m:mi>
+                  <m:mi>u</m:mi>
+                  <m:mi>r</m:mi>
+                  <m:mo>(</m:mo>
+                  <m:mo>:</m:mo>
+                  <m:mo>,</m:mo>
+                  <m:mn>2</m:mn>
+                  <m:mo>:</m:mo>
+                  <m:mi>e</m:mi>
+                  <m:mi>n</m:mi>
+                  <m:mi>d</m:mi>
+                  <m:mo>-</m:mo>
+                  <m:mn>1</m:mn>
+                  <m:mo>)</m:mo>
+                  <m:mo>&amp;</m:mo>
+                </m:mrow>
+              </m:mtd>
+            </m:mtr>
+            <m:mtr>
+              <m:mtd columnalign="right">
+                <m:mrow>
+                  <m:mi>c</m:mi>
+                  <m:mi>o</m:mi>
+                  <m:mi>n</m:mi>
+                  <m:mi>t</m:mi>
+                  <m:mi>o</m:mi>
+                  <m:mi>u</m:mi>
+                  <m:mi>r</m:mi>
+                  <m:mo>(</m:mo>
+                  <m:mo>:</m:mo>
+                  <m:mo>,</m:mo>
+                  <m:mn>3</m:mn>
+                  <m:mo>:</m:mo>
+                  <m:mi>e</m:mi>
+                  <m:mi>n</m:mi>
+                  <m:mi>d</m:mi>
+                  <m:mo>)</m:mo>
+                </m:mrow>
+              </m:mtd>
+              <m:mtd columnalign="left">
+                <m:mrow>
+                  <m:mo>&lt;</m:mo>
+                  <m:mi>c</m:mi>
+                  <m:mi>o</m:mi>
+                  <m:mi>n</m:mi>
+                  <m:mi>t</m:mi>
+                  <m:mi>o</m:mi>
+                  <m:mi>u</m:mi>
+                  <m:mi>r</m:mi>
+                  <m:mo>(</m:mo>
+                  <m:mo>:</m:mo>
+                  <m:mo>,</m:mo>
+                  <m:mn>2</m:mn>
+                  <m:mo>:</m:mo>
+                  <m:mi>e</m:mi>
+                  <m:mi>n</m:mi>
+                  <m:mi>d</m:mi>
+                  <m:mo>-</m:mo>
+                  <m:mn>1</m:mn>
+                  <m:mo>)</m:mo>
+                </m:mrow>
+              </m:mtd>
+            </m:mtr>
+          </m:mtable>
+        </m:math>
+      </equation>
+      <para id="id222841">Minimum</para>
+      <equation id="uid2">
+        <m:math overflow="scroll" mode="display">
+          <m:mtable displaystyle="true">
+            <m:mtr>
+              <m:mtd columnalign="right">
+                <m:mrow>
+                  <m:mi>c</m:mi>
+                  <m:mi>o</m:mi>
+                  <m:mi>n</m:mi>
+                  <m:mi>t</m:mi>
+                  <m:mi>o</m:mi>
+                  <m:mi>u</m:mi>
+                  <m:mi>r</m:mi>
+                  <m:mo>(</m:mo>
+                  <m:mo>:</m:mo>
+                  <m:mo>,</m:mo>
+                  <m:mn>1</m:mn>
+                  <m:mo>:</m:mo>
+                  <m:mi>e</m:mi>
+                  <m:mi>n</m:mi>
+                  <m:mi>d</m:mi>
+                  <m:mo>-</m:mo>
+                  <m:mn>2</m:mn>
+                  <m:mo>)</m:mo>
+                </m:mrow>
+              </m:mtd>
+              <m:mtd columnalign="left">
+                <m:mrow>
+                  <m:mo>&gt;</m:mo>
+                  <m:mi>c</m:mi>
+                  <m:mi>o</m:mi>
+                  <m:mi>n</m:mi>
+                  <m:mi>t</m:mi>
+                  <m:mi>o</m:mi>
+                  <m:mi>u</m:mi>
+                  <m:mi>r</m:mi>
+                  <m:mo>(</m:mo>
+                  <m:mo>:</m:mo>
+                  <m:mo>,</m:mo>
+                  <m:mn>2</m:mn>
+                  <m:mo>:</m:mo>
+                  <m:mi>e</m:mi>
+                  <m:mi>n</m:mi>
+                  <m:mi>d</m:mi>
+                  <m:mo>-</m:mo>
+                  <m:mn>1</m:mn>
+                  <m:mo>)</m:mo>
+                  <m:mo>&amp;</m:mo>
+                </m:mrow>
+              </m:mtd>
+            </m:mtr>
+            <m:mtr>
+              <m:mtd columnalign="right">
+                <m:mrow>
+                  <m:mi>c</m:mi>
+                  <m:mi>o</m:mi>
+                  <m:mi>n</m:mi>
+                  <m:mi>t</m:mi>
+                  <m:mi>o</m:mi>
+                  <m:mi>u</m:mi>
+                  <m:mi>r</m:mi>
+                  <m:mo>(</m:mo>
+                  <m:mo>:</m:mo>
+                  <m:mo>,</m:mo>
+                  <m:mn>3</m:mn>
+                  <m:mo>:</m:mo>
+                  <m:mi>e</m:mi>
+                  <m:mi>n</m:mi>
+                  <m:mi>d</m:mi>
+                  <m:mo>)</m:mo>
+                </m:mrow>
+              </m:mtd>
+              <m:mtd columnalign="left">
+                <m:mrow>
+                  <m:mo>&gt;</m:mo>
+                  <m:mi>c</m:mi>
+                  <m:mi>o</m:mi>
+                  <m:mi>n</m:mi>
+                  <m:mi>t</m:mi>
+                  <m:mi>o</m:mi>
+                  <m:mi>u</m:mi>
+                  <m:mi>r</m:mi>
+                  <m:mo>(</m:mo>
+                  <m:mo>:</m:mo>
+                  <m:mo>,</m:mo>
+                  <m:mn>2</m:mn>
+                  <m:mo>:</m:mo>
+                  <m:mi>e</m:mi>
+                  <m:mi>n</m:mi>
+                  <m:mi>d</m:mi>
+                  <m:mo>-</m:mo>
+                  <m:mn>1</m:mn>
+                  <m:mo>)</m:mo>
+                </m:mrow>
+              </m:mtd>
+            </m:mtr>
+          </m:mtable>
+        </m:math>
+      </equation>
+      <figure id="uid3"><media id="uid3_media" alt="">
+          <image mime-type="image/png" src="../../media/features.png" id="uid3_onlineimage" width="350"><!-- NOTE: attribute width changes image size online (pixels). original width is 746. --></image>
+          <image mime-type="application/postscript" for="pdf" src="../../media/features.eps" id="uid3_printimage"/>
+        </media>
+      </figure></section>
+    <section id="cid3">
+      <title>Feature Vector</title>
+      <para id="id223052">We grabbed the frequency location and magnitude of the first four formants and first three valleys (more than 90 percent of pitch contours contained at least this number of formants). We also calculated the mean and variance of power in the sample from the L2 norm. Finally, since all phrases were four syllables long, we used length as a measure of speed. These features were all passed to the neural network.</para>
+    </section>
+  </content>
+</document>

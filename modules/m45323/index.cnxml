@@ -1,0 +1,175 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML">
+  <title>Implementation with POSIX Threads</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m45323</md:content-id>
+  <md:title>Implementation with POSIX Threads</md:title>
+  <md:abstract>This module contains details of using POSIX threads to attempt to optimize a multi-channel filterbank implementation.</md:abstract>
+  <md:uuid>860783ad-905c-4104-8107-47922da17f2d</md:uuid>
+</metadata>
+
+<content>
+    <section id="cid1">
+      <title>Motivation for POSIX Threads</title>
+      <para id="id310965">The popular POSIX (Portable Operating System Interface) Thread API provides a multi-platform interface for creating multi-threaded applications on a variety of UNIX platforms. Multi-threaded applications split the processing load across multiple cores in a computer. Most modern computers (including our test machine) contain CPUs with 2,4, or 8 individual cores, all of which can process data concurrently. Applications can be easily made parallel when significant portions of the data being operated on are independent of any other portion of data.</para><para id="id310973">We recognized that p-threads presented a significant opportunity to improve the efficiency of our filter construction because each channel's data stream is completely independent of any other channel's data. Therefore, we sought to split the processing load for all the channels to multiple threads, all of which can run concurrently.</para></section>
+    <section id="cid2">
+      <title>Implementation 1: Compiler Optimizations Only</title>
+      <para id="id310988">The first p-thread implementation is very similar to previous single-threaded implementations. The parameters and data structures are exactly the same as before. The filter coefficients were held constant for all channels (for speed). The primary difference here is that each thread is responsible for filtering a portion of the channels. For example, with 256 channels and 4 p-threads, use the following equal division of processing load:</para>
+      <list id="id310995" display="block" list-type="bulleted">
+        <item id="uid1">Thread 0: process channels 0 - 63
+</item>
+        <item id="uid2">Thread 1: process channels 64 - 127
+</item>
+        <item id="uid3">Thread 2: process channels 128 - 191
+</item>
+        <item id="uid4">Thread 3: process channels 192 - 255
+</item>
+      </list>
+      <para id="id311383">The code was designed to handle arbitrary numbers of p-threads with the pre-condition that the number of threads evenly divides the number of channels. We did our test runs using the standard configuration (256 channels, 600,000 data points, 100 cycles) with 1, 2, 4, 8, 16 and 32 p-threads. A control run with all operations performed on the main thread was also executed. Results for all runs are shown in Table 1.</para><table id="uid5" summary="">
+        <tgroup cols="2">
+          <tbody>
+            <row>
+              <entry>Number of Threads</entry>
+              <entry>Runtime (s)</entry>
+            </row>
+            <row>
+              <entry>Control (main thread)</entry>
+              <entry>48.075</entry>
+            </row>
+            <row>
+              <entry>1</entry>
+              <entry>64.302</entry>
+            </row>
+            <row>
+              <entry>2</entry>
+              <entry>96.755</entry>
+            </row>
+            <row>
+              <entry>4</entry>
+              <entry>123.931</entry>
+            </row>
+            <row>
+              <entry>8</entry>
+              <entry>67.629</entry>
+            </row>
+            <row>
+              <entry>16</entry>
+              <entry>141.329</entry>
+            </row>
+            <row>
+              <entry>32</entry>
+              <entry>121.134</entry>
+            </row>
+          </tbody>
+        </tgroup>
+      </table>
+    </section>
+    <section id="cid3">
+      <title>Implementation 2: Custom SSE3 Intrinsic Optimizations</title>
+      <para id="id311565">The results we obtained from implementation results appear promising, but note that all runs were slower than the fastest single-threaded implementation. We decided to apply the intrinsic operations from the SSE3 instruction set that we developed in the previous section to the p-thread applications. Note that for SSE3 to work with p-threads, the pre-condition for the number of p-threads is modified. SSE3 only operates on batches of 4 floats at a time, so the number of channels that each thread operates on must be divisible by 4. In essence:</para><equation id="id311573">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mfrac>
+              <m:mrow>
+                <m:mi>n</m:mi>
+                <m:mi>u</m:mi>
+                <m:mi>m</m:mi>
+                <m:mi>b</m:mi>
+                <m:mi>e</m:mi>
+                <m:mi>r</m:mi>
+                <m:mspace width="4pt"/>
+                <m:mi>o</m:mi>
+                <m:mi>f</m:mi>
+                <m:mspace width="4pt"/>
+                <m:mi>c</m:mi>
+                <m:mi>h</m:mi>
+                <m:mi>a</m:mi>
+                <m:mi>n</m:mi>
+                <m:mi>n</m:mi>
+                <m:mi>e</m:mi>
+                <m:mi>l</m:mi>
+                <m:mi>s</m:mi>
+              </m:mrow>
+              <m:mrow>
+                <m:mi>n</m:mi>
+                <m:mi>u</m:mi>
+                <m:mi>m</m:mi>
+                <m:mi>b</m:mi>
+                <m:mi>e</m:mi>
+                <m:mi>r</m:mi>
+                <m:mspace width="4pt"/>
+                <m:mi>o</m:mi>
+                <m:mi>f</m:mi>
+                <m:mspace width="4pt"/>
+                <m:mi>t</m:mi>
+                <m:mi>h</m:mi>
+                <m:mi>r</m:mi>
+                <m:mi>e</m:mi>
+                <m:mi>a</m:mi>
+                <m:mi>d</m:mi>
+                <m:mi>s</m:mi>
+              </m:mrow>
+            </m:mfrac>
+            <m:mo>*</m:mo>
+            <m:mfrac>
+              <m:mn>1</m:mn>
+              <m:mn>4</m:mn>
+            </m:mfrac>
+            <m:mo>∈</m:mo>
+            <m:mi mathvariant="double-struck">Z</m:mi>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id311859">With the same standard run configuration, this pre-condition still supported test runs with 1, 2, 4, 8, 16 and 32 p-threads, along with a control run with execution on the main thread. The results of all runs are shown in Table 2.</para><table id="uid6" summary="">
+        <tgroup cols="2">
+          <tbody>
+            <row>
+              <entry>Number of Threads</entry>
+              <entry>Runtime (s)</entry>
+            </row>
+            <row>
+              <entry>Control (main thread)</entry>
+              <entry>48.333</entry>
+            </row>
+            <row>
+              <entry>1</entry>
+              <entry>50.109</entry>
+            </row>
+            <row>
+              <entry>2</entry>
+              <entry>88.632</entry>
+            </row>
+            <row>
+              <entry>4</entry>
+              <entry>138.090</entry>
+            </row>
+            <row>
+              <entry>8</entry>
+              <entry>62.481</entry>
+            </row>
+            <row>
+              <entry>16</entry>
+              <entry>103.901</entry>
+            </row>
+            <row>
+              <entry>32</entry>
+              <entry>78.219</entry>
+            </row>
+          </tbody>
+        </tgroup>
+      </table>
+    </section>
+    <section id="cid4">
+      <title>Analysis of Results</title>
+      <para id="id312039"><figure id="fig1"><media id="uid1_media" alt="">
+        <image mime-type="image/jpg" src="../../media/imp1and2.jpg" id="uid1_onlineimage" width="500"><!-- NOTE: attribute width changes image size online (pixels). original width is 905. --></image>
+</media>
+</figure></para><para id="id312046">Note from the figure that the p-thread speed takes much longer for low (between 1 and 4) and high (greater than 8) numbers of p-threads. Marginally decent performance occurs with 8 p-threads on our benchmark computer, which yielded a result of 67.6 seconds using compiler optimizations, and 62.5 seconds using our SSE3 code. Note that the run time for the single-threaded implementation runs at around 48 seconds.</para><para id="id312053">The behavior here definitely does not seem intuitive. With higher processor utilization, the multi-threaded runs take longer than their single-threaded counterparts. After some thought, we concluded that three events were occurring:</para><list id="id312058" display="block" list-type="bulleted"><item id="uid7"><emphasis effect="bold">Cache Missing: </emphasis> Each CPU core contains a cache which allows processors faster access to data. When a piece of data is requested, it is pulled from memory into cache in a chunk, called a “cache line”. Subsequent accesses to memory nearby the original access will be pulled from the cache, which is much faster. A data request which cannot be found in cache is called a cache “miss,” and a request that is found in cache is called a cache “hit.” When there are very few p-threads, each thread operates on a large portion of memory. Also, each channel's intermediate variables (in the code are in arrays named w1, w2, w3 and w4) are stored in different arrays, which spreads them out in memory.
+</item>
+        <item id="uid8"><emphasis effect="bold">Cache Poisoning: </emphasis> Each thread runs its own data so one thread will never copy over another thread's data. However, one thread will be operating on data that is nearby in memory to another thread's data. Each thread (running on each core) will be using its own cache. When a thread updates memory that is located in another thread's cache, it will inform the other thread that it is updating the data, and the other cache will mark that information as “dirty.” The subsequent read will occur from memory. We believe with really large numbers of p-threads (greater than 8), the threads operate on smaller chunks of memory that are closer together, resulting in a higher number of cache poisonings.
+</item>
+        <item id="uid9"><emphasis effect="bold">CPU Utilization and P-thread Overhead: </emphasis> The benchmark computer was equipped with a quad-core processor. This would normally imply that 4 p-threads is optimal, but advances in CPU architecture which are beyond the scope of this research project show that 2 p-threads run more effectively on each core. Also, as the number of p-threads increases, the overhead required to manage them grows, and the actual effectiveness diminishes.
+</item>
+      </list><para id="id312132">Taking these issues into accounts, we focused our efforts into reorganizing the data structures used by the filter bank.</para>
+    </section>
+  </content>
+</document>

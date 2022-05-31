@@ -1,0 +1,16 @@
+<document xmlns="http://cnx.rice.edu/cnxml">
+  <title>Introduction</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m45331</md:content-id>
+  <md:title>Introduction</md:title>
+  <md:abstract/>
+  <md:uuid>fba8f179-9939-47f5-8720-e27e6afdc140</md:uuid>
+</metadata>
+
+<content>
+    <section id="import-auto-id5498889">
+      <title>Introduction</title>
+      <para id="import-auto-id7547514">Every object is capable to create sound, which is due to vibration of air. Using microphones, those difference in air pressure are transduced into electrical signal which can then be recorded and processed. Since the vibration of air decreases in amplitude relative with distance, and the vibrations travel with a fixed velocity through various materials. We had an idea of calculating those differences to localize on the sound source location. Detecting the location of a sound source has various applications. It is a basic function that could be implemented into many complex systems like in-door GPS, sound-nevigation robots, acoustic camera, entertainment user interface etc. Previous groups that worked on similar project either used high-cost equipment or received less accurate result. Our group wants to design a sound positioning system based on low cost equipment and a greater degree of precision. Our design consists of two parts: hardware setup and algorithm selection. Both of them will be discussed into details in the following sessions.</para>
+    </section>
+  </content>
+</document>

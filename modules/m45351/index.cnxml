@@ -1,0 +1,18 @@
+<document xmlns="http://cnx.rice.edu/cnxml">
+  <title>Motivation</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m45351</md:content-id>
+  <md:title>Motivation</md:title>
+  <md:abstract>Motivation for Music Visualization</md:abstract>
+  <md:uuid>26909940-bb1a-4f58-8529-25b966780995</md:uuid>
+</metadata>
+
+<content>
+    <section id="import-auto-id1166590728241">
+      <title>Motivation</title>
+      <para id="import-auto-id2068695">The motivation for this project is to create a visualization that accurately represents multiple components of musical pieces.</para>
+      <para id="import-auto-id1166590660098">Generally speaking, this project enables the appreciation of a concept, in this case music, through more than one human sense. </para>
+      <para id="import-auto-id1166585488997">Additionally, parts of this project can be used and modified to develop new software, such as a music sheet creator.</para>
+    </section>
+  </content>
+</document>

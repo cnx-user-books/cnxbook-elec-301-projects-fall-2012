@@ -1,0 +1,31 @@
+<document xmlns="http://cnx.rice.edu/cnxml">
+  <title>Design and Implementation</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m45407</md:content-id>
+  <md:title>Design and Implementation</md:title>
+  <md:abstract/>
+  <md:uuid>e2b4368e-482d-4965-af46-3c13c9e1c0ae</md:uuid>
+</metadata>
+
+<content>
+    <para id="import-auto-id1165711168979">Our goal is to observe and to analyze the robustness of a watermarking technique under image compression. With that in mind, it is important to choose the appropriate watermarking technique for our application. Digital watermark can be applied in the spatial domain, spectral domain, or the combination of the two with variety of different implementation methods for each. Since the focus is robustness, a spectral watermarking technique in general performs better in retaining the watermark under different attacks without significant degradation in image quality. Three popular implementations of spectral watermarking algorithms are Cox’s DCT (Discrete Cosine Transform), Xia Boncelet’s DWT (Discrete Wavelet Transform), and FM Boland’s DFT (Discrete Fourier Transoform). Cox’s algorithm has the characteristics best suited for our analysis. </para>
+    <para id="import-auto-id1165711546302">Cox’s watermarking algorithm utilizes DCT to implement the watermark. Comparing to DFT, DCT yields a higher signal to noise ratio under SVD compression making it a good choice for our application. The algorithm computes the 2D DCT of the host image, image used for watermarking. To ensure the watermark can withstand attacks, the algorithm embeds the watermark in the 1000 greatest DCT values. Cox’s watermarking algorithm uses a correlation based non-blind detection system. It requires the original, unaltered message to extract the watermark. Unlike many other watermarking techniques, not only could cox’s algorithm provide an authentication check, it could also be used to send hidden messages through its watermark. Only  recipients with the key, the original host image, can extract the watermarked message from the image. </para>
+    <figure id="import-auto-id1165711173588"><title>Encoding Block Diagram</title><media id="import-auto-id1165711617387" alt="">
+        <image mime-type="image/png" src="../../media/graphics1-3a7b.png" height="343" width="623"/>
+      </media>
+    </figure><para id="import-auto-id1165711498953">For the implementation of the watermarking system, first host image is chosen to embed the watermark. For simplicity, our analysis focuses on a 512 by 512 black and white image of the classic Lena as the host image. The watermark is represented by a string, message, with length less than or equal to 1000.  The message is first feed through an encoder to convert each character into their respective ACSII representations and then scaled to between 0 and 1. </para>
+    <para id="import-auto-id6041981">
+      <figure id="import-auto-id1165711187623"><title>Host image</title><media id="import-auto-id1165711216600" alt="">
+          <image mime-type="image/jpg" src="../../media/graphics2-e7ca.jpg" height="307" width="308"/>
+        </media>
+      </figure><figure id="import-auto-id1165711370638"><title>Host image's DCT representation</title><media id="import-auto-id1165710946721" alt="">
+          <image mime-type="image/jpg" src="../../media/graphics3-ace8.jpg" height="307" width="308"/>
+        </media>
+      </figure></para>
+    <para id="import-auto-id1165711133470">The resulting code is then used as the watermark. To embed the watermark to the host image, the host image is read by Matlab, converted into matrix representation, and transformed using DCT. Excluding the largest value, the DC value, the next largest 1000 DCT values are used to carry the watermark. The values multiplied by corresponding watermarking values scaled by 0.1 and then add to original values. Then the DCT matrix is converted back to spatial domain, generating a watermarked image. </para>
+    <figure id="import-auto-id1165710939980"><title>Decoding Block Diagram</title><media id="import-auto-id1165711173491" alt="">
+        <image mime-type="image/jpg" src="../../media/graphics4-62cb.jpg" height="320" width="623"/>
+      </media>
+    </figure><para id="import-auto-id1165711194456">To extract the watermark message from the watermarked image, the reverse process is applied. The code is extracted from DCT of the watermarked image by subtracting the original value from the larger, watermarked image. The code is then converted back to the message by rescaling and matching with the characters represented by the ASCII values. Rounding is used to eliminate the rounding errors in the calculations. </para>
+  </content>
+</document>

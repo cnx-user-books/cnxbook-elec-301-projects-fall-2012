@@ -1,0 +1,23 @@
+<document xmlns="http://cnx.rice.edu/cnxml">
+  <title>A Key Criteria- Robustness</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m45381</md:content-id>
+  <md:title>A Key Criteria- Robustness</md:title>
+  <md:abstract/>
+  <md:uuid>cd1a67c5-60fd-4687-832c-5ba60bacf12a</md:uuid>
+</metadata>
+
+<content>
+    <para id="import-auto-id1167880112280">One of the major criteria of how “good” an inserted watermark is its robustness. Although fragile watermarks have occasional applications, in most cases we want to be able to extract and retrieve the original imbedded message. And this requires high robustness, which means the watermark can resist intentionally and unintentionally attacks during transmission, some of which are:</para>
+    <list id="import-auto-id1167879992984" list-type="bulleted" bullet-style="bullet"><item>Common signal processing such as compression, which we will go in depth with in part 4 of our report; and also analog to digital and vice versa.</item>
+    </list><list id="import-auto-id1167881926273" list-type="bulleted" bullet-style="bullet"><item>Geometric distortion, although this has been proven hard to do.</item>
+    </list><para id="import-auto-id1167867531572">There are several ways to measure robustness, one of which is the direct measurement of bit- wise vector. This method gives you the exact percentage of watermarked message survived. There are several other mathematic comparison methods such as Mean Square Error and Pick Signal to Noise Ratio, the latter of which includes signal strength as a factor. However, none of the above takes what similarity means for human perception into account. And as we can see towards the end of our project, two pictures can have very little number of pixels that are the same and still be recognized by human eye.</para>
+    <figure id="import-auto-id1167879389215"><title>Original Message</title><media id="import-auto-id1167872940083" alt="">
+        <image mime-type="image/jpg" src="../../media/graphics1-b0b6.jpg" height="460" width="460"/>
+      </media>
+    </figure><figure id="import-auto-id1167866738053"><title>Extracted Message</title><media id="import-auto-id1167878311912" alt="">
+        <image mime-type="image/jpg" src="../../media/graphics2-04e8.jpg" height="513" width="508"/>
+      </media>
+    </figure><para id="import-auto-id1167872055705">Do you believe the above pictures only have about less than 5% exact same pixels?</para>
+  </content>
+</document>

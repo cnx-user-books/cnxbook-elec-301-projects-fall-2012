@@ -1,0 +1,29 @@
+<document xmlns="http://cnx.rice.edu/cnxml">
+  <title>Future Work</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m45330</md:content-id>
+  <md:title>Future Work</md:title>
+  <md:abstract/>
+  <md:uuid>522107e9-2907-4e59-a3f8-4bd1db3f8195</md:uuid>
+</metadata>
+
+<content>
+    <section id="import-auto-id1165364186829">
+      <title>Future work</title>
+      <section id="import-auto-id1165374113592">
+        <title>Improvement:</title>
+        <para id="import-auto-id1165366411161">To get a higher accuracy, we can use more microphones. Since we use the match filter method, more microphones means more information and we should get a better result. Also, we can use the match filter heat map to decide the coordinates. In our current algorithm, we calculate the error between the measured time delay and the theoretical time delay. Instead, in the improved algorithm, we get the whole sound signal in a time period. For each point in the match filter heat map, we delay the sound signal we get in our measurement according to the theoretical time delay for each microphone, and calculate the inner product of the delayed signal and the measured signal for the microphone. For each point, we add up the inner products for the four microphones. We then find the point that generates the maximum sum of inner product and decide it as the coordinate. We come up with this idea very late so we do not have time to set it up and do some testing, so we save it as a possible improvement.</para>
+        <para id="import-auto-id1165374780098">By using extra microphones we can easily add a third dimension to the equation and be able to detect objects in a 3D space. If we put microphones not in a 2D plane but in 3D space, and also divide the space into 1cm*1cm*1cm grid, we can implement a 3D system with our current algorithm.</para>
+        <para id="import-auto-id1165365333609">We also want to detect sound that is not a pulse. In our current algorithm, our results still rely on the quality, such as sharpness, of the pulse. It may be related to the method we use to get the time delay. The threshold detecting needs a sudden rise on the amplitude to get a good result. To detect sound other than a pulse, we may need to make some adjustment to the way we decide the time delay.</para>
+        <para id="import-auto-id1165368873441">Another constraint in our system is that the sound must be mainly transmitted through air since we use the fact that v=340m/s in our algorithm. We want to use the system on all kind of materials. In our testing, we find out that when we step on the floor instead of clapping hands, the results are not accurate. Since the sound speed in different materials can be very different, we need to find a way to avoid using the sound speed in our algorithm or cancel the effect of the sound speed difference. </para>
+      </section>
+      <section id="import-auto-id1165369493950">
+        <title>Possible Applications:</title>
+        <para id="import-auto-id1717500">Anyone remember Billie Jean’s music video by Michael Jackson, the sidewalk that lit up would be a very simple application to do even with our current setup. </para>
+        <para id="import-auto-id1165364181165">Another possible application could be lighting in a house, By setting up microphones inside the house we could detect which rooms are in use and have the lights in that room turn on and off as people come and go. If we develop the system in 3D space, we can set different areas to control all the lights in a house. For example, the area around door is for the desk lamp, the area around table is for the crystal lamp, etc. </para>
+        <para id="import-auto-id1165368077449">When we achieve better accuracy and get a more sensitive system, we can even develop a keyboard. By attaching several microphones to a piece of paper with keyboard pattern, we get a foldable and portable and cheap keyboard. We can simply put it on a hard surface and use a stylus to type.</para>
+        <para id="import-auto-id1165364176773">Also, we can make an instrument for entertainment based on our system. Designating a note for each area on the panel, and translating the xy coordinate into different pitch, we can easily make an instrument. Actually, we have made a simple instrument when we tested our system. We translated the xy coordinate into different pitch, and input the pitch into Matlab to generate the sound.</para>
+      </section>
+    </section>
+  </content>
+</document>

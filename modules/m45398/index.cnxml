@@ -1,0 +1,25 @@
+<document xmlns="http://cnx.rice.edu/cnxml">
+  <title>Introduction and Motivation</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m45398</md:content-id>
+  <md:title>Introduction and Motivation</md:title>
+  <md:abstract/>
+  <md:uuid>3641f80f-5867-473b-bd49-40a3653e747c</md:uuid>
+</metadata>
+
+<content>
+    <section id="import-auto-id1169018109007">
+      <title>Introduction and Motivation </title>
+      <para id="import-auto-id1169006442152">The difference between a ‘bad’ photo and a ‘good’ photo is often a matter of whether or not the person in the photo is smiling. With the help of feature recognition and corner detection, smiles can be identified in a photo. </para>
+      <section id="import-auto-id1169004295949">
+        <title>Goal</title>
+        <para id="import-auto-id1169016978315">We want to automatically detect a smiling subject in a picture. Our intended use is in the digital photography industry, where this algorithm can be applied to automatically select the best frame in a set of similar frames. </para>
+      </section>
+      <section id="import-auto-id1169006144862">
+        <title>Applications</title>
+        <para id="import-auto-id8842545">One reason for selecting this project was the wide variety of applications for this type of program. Our code could automate the state ID photo process, allowing for images to be taken by computers that have the ability to check if the subject is smiling or not. Other possible applications of smile identification are use in marketing to analyze customer reactions. Camera manufacturers can include smile detection as a feature for determining the perfect moment to take a picture. Additionally, the camera can use the face detection to assist in calculating the optimal focusing distance in portrait shots. </para>
+        <para id="import-auto-id1169006161942">Certain camera programs on current smartphones currently have the ability to take a series of photos in rapid succession. The phone then identifies the faces in each of the photos, allowing the user to select the best face for each person in a group. The faces are then combined into one photo to create the perfect group shot. Our code could be implemented into this type of program, automating the process of selecting the best smiling face from each person in the group, automatically creating the perfect group photo every time.</para>
+      </section>
+    </section>
+  </content>
+</document>

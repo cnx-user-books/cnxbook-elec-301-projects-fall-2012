@@ -1,0 +1,25 @@
+<document xmlns="http://cnx.rice.edu/cnxml">
+  <title>Motivation</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m45370</md:content-id>
+  <md:title>Motivation</md:title>
+  <md:abstract/>
+  <md:uuid>afb6522e-8613-4458-8250-5c57e06490f0</md:uuid>
+</metadata>
+
+<content>
+    <section id="eip-601"><title>Motivation</title><para id="eip-829"/></section><para id="import-auto-id1166794397228">When you take a picture with a modern digital camera, it can be seen that they cannot yet match the eye's ability to manage contrast. An image sensor or display medium's contrast ratio defines the distance between the darkest black and the lightest white that the device records or displays. The eye's contrast ratio of 1:100,000 is 24 times greater than the 1:4096 of a typical digital camera. As a result, even in correctly exposed photographs, shadows are often too dark and highlights too bright, creating a noticeable loss of detail. </para>
+    <para id="import-auto-id1166797252178">Humans can discern very high range of brightness values. Photography is limited to a much lower dynamic range. </para>
+    <figure id="import-auto-id1166802693640">
+      <media id="import-auto-id1166793514400" alt="">
+        <image mime-type="image/png" src="../../media/graphics1-5b6c.png" height="258" width="623"/>
+      </media>
+    </figure>
+    <figure id="import-auto-id1166793601352">
+      <media id="import-auto-id1166796157110" alt="">
+        <image mime-type="image/png" src="../../media/graphics2-791c.png" height="339" width="607"/>
+      </media>
+    </figure>
+    <para id="import-auto-id1166796747447">We can, however, compute a high dynamic range (HDR) picture from multiple exposures. Because we cannot display an HDR picture due to limitation, we will use tone mapping to compress contrast intro a displayable range. </para>
+  </content>
+</document>

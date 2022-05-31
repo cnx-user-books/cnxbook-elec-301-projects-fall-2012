@@ -1,0 +1,76 @@
+<document xmlns="http://cnx.rice.edu/cnxml">
+  <title>Neural Networks</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m45350</md:content-id>
+  <md:title>Neural Networks</md:title>
+  <md:abstract/>
+  <md:uuid>e8202441-ac77-42cb-a304-27f80981fd09</md:uuid>
+</metadata>
+
+<content>
+    <section id="import-auto-id1163706097588">
+      <title>Neural Network Implementation</title>
+      <para id="import-auto-id1163703962246">For our classification task, we implement a multiclass artificial neural network.  Artificial neural networks are computing structures that attempt to mimic the brain.  They perform by means of distributed processing among nodes, which correspond to neurons.  Connection strength between individual neurons collectively determines the network’s activity, similar to biological synapse performance.  Due to the computational flexibility inherent in these large, distributed systems, neural networks excel at nonlinear tasks such as facial or speech recognition.  We expected that a neural network would excel at our task: emotion classification.</para>
+    </section>
+    <section id="import-auto-id1163702184075">
+      <title>Network Specifications</title>
+      <figure id="import-auto-id885564"><media id="import-auto-id1163714130327" alt="">
+          <image mime-type="image/png" src="../../media/Picture 3-3b66.png" height="192" width="217"/>
+        </media>
+      <caption>Example of a multilayer perceptron. </caption></figure><para id="import-auto-id1163708340995">We utilize the common multilayer perceptron neural network with neuron activation modeled by a sigmoid. </para>
+      <section id="import-auto-id1163702480309">
+        <title>Neuron Model</title>
+        <figure id="import-auto-id1163701566959"><media id="import-auto-id1163706078503" alt="">
+            <image mime-type="image/png" src="../../media/Picture 40.png" height="125" width="358"/>
+          </media>
+        <caption>Courtesy of coursera.org</caption></figure><figure id="import-auto-id1163703247743">
+          <media id="import-auto-id1163709291123" alt="">
+            <image mime-type="image/png" src="../../media/Picture 39.png" height="55" width="129"/>
+          </media>
+        </figure>
+        <para id="import-auto-id1163706386606">Neurons are heavily connected – one connects to many, and many to others.  While each neuron takes in multiple inputs, each input is not weighted equally.  The weight determines how strongly an input will affect a neuron’s output, hθ.  The activation function Fa determines the relation between the inputs and the output.  </para>
+        <para id="import-auto-id1163706006541">The neurons of our network are characterized by the sigmoid activation function. </para>
+        <figure id="import-auto-id1163702201646">
+          <media id="import-auto-id1163706384206" alt="">
+            <image mime-type="image/png" src="../../media/Picture 38.png" height="51" width="135"/>
+          </media>
+        </figure>
+        <figure id="import-auto-id1163704910088">
+          <media id="import-auto-id1163702196679" alt="">
+            <image mime-type="image/png" src="../../media/graphics1-f39d.png" height="296" width="516"/>
+          </media>
+        </figure>
+        <para id="import-auto-id1163702544351">The sigmoid neuron has two distinct advantages.  First, the sigmoid activation function is differentiable.  This simplifies the function used in calculating cost for training.  Second, the sigmoid activation function retains thresholding – output tends toward either 1 or 0.  This enables the neurons to behave as ‘on/off’ nonlinear switches.  </para></section>
+      <section id="import-auto-id1163703443752">
+        <title>Network Architecture</title>
+        <para id="import-auto-id1163705136180">We use the same type of network as displayed in fig. 1: a multilayer perceptron.  This network is feed forward, fully connected, and contains &gt;= three layers.  Feed forward means that signals travel straight through the network, from input to output, via hidden layers.  No connections exist between neurons of the same layer.  Fully connected means that each neuron of a previous layer has a connection between every neuron of the next layer.  Feed forward systems have comparatively manageable training mechanisms, and so are preferred to other connection systems.  </para><para id="import-auto-id1163708033027">The input layer of a multiperceptron takes in one feature per node.  The output layer contains one class per node.  This layer yields the probability that an input is that particular class.  The hidden layers perform operations on the inputs to yield the output.  The hidden layers are thought to flesh out the distinct features that relate input to output, though what they flesh out is difficult to obtain as well as to understand. </para>
+        <para id="import-auto-id2273424">For our application, speech features such as formant locations and power statistics are fed into 14 input nodes, and the emotion category is extracted from the 15 output nodes. The number of input nodes depends on the number of speech features, 14, that we are classifying by. The number of output nodes corresponds to the 15 emotion classes samples are categorized into. In between this input and output layer lies one hidden layer of approximately 100 artificial neurons. Our network necessitated such a large number of neurons due to the complex relation between speech features and emotion.  </para></section>
+    </section>
+    <section id="import-auto-id1163702574903">
+      <title>Training </title>
+      <para id="import-auto-id1163702191933">To tailor the network for our classification task, we train its weights via feedforward-back propagation, a popular means to minimize a neural network’s cost function: J(Θ). The process is as follows: </para>
+      <list id="import-auto-id1163706092302" list-type="bulleted" bullet-style="bullet"><item>Randomly initialize weights between nodes.  We take Θ = weight matrix.  </item>
+        <item>Implement forward propagation to determine J(Θ). </item>
+      </list><figure id="import-auto-id1163702213487"><media id="import-auto-id1163704203717" alt="">
+          <image mime-type="image/png" src="../../media/Picture 121.png" height="45" width="623"/>
+        </media>
+      <caption>Courtesy of coursera.org</caption></figure><para id="import-auto-id1163703294040">In forward propagation, all training samples are fed into the initialized neural network to obtain estimated outputs, which are used to determine J(Θ).  To prevent overfitting, the cost function includes a regularization term with λ = 1, which enables control over the overall magnitudes of Θ parameters. </para>
+      <list id="import-auto-id1163706100256" list-type="bulleted" bullet-style="bullet"><item>Implement back propagation to determine the gradient of J(Θ).  In back propagation, the error derivatives of latter layer weights are used to calculate error derivatives of former layer weights, up until all weight derivatives are found. </item>
+        <item>Use an optimization algorithm (in our case, batch gradient descent) to minimize J(Θ), and obtain a the correct set of weights.  To increase the speed of gradient descent, implement feature scaling, wherein each input feature is first shifted by the mean, and then scaled by the standard deviation.  </item>
+      </list><figure id="import-auto-id1163702212682">
+        <media id="import-auto-id1163706177720" alt="">
+          <image mime-type="image/png" src="../../media/graphics2-50cd.png" height="36" width="112"/>
+        </media>
+      </figure>
+      <para id="import-auto-id1163700531834">Neural networks tend to have multiple local optima.  To determine the global optima, the back propagation algorithm is run through multiple iterations (we use 1000).  </para>
+    </section>
+    <section id="import-auto-id1163704664886">
+      <title>Performance Testing</title>
+      <para id="import-auto-id1163701481461">We evaluate an independent test database with the trained neural network to test the network’s performance. </para>
+    </section>
+    <section id="import-auto-id1163700527072">
+      <title>Useful References</title>
+      <para id="import-auto-id1163702208027">To learn more about neural networks, check out Andrew Ng’s Machine Learning or Geoffrey Hinton’s Neural Networks for Machine learning, as found on coursera.org.  Our neural network code is modified from Andrew Ng’s course code. </para>
+    </section>
+  </content>
+</document>

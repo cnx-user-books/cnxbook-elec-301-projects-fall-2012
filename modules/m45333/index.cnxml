@@ -1,0 +1,15 @@
+<document xmlns="http://cnx.rice.edu/cnxml">
+  <title>Conclusion</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m45333</md:content-id>
+  <md:title>Conclusion</md:title>
+  <md:abstract/>
+  <md:uuid>f684d4ad-6f5f-402a-8d7a-e78237dfd763</md:uuid>
+</metadata>
+
+<content>
+    <section id="import-auto-id1169618833217">
+      <title>Conclusion</title>
+      <para id="import-auto-id1169618797961">Form the testing data, the minimum x,y coordinate error our system would return is 0.035m and 0.043m respectively. This accuracy level satisfies our resolution requirement and the good precision degree could be contributed into both hardware implement and algorithm choice.</para><para id="import-auto-id1169618899094">On the hardware level, our microphone, amplifier, and 4 channel simultaneous analog-to-digital function well. They effectively catch the sound pulse signal from the board and suppress the other noise from external environment. The Labview interface provides user flexible way to control hardware and choose from different algorithms. By adjusting threshold voltage, sampling rate, sample length, we have control on system’s sensitivity, noise resistivity and computational speed. The optimal combination we found through several tests lead us to the final accurate result.</para><para id="import-auto-id1169618896008">On the algorithm level, we have compared of two different method, <emphasis effect="italics">Direct Equation Solving,</emphasis> and <emphasis effect="italics">Match Filter. </emphasis>Both testing result and theoretical analysis have shown us that the latter offers us better result. The Match Filter method avoids the two major disadvantages of Direct Equation Solving. First, it does not need to select solution from a solution set and second, it reduces hardware error by making comparison and choosing the one with least returning error. Other advantages of Match Filter method will be discussed into more details in Future Work session. We also compared two detecting method: <emphasis effect="italics">Threshold Detecting </emphasis>and <emphasis effect="italics">Peak Detecting</emphasis> . The testing result shows that Threshold Detecting provided us much better results. Our analysis shows that the inaccuracy of Peak Detecting may be caused by resonance and waveform distortion during transmission.</para><para id="import-auto-id1169618856589">In a nutshell, our sound positioning system with <emphasis effect="italics">Match Filter </emphasis>algorithm and <emphasis effect="italics">Threshold Detecting </emphasis> method returns us the most accurate xy coordinates. The high accuracy (around 4cm error out of 1cm resolution) gives us enough confidence to implement our sound positioning system into further various applications. However, there also exist several limits for our system. Both those limits and applications will be discussed in the next session, Future Work.</para></section>
+  </content>
+</document>

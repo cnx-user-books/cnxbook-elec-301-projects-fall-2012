@@ -1,0 +1,105 @@
+<document xmlns="http://cnx.rice.edu/cnxml">
+  <title>Data Reordering to Improve POSIX Thread Implementation</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m45325</md:content-id>
+  <md:title>Data Reordering to Improve POSIX Thread Implementation</md:title>
+  <md:abstract>This module analyzes the effectiveness of reording data structures in a filter bank implementation to achieve higher efficiency.</md:abstract>
+  <md:uuid>417522f3-103d-41f5-b8b1-31052833a92a</md:uuid>
+</metadata>
+
+<content>
+    <para id="id62155">This module is a continuation of the previous module on POSIX thread implementations.</para><section id="cid1">
+      <title>Implementation 3: Partial Reordering</title>
+      <para id="id62170">An area for improvement over the previous p-thread implementations is to reorder some of the arrays that the filter uses to store data. We started by restructuring the output vector. We split the output vector into a two-dimensional array giving each thread its own output vector. This separates each thread's data in memory, cutting down on cache poisonings. Note that this does change the structure of the final output, but this change is acceptable given that the Open Ephys GUI can be threaded to read in the filter output from several vectors at once.</para><para id="id62178">We ran the same sequence of tests as before using this modified implementations and observed the following results:</para>
+      <table id="uid1" summary="">
+        <tgroup cols="2">
+          <tbody>
+            <row>
+              <entry>Number of Threads</entry>
+              <entry>Runtime (s)</entry>
+            </row>
+            <row>
+              <entry>Control (main thread)</entry>
+              <entry>50.106</entry>
+            </row>
+            <row>
+              <entry>1</entry>
+              <entry>49.302</entry>
+            </row>
+            <row>
+              <entry>2</entry>
+              <entry>78.888</entry>
+            </row>
+            <row>
+              <entry>4</entry>
+              <entry>89.939</entry>
+            </row>
+            <row>
+              <entry>8</entry>
+              <entry>35.283</entry>
+            </row>
+            <row>
+              <entry>16</entry>
+              <entry>71.337</entry>
+            </row>
+            <row>
+              <entry>32</entry>
+              <entry>109.112</entry>
+            </row>
+          </tbody>
+        </tgroup>
+      </table>
+    </section>
+    <section id="cid2">
+      <title>Implementation 4: Full Reordering</title>
+      <para id="id62696">Another area for significant improvement was to restructure the intermediate data vectors. The vectors were originally designed to store the intermediate filter values of w1, w2, w3 and w4 (see module on Transposed Direct-Form II implementation) in separate arrays. All the threads also shared the arrays, but wrote to different values within the array.</para><para id="id62702">We constructed an alternate structure where all the intermediate filter values of each channel were located in adjacent memory values in a single large vector. Each thread would have its own intermediate value vector for the channels that it was processing. What this does is enable spatial locality for the intermediate values for each channel, which tend to be used all at the same time (temporal locality). The locality of this data ensure that cache hits occur frequently. Splitting the intermediate value vector by thread will help limit cache poisoning.</para>
+      <para id="id62710">Using the same sequence of tests to benchmark this implementation, we observed the following results:</para>
+      <table id="uid2" summary="">
+        <tgroup cols="2">
+          <tbody>
+            <row>
+              <entry>Number of Threads</entry>
+              <entry>Runtime (s)</entry>
+            </row>
+            <row>
+              <entry>Control (main thread)</entry>
+              <entry>71.166</entry>
+            </row>
+            <row>
+              <entry>1</entry>
+              <entry>57.156</entry>
+            </row>
+            <row>
+              <entry>2</entry>
+              <entry>52.639</entry>
+            </row>
+            <row>
+              <entry>4</entry>
+              <entry>48.939</entry>
+            </row>
+            <row>
+              <entry>8</entry>
+              <entry>33.589</entry>
+            </row>
+            <row>
+              <entry>16</entry>
+              <entry>51.543</entry>
+            </row>
+            <row>
+              <entry>32</entry>
+              <entry>110.716</entry>
+            </row>
+          </tbody>
+        </tgroup>
+      </table>
+    </section>
+    <section id="cid3">
+      <title>Analysis of Results</title>
+      <para id="eip-267"><figure id="cute-dog"><media id="dogpic" alt="A dog sitting on a bed">
+    <image mime-type="image/png" src="../../media/graph.png" width="600"/>
+  </media>
+  
+</figure></para><para id="id62890">The obtained results show a very promising improvement, especially after implementing a full reordering scheme. With data reordering, the cache effects of the previous POSIX implementations are significantly reduced. We cannot circumvent p-thread overhead, which indicates why a higher number of p-threads still continues to perform poorly, regardless of data reordering.</para><para id="id62897">With clever data reordering, p-thread implementations of the filter bank can provide significant speed gains over comparable single-threaded methods. The fastest run time obtained by these implementations ran in under 34 seconds with full reordering. This is much faster than the 48 second run time posted by the fastest single-threaded implementation.</para>
+    </section>
+  </content>
+</document>

@@ -1,0 +1,26 @@
+<document xmlns="http://cnx.rice.edu/cnxml">
+  <title>The Team</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m45344</md:content-id>
+  <md:title>The Team</md:title>
+  <md:abstract/>
+  <md:uuid>0ce05212-52b8-4be2-bfc6-cc909d437e11</md:uuid>
+</metadata>
+
+<content>
+    <section id="import-auto-id1167531636506">
+      <title>The Team</title>
+      <para id="import-auto-id1167528932197">Abeer Javed: ECE!</para>
+      <para id="import-auto-id1167531639114">John Cocjin: BIOE!</para>
+      <para id="import-auto-id1167528678846">Kiefer Forseth:  ECE, Music (Piano)!</para>
+      <para id="import-auto-id1167521181857">Tapash J Sarkar: ECE, Math, Physics!</para>
+    </section>
+    <section id="import-auto-id1167526374471">
+      <title>Acknowledgements</title>
+      <para id="import-auto-id1167528395770">We would like to thank Professor Rich Baraniuk for his indefatigable energy, Christoph Studer for his advice, and Eva for delivering us the gift of MatLab this Christmas. </para>
+      <figure id="import-auto-id1167531648615"><media id="import-auto-id1167533845825" alt="">
+          <image mime-type="image/png" src="../../media/graphics1-83d1.png" height="194" width="259"/>
+        </media>
+      <caption>Cute Cat.  Courtesy of Google Search on "Cute Cat"</caption></figure></section>
+  </content>
+</document>

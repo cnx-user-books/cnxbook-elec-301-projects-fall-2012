@@ -1,0 +1,75 @@
+<document xmlns="http://cnx.rice.edu/cnxml">
+  <title>Testing</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m45335</md:content-id>
+  <md:title>Testing</md:title>
+  <md:abstract>In this module, we show the testing results and compare those of different algorithm.</md:abstract>
+  <md:uuid>6fd83414-5ce8-4b42-b2fc-0e22270633db</md:uuid>
+</metadata>
+
+<content>
+    <section id="import-auto-id1164313632718">
+      <title>Testing</title>
+      <para id="import-auto-id1164356466313">In order to make direct comparison between two algorithm and two detecting methods that we have discussed in the previous module, we conducted several tests. During each test, we used a 36in*30in board and drew grids every 6 inches. At each intersection point of grids, we generated a sound pulse. On the purpose of producing ideal pulse waves, we knocked two small brass blocks. Six trails were conducted at each point. We record both sound sources’ coordinates and the ones our system measured. After computing the root-mean-square error of six trails at each point, we plot error maps for both x and y coordinates of the testing board.</para>
+      <figure id="import-auto-id1164307426642">
+        <media id="import-auto-id1164329671150" alt="">
+          <image mime-type="image/png" src="../../media/graphics1-a3e5.png" height="218" width="251"/>
+        </media>
+      </figure>
+      <section id="import-auto-id1164307391002">
+        <title>Testing Results</title>
+        <para id="import-auto-id1164329726233">
+          <emphasis effect="italics">Method I, Direct Equation Solving Method (Threshold Detecting)</emphasis>
+        </para>
+        <para id="import-auto-id1164313680470">
+          <figure id="import-auto-id1164329694425">
+            <media id="import-auto-id1164309359596" alt="">
+              <image mime-type="image/jpg" src="../../media/graphics2-1c99.jpg" height="215" width="287"/>
+            </media>
+          </figure>
+          <figure id="import-auto-id1164356501682">
+            <media id="import-auto-id1164310001409" alt="">
+              <image mime-type="image/jpg" src="../../media/graphics3-837c.jpg" height="206" width="275"/>
+            </media>
+          </figure>
+        </para>
+        <para id="import-auto-id1164329768534">As shown in the error map above, this method returns coordinates with large errors. It has root-square-mean error 0.110m for x coordinates and 0.133m for y coordinates. Another problem for this method is that the results from six trails at one point have large variance. The performance of systems is unstable when using <emphasis effect="italics">Direct Equation Solving Method</emphasis>.</para>
+        <para id="import-auto-id1164307496263">The later analysis shows us that the errors mainly came two aspects. First, we used Matlab build in symbolic toolbox to solve the equation groups, which returns four possible solutions. Despite the fact that the true coordinate lies within those four solutions, there seems no good method that always chooses the right one. Second, the direct physics calculations require high accuracy from hardware. Directly plugging the measured data into equation, the errors are introduced and added up from all the hardware. Therefore, <emphasis effect="italics">Method I, Direct Equation Solving Method </emphasis> could not fulfill our requirement of high resolution.</para>
+        <para id="import-auto-id1164329786843">
+          <emphasis effect="italics">Method II, Match Filter (Threshold Detecting)</emphasis>
+        </para>
+        <para id="import-auto-id1164328275470">
+          <figure id="import-auto-id1164332420553">
+            <media id="import-auto-id1164315013386" alt="">
+              <image mime-type="image/jpg" src="../../media/graphics4-2602.jpg" height="216" width="288"/>
+            </media>
+          </figure>
+          <figure id="import-auto-id1164328277551">
+            <media id="import-auto-id1164328312836" alt="">
+              <image mime-type="image/jpg" src="../../media/graphics5-f8ce.jpg" height="207" width="276"/>
+            </media>
+          </figure>
+        </para>
+        <para id="import-auto-id1164352902481">As shown in the error map above, this method returns coordinates with small errors. It has root-square-mean error 0.035m for x coordinates and 0.043m for y coordinates. Considering the prefixed resolution of our system is 0.01m, our system’s provides good accuracy under <emphasis effect="italics">Method II, Match Filter (Threshold Detecting).</emphasis></para>
+        <para id="import-auto-id1164354142650">In this algorithm, we avoided problems that causes large errors in method I. The calculations are numerical and only one result will be returned. The comparison algorithm also avoid calculating result by direct measured data and therefore control the errors coming from hardware. The improvement in performance matches our expectation.</para>
+        <para id="import-auto-id1164328309939">
+          <emphasis effect="italics">Method II, Match Filter (Peak Detecting)</emphasis>
+        </para>
+        <para id="import-auto-id1164323655965">
+          <figure id="import-auto-id1164303799964">
+            <media id="import-auto-id1164356454301" alt="">
+              <image mime-type="image/jpg" src="../../media/graphics6.jpg" height="216" width="288"/>
+            </media>
+          </figure>
+          <figure id="import-auto-id1164307613792">
+            <media id="import-auto-id1164329600448" alt="">
+              <image mime-type="image/jpg" src="../../media/graphics7.jpg" height="206" width="275"/>
+            </media>
+          </figure>
+        </para>
+        <para id="import-auto-id1164307647194">As shown in the error map above, this method returns coordinates with large errors. It has root-square-mean error 0.138m for x coordinates and 0.136m for y coordinates. Different form Method I, the 6 trails at one point returned relative consistent result. Because of the large errors it returned, this method can not fulfill our resolusion requirements. </para>
+        <para id="import-auto-id1164302449951">Even though using the same match filter algorithm, peak detecting method seems to have a fixed error. Our later analysis attributes this error to the resonance and wave form distortion during transimitting in the air. </para>
+      </section>
+    </section>
+  </content>
+</document>

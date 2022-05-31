@@ -1,0 +1,14 @@
+<document xmlns="http://cnx.rice.edu/cnxml">
+  <title>SVD Compression</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m45577</md:content-id>
+  <md:title>SVD Compression</md:title>
+  <md:abstract/>
+  <md:uuid>154ce910-1ae3-4a63-86b8-c9bdf66c8f7b</md:uuid>
+</metadata>
+
+<content>
+    <para id="import-auto-id1168296970720">We decided to use singular value decomposition(SVD) to simulate the intentional attack and compress the image. After we embedded our message into the host image, we sent the watermarked image to the SVD compression function in Matlab. To implement SVD, we used Matlab code " [ U S V] = svd(W) " where W is the watermarked image, U,S and V are the singular values of W returned by the function. </para>
+    <para id="import-auto-id1168300166450">To determine the compression ratio, we modified how many singular values we would preserve from the image. The fewer values we preserve, the larger compression ratio we have. We then wanted to extract the message from the compressed watermarked image and see if we can still retrieve the original message. We found out that the message embedded was also distorted due to the compression and the distortion was getting worse with the increase in compression ratio. Therefore, we want to test the relationship between how well the message was recovered and the compression ratio in the next step.</para>
+  </content>
+</document>

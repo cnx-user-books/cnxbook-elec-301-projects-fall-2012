@@ -1,0 +1,31 @@
+<document xmlns="http://cnx.rice.edu/cnxml">
+  <title>Motivation</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m45346</md:content-id>
+  <md:title>Motivation</md:title>
+  <md:abstract/>
+  <md:uuid>38073ad8-0b04-486b-9da7-f860e8353a73</md:uuid>
+</metadata>
+
+<content>
+    <section id="cid1">
+      <title>Purpose</title>
+      <para id="id285740">Human speech contains a remarkable amount of information: semantic meaning, geographical proclivities, and emotional delivery. Individuals who experience difficulty reading emotion from spoken word suffer from impaired social interaction. Automating this process would greatly enhance the ability of such individuals to engage socially. We sought to isolate emotional content by designing a classification algorithm to reliably select among 15 common emotional states independent of semantic significance. This task challenges the precision with which an emotion can be identified; even normally functioning individuals only marginally exceed chance. Linear predictive coding was executed on a labeled, semantically neutral database and statistically characterized to generate a feature vector for each sample. These were used to train a multiclass neural network. Performance was evaluated on a distinct subset of the database.</para>
+    </section>
+    <section id="cid2">
+      <title>Useful References</title>
+      <list id="id285761" display="block" list-type="enumerated"><item id="uid1">D. Ververidis, C. Kotropoulos, and I. Pitas. "Automatic Emotional Speech Classification." ICASSP, 2004.
+</item>
+        <item id="uid2">H. Sato, Y. Mitsukura, M. Fukumi, and N. Akamatsu. "Emotional Speech Classification with Prosodic Parameters by Using Neural Networks." Intelligent Information Systems Conference, 2001.
+</item>
+        <item id="uid3">J. Hansen and S. Patil. "Speech Under Stress: Analysis, Modeling, and Recognition." LNAI 4343:108-137, 2007.
+</item>
+        <item id="uid4">J. Tao, Y. Kang, and A. Li. "Prosody Conversion from Neutral Speech to Emotional Speech." ICASSP, 2006.
+</item>
+        <item id="uid5">M. Liberman, K. Davis, M. Grossman, N. Martey, and J. Bell. "Emotional Prosody Speech and Transcripts." Linguistic Data Consortium, 2002.
+</item>
+        <item id="uid6">Z. Xiao, E. Dellandrea, W. Dou, and L. Chen. "Features Extraction and Selection for Emotional Speech Classification." IEEE, 2005.
+</item>
+      </list></section>
+  </content>
+</document>

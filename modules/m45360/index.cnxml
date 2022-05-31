@@ -1,0 +1,60 @@
+<document xmlns="http://cnx.rice.edu/cnxml">
+  <title>3-D Sound Implementation</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m45360</md:content-id>
+  <md:title>3-D Sound Implementation</md:title>
+  <md:abstract>This module demonstrates how our 3-D sound system was implemented.</md:abstract>
+  <md:uuid>bf56dbc3-41c7-4174-86c0-b78343fb112a</md:uuid>
+</metadata>
+<featured-links>
+  <!-- WARNING! The 'featured-links' section is read only. Do not edit below.
+       Changes to the links section in the source will not be saved. -->
+    <link-group type="supplemental">
+      <link url="http://cnx.org/content/m45356/latest/" strength="3">Introduction</link>
+      <link url="http://cnx.org/content/m45358/latest/" strength="3">Background</link>
+      <link url="http://cnx.org/content/m45359/latest/" strength="3">Calculating the Position, Speed, and Orientation of an Object</link>
+      <link url="http://cnx.org/content/m45357/latest/" strength="3">Object Detection Challenges and Solutions</link>
+      <link url="http://cnx.org/content/m45375/latest/" strength="3">Musical Mapping</link>
+      <link url="http://cnx.org/content/m45362/latest/" strength="3">Results</link>
+      <link url="http://cnx.org/content/m45363/latest/" strength="3">Future Work</link>
+      <link url="http://cnx.org/content/m45364/latest/" strength="3">Conclusions</link>
+      <link url="http://cnx.org/content/m45366/latest/" strength="3">Poster</link>
+      <link url="http://cnx.org/content/m45365/latest/" strength="3">References</link>
+      <link url="http://cnx.org/content/m45373/latest/" strength="3">The Team</link>
+    </link-group>
+  <!-- WARNING! The 'featured-links' section is read only. Do not edit above.
+       Changes to the links section in the source will not be saved. -->
+</featured-links>
+<content>
+    <para id="import-auto-id1167313190204">We employed the head-related transfer functions (HRTFs) measured by <link url="http://www.media.mit.edu/%7Ebillg/">Bill Gardner</link> and Keith Martin at the MIT Media Lab to implement the 3-D sound effect. Gardner and Martin determined the left and right ear impulse response from a Realistic Optimus Pro7 loudspeaker mounted 1.4 meters from a KEMAR dummy head microphone at a sampling rate of 44.1 KHz. </para>
+    <para id="import-auto-id1167306795601">Additionally, we used the compact data file package published on their website, which included a data-reduced set of 128 point symmetrical HRTFs derived from the left-ear responses. Because of symmetry, the right-ear responses can be derived from the left-ear responses. Measurements were made at elevations from -40 degrees to +90 degrees and at azimuth from 0 to 180. More detail on HRTFs measurements can be found at:</para>
+    <para id="import-auto-id1167305993744">
+      <link url="http://sound.media.mit.edu/resources/KEMAR/hrtfdoc.txt">
+        <emphasis effect="underline">http://sound.media.mit.edu/resources/KEMAR/hrtfdoc.txt</emphasis>
+      </link>
+    </para>
+    <para id="import-auto-id1167307276621">Utilizing Gardner and Martin’s HRTFs, we built the following system in Matlab to synthesize a 3-D sound.</para>
+    <figure id="import-auto-id1167307031212"><media id="import-auto-id1167309165895" alt="">
+        <image mime-type="image/png" src="../../media/Object 3.png" height="439" width="585"/>
+      </media>
+    <caption>3-D Sound Synthesis System</caption></figure><para id="import-auto-id1167305816588">At an elevation of 0 degrees and an azimuth of 80 degrees, the impulse responses of the two systems above are shown in figure 2 and 3.</para><para id="import-auto-id6553225">
+      <figure id="import-auto-id1167308604664">
+        <media id="import-auto-id1167306053931" alt="">
+          <image mime-type="image/jpg" src="../../media/Picture 1-ef31.jpg" height="294" width="392"/>
+        </media>
+       <caption>
+      Left-Ear Impulse Responses of 3-D Sound Synthesis System at elev = 0 and azimth = 80
+      </caption>
+      </figure>
+      <figure id="import-auto-id8262850">
+        <media id="import-auto-id1167304210918" alt="">
+          <image mime-type="image/jpg" src="../../media/Picture 2-95cf.jpg" height="294" width="392"/>
+        </media>
+<caption>
+      Right-Ear Impulse Responses of 3-D Sound Synthesis System at elev = 0 and azimth = 80
+      </caption>
+      </figure>
+    </para>
+    <para id="import-auto-id6123475">For those who love mathematics, Corey I. Cheng and Gregory H. Wakefield provided a complete mathematical derivation of head-related transfer functions in their paper <emphasis effect="italics">Introduction to Head-Related Transfer Functions(HRTFs): Representations of HRTFs in Time, Frequency, and Space.</emphasis></para>
+  </content>
+</document>

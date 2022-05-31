@@ -1,0 +1,32 @@
+<document xmlns="http://cnx.rice.edu/cnxml">
+  <title>Implementation</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m45377</md:content-id>
+  <md:title>Implementation</md:title>
+  <md:abstract>Implementation of auto-tune in MATLAB.</md:abstract>
+  <md:uuid>51fd1394-f159-44da-9b48-60211e471253</md:uuid>
+</metadata>
+<featured-links>
+  <!-- WARNING! The 'featured-links' section is read only. Do not edit below.
+       Changes to the links section in the source will not be saved. -->
+    <link-group type="supplemental">
+      <link url="http://cnx.org/content/m45379/latest/" strength="3">Auto-tune: Experimental Results</link>
+      <link url="http://cnx.org/content/m45380/latest/" strength="3">Auto-Tune: Installation Instructions</link>
+    </link-group>
+    <link-group type="prerequisite">
+      <link url="http://cnx.org/content/m45355/latest/" strength="3">Auto-Tune: Intruduction</link>
+      <link url="http://cnx.org/content/m45378/latest/" strength="3">Auto-Tune: Challenges</link>
+    </link-group>
+  <!-- WARNING! The 'featured-links' section is read only. Do not edit above.
+       Changes to the links section in the source will not be saved. -->
+</featured-links>
+<content>
+    <section id="import-auto-id1167901091100">
+      <title>Overview of algorithm</title><para id="eip-75">When pitch shifting is mentioned, most people immediately associate it with frequency shifting. Frequency shifting can be easily achieved by simply modulating the input signal by a sinusoid; however, employing such a method creates a ring modulation effect, which is not the desired effect in this case. Thus, pitch shifting and frequency shifting are not the same thing. A true pitch shift can be realized by resampling the input signal. Unfortunately, this method changes the duration of the input signal, which is also not a desired effect. It turns out that a slight modification of the second method (resampling) can be used to accurately pitch shift a signal. In order to implement (crude) auto-tuning, we just need to break up the input signal into small windows and pitch shift each window by an appropriate amount. More sophisticated phase correction algorithms are required to remove the distortions that result.</para><para id="eip-199">Below is a schematic that summarizes our implementation.</para><figure id="import-auto-id1167904340476">
+        <media id="import-auto-id1167900190960" alt="">
+          <image mime-type="image/png" src="../../media/Picture 400.png" height="222" width="662"/>
+        </media>
+      </figure><para id="eip-275">We will now outline our MATLAB implementation of auto-tuning. The algorithm can be broken down into three major steps:</para></section><section id="eip-856"><title>1. Determining the shift ratio for a window</title><para id="eip-641">The input signal is first divided into windows of length 256, modulating by Hanning windows. To increase frequency resolution, the window is zero-padded so that its length is 512. The frequency spectrum of each window is then computed using a 512-point FFT. To find the dominant note in the window, the largest peak within a specified frequency range is selected. It does not matter whether we select the peak corresponding to the fundamental frequency or a harmonic since since both are expected to be out of tune by the same ratio. The frequency of the note is easily found from the index of the peak by a linear mapping: the first peak corresponds to a frequency of 0 Hz, and the last peak corresonds to the sampling frequency.
+</para><para id="eip-848">The next step is to find the frequency on the chromatic scale (440 Hz multiplied by integer powers of the twelvth root of 2) that the identified peak needs to be shifted to. To do this, we simply map the identified peak to the closest key on the piano and find the corresponding frequency of the note. The shift ratio is the frequency corresponding to the closest piano key divided by the dominant frequency in the frequency spectrum.</para></section><section id="eip-554"><title>2. Pitch shifting a window</title><para id="eip-561">To pitch shift a window, we must first stretch/compress the window in time and then resample the window. In order to raise the pitch, we need to expand the window since we would like to resample at a higher frequency; similarly, lowering the pitch requires shrinking the window. For clarity, we will assume for the remainder of the section that we are interesting in raising the pitch for a given window. The steps involved in lowering the pitch are analagous. 
+</para><para id="eip-926">In order to expand the window, we subdivide the window into smaller overlapping frames each of length 64, with 75% overlap, modulated by Hanning windows. Thus, each frame begins 16 samples after the previous frame begins. For a window of length 256, this will result in 13 frames. The 13 frames are then spaced out and added together so that the expanded window is larger than the original window by a factor of the shift ratio determined in the previous section.</para><para id="eip-284">We have now managed to stretch the window in time, but in doing so we have completely destroyed the linear phase of the window. Thus, the phase must be reconstructed. This is done by taking the FFT of each frame, adding the expected linear phase offset to the FFT coefficients in each frame by looking at the phase difference between the current frame and the previous frame, and finally taking an inverse-FFT to get the corrected frame in the time domain. We used an external package to handle these phase corrections.</para><para id="eip-472">To complete the pitch shift, we need to resample the window at a rate higher by a factor of the shift ratio. This is achieved by a simple linear interpolation. Note that the original length of the window is preserved since we have expanded the window and resampled the window using the same ratio.</para></section><section id="eip-153"><title>3. Recombining the windows</title><para id="eip-127">Finally, the pitch shifted windows are combined together. Currently, there is no phase correction after recombination, and as a result, there is audible distortion in the output. Resolving the phase discrepancies for the entire signal is a rather challenging project since the phase is nonlinear. We encourage others to expand on and improve our implementation of this final stage of the algorithm by adding phase correction.</para></section></content>
+</document>

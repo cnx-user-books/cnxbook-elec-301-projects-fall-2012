@@ -1,0 +1,341 @@
+<document xmlns="http://cnx.rice.edu/cnxml">
+
+<title>Echo Cancellation Results</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m45384</md:content-id>
+  <md:title>Echo Cancellation Results</md:title>
+  <md:abstract/>
+  <md:uuid>4107ee09-88de-4090-96bb-e337966554a7</md:uuid>
+</metadata>
+
+<content>
+  <section id="eip-232"><title>Results for the Deconvolution Method</title><para id="eip-723"><figure id="deconv" orient="vertical"><title>Comparison of Three Methods of Finding Impulse Response</title><subfigure id="deconv-1">
+      <media id="deconvolution1" alt="">
+          <image mime-type="image/png" src="../../media/Boedk.png"/>
+        </media>
+   </subfigure>
+<subfigure id="deconv-2">
+      <media id="deconvolution2" alt="">
+          <image mime-type="image/png" src="../../media/PNoedk.png"/>
+        </media>
+   </subfigure>
+<subfigure id="deconv-3">
+      <media id="deconvolution3" alt="">
+          <image mime-type="image/png" src="../../media/SSoedk.png"/>
+        </media>
+   </subfigure>
+
+
+<caption>Each frequency response is taken in the OEDK classroom.</caption></figure></para><section id="eip-735"><title>Observations from Magnitude of the Frequency Response</title><list id="eip-642"><item>The pseudo-dirac's frequency response is centered at higher frequencies that the magnitude of the responses given by the sine-sweep and the balloon pop.</item>
+<item>The sine-sweep has the most defined peak at low frequencies: lower frequency sounds tend to reverberate longer in closed spaces.</item>
+<item>The balloon pop has a sinc-like decaying envelope which could simply mean there is some noise involved.</item></list></section><para id="eip-440"><figure id="hanss"><title>Frequency Response of Acoustically Desirable Room</title><media id="hanszenss" alt="">
+    <image mime-type="image/jpeg" src="../../media/sshan.png"/>
+  </media>
+  
+<caption>Interestingly, the phase response of the acoustically desirable classroom is very similar to the echoic OEDK classroom.
+  </caption></figure></para><section id="eip-672"><title>Comparing Sine-Sweep Impulse Responses</title><para id="eip-47">Compared to the acoustically desirable room, the OEDK classroom filtered out more high frequencies.</para></section></section><example id="eip-455"><title>Deconvolution Result</title><para id="eip-123">Devoncolution may have filtered out echoes, but the output of the deconvolution is so noisy that it is unintelligible even when noise is subtracted/filtered out.</para><para id="eip-999"><media id="deconmale" alt="noisymale">
+      <audio mime-type="audio/x-wav" src="deconvmale.wav"/>
+   </media> Result of deconvolution on echoed male speech recorded in OEDK classroom.
+</para></example><section id="eip-474"><title>Results for the Adaptive Filtering Method</title><table id="eip-103" summary="Sound files"><title>Signals Before Filtering</title>
+<tgroup cols="4"><tbody>
+  <row>
+    <entry><emphasis>Signal</emphasis></entry>
+    <entry><emphasis>Acoustically Desirable Room (Hanszen)</emphasis></entry>
+    <entry><emphasis>Echoic Room (Wiess)</emphasis></entry>
+    <entry><emphasis>OEDK Classroom</emphasis></entry>
+  </row>
+  <row>
+    <entry>Impulse</entry>
+    <entry><media id="himpulse" alt="">
+      <audio mime-type="audio/x-wav" src="HanImpulse.wav"/>
+   </media></entry>
+    <entry><media id="wimpulse" alt="">
+      <audio mime-type="audio/x-wav" src="WiessImpulse.wav"/>
+   </media></entry>
+    <entry><media id="oedkimp" alt="">
+      <audio mime-type="audio/x-wav" src="OEDKImpulse.wav"/>
+   </media></entry>
+  </row>
+  <row>
+    <entry>Female Speech</entry>
+    <entry> 
+    <media id="hfemale" alt="">
+      <audio mime-type="audio/x-wav" src="Hanfemale.wav"/>
+   </media></entry>
+    <entry>
+    <media id="wfemale" alt="">
+      <audio mime-type="audio/x-wav" src="Wiessfemale.wav"/>
+   </media></entry>
+    <entry> <media id="oedkfemale" alt="">
+      <audio mime-type="audio/x-wav" src="OEDKfemale.wav"/>
+   </media></entry>
+  </row>
+    <row>
+    <entry>Male Speech</entry>
+    <entry><media id="hmale" alt="">
+      <audio mime-type="audio/x-wav" src="Hanmale.wav"/>
+   </media></entry>
+    <entry><media id="wmale" alt="">
+      <audio mime-type="audio/x-wav" src="Wiessmale.wav"/>
+   </media></entry>
+    <entry><media id="oedkmale" alt="">
+      <audio mime-type="audio/x-wav" src="OEDKmale.wav"/>
+   </media></entry>
+  </row>
+</tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</tgroup><caption>Sound files recorded in each room (one desired signal and two different input signals for each algorithm).</caption>
+</table><para id="eip-591">For each of the three types of signals, an adaptive filter was trained with the recorded desirable signal (in Table 1 above). Then, for each algorithm, the filter was used to clean the echoed signal recorded in one of the two classrooms (echoic and OEDK). The resulting signals can be found below:</para><table id="eip-624" summary="Wiess table">
+<tgroup cols="4"><tbody>
+    <row>
+      <entry><emphasis>Signal</emphasis></entry>
+      <entry><emphasis>LMS</emphasis></entry>
+      <entry><emphasis>NLMS</emphasis></entry>
+      <entry><emphasis>BLMS</emphasis></entry>
+    </row>
+    <row>
+      <entry>Impulse</entry>
+      <entry><media id="lmswimpulse" alt="">
+        <audio mime-type="audio/x-wav" src="LMSwiessimpulse.wav"/>
+     </media></entry>
+      <entry><media id="nlsmswimpulse" alt="">
+        <audio mime-type="audio/x-wav" src="NLMSwiessimpulse.wav"/>
+     </media></entry>
+      <entry><media id="blmswimpulse" alt="">
+        <audio mime-type="audio/x-wav" src="BLMSwiessimpulse.wav"/>
+     </media></entry>
+    </row>
+    <row>
+      <entry>Female Speech</entry>
+      <entry> 
+      <media id="lmswfemale" alt="">
+        <audio mime-type="audio/x-wav" src="LMSwiessfemale.wav"/>
+     </media></entry>
+      <entry>
+      <media id="nlmswfemale" alt="">
+        <audio mime-type="audio/x-wav" src="NLMSwiessfemale.wav"/>
+     </media></entry>
+      <entry> <media id="blmswfemale" alt="">
+        <audio mime-type="audio/x-wav" src="BLMSwiessfemale.wav"/>
+     </media></entry>
+    </row>
+      <row>
+      <entry>Male Speech</entry>
+      <entry><media id="lmswmale" alt="">
+        <audio mime-type="audio/x-wav" src="LMSwiessmale.wav"/>
+     </media></entry>
+      <entry><media id="nlmswmale" alt="">
+        <audio mime-type="audio/x-wav" src="NLMSwiessmale.wav"/>
+     </media></entry>
+      <entry><media id="blmswmale" alt="">
+        <audio mime-type="audio/x-wav" src="BLMSwiessmale.wav"/>
+     </media></entry>
+    </row>
+  </tbody>
+
+
+
+
+</tgroup><caption>Echoic Room (Wiess) adaptive filter output sound files.</caption>
+</table><table id="eip-653" summary="OEDK Adaptive filter table">
+<tgroup cols="4"><tbody>
+    <row>
+      <entry><emphasis>Signal</emphasis></entry>
+      <entry><emphasis>LMS</emphasis></entry>
+      <entry><emphasis>NLMS</emphasis></entry>
+      <entry><emphasis>BLMS</emphasis></entry>
+    </row>
+    <row>
+      <entry>Impulse</entry>
+      <entry><media id="lmsoedkimpulse" alt="">
+        <audio mime-type="audio/x-wav" src="LMSoedkimpulse.wav"/>
+     </media></entry>
+      <entry><media id="nlmsoedkimpulse" alt="">
+        <audio mime-type="audio/x-wav" src="NLMSoedkimpulse.wav"/>
+     </media></entry>
+      <entry><media id="blmsoedkimpulse" alt="">
+        <audio mime-type="audio/x-wav" src="BLMSoedkimpulse.wav"/>
+     </media></entry>
+    </row>
+    <row>
+      <entry>Female Speech</entry>
+      <entry> 
+      <media id="lmsoedkfem" alt="">
+        <audio mime-type="audio/x-wav" src="LMSoedkfemale.wav"/>
+     </media></entry>
+      <entry>
+      <media id="nlmsoedkfem" alt="">
+        <audio mime-type="audio/x-wav" src="NLMSoedkfemale.wav"/>
+     </media></entry>
+      <entry> <media id="blmsoedkfem" alt="">
+        <audio mime-type="audio/x-wav" src="BLMSoedkfemale.wav"/>
+     </media></entry>
+    </row>
+      <row>
+      <entry>Male Speech</entry>
+      <entry><media id="lmsoedkmale" alt="">
+        <audio mime-type="audio/x-wav" src="LMSoedkmale.wav"/>
+     </media></entry>
+      <entry><media id="nlmsoedkmale" alt="">
+        <audio mime-type="audio/x-wav" src="NLMSoedkmale.wav"/>
+     </media></entry>
+      <entry><media id="blmsoedkmale" alt="">
+        <audio mime-type="audio/x-wav" src="BLMSoedkmale.wav"/>
+     </media></entry>
+    </row>
+  </tbody>
+
+</tgroup><caption>OEDK adaptive filter output sound files.</caption>
+</table><note id="eip-363"><list id="somelist"><title>Signal Lengths</title><item>Impulse: .10 seconds</item>
+<item>Male Speech: 5.0 seconds</item>
+<item>Female Speech: 11 seconds</item>
+</list></note><para id="eip-49"><title>RMS Values of the Error Signal</title><table id="eip-9332" summary="Error RMS Echoic Classroom"><title>Echoic Classroom</title>
+<tgroup cols="4"><tbody>
+  <row>
+    <entry><emphasis>Signal</emphasis></entry>
+    <entry><emphasis>LMS</emphasis></entry>
+    <entry><emphasis>NLMS</emphasis></entry>
+    <entry><emphasis>BLMS</emphasis></entry>
+  </row>
+  <row>
+    <entry>Impulse</entry>
+    <entry>.0240</entry>
+    <entry>.0182</entry>
+    <entry>.0490</entry>
+  </row>
+  <row>
+    <entry>Female Speech</entry>
+    <entry>.0705</entry>
+    <entry>.0385</entry>
+    <entry>.0133</entry>
+  </row>
+    <row>
+    <entry>Male Speech</entry>
+    <entry>.0235</entry>
+    <entry>.0133</entry>
+    <entry>.0564</entry>
+  </row>
+</tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</tgroup><caption>Error signal RMS for each algorithm implementation in the echoic classroom.</caption>
+</table><table id="eip-4422" summary="Error RMS OEDK Classroom"><title>OEDK Classroom</title>
+<tgroup cols="4"><tbody>
+  <row>
+    <entry><emphasis>Signal</emphasis></entry>
+    <entry><emphasis>LMS</emphasis></entry>
+    <entry><emphasis>NLMS</emphasis></entry>
+    <entry><emphasis>BLMS</emphasis></entry>
+  </row>
+  <row>
+    <entry>Impulse</entry>
+    <entry>.0253</entry>
+    <entry>.0166</entry>
+    <entry>.0480</entry>
+  </row>
+  <row>
+    <entry>Female Speech</entry>
+    <entry>.0560</entry>
+    <entry>.0373</entry>
+    <entry>.1141</entry>
+  </row>
+    <row>
+    <entry>Male Speech</entry>
+    <entry>.0223</entry>
+    <entry>.0117</entry>
+    <entry>.0590</entry>
+  </row>
+</tbody>
+
+
+
+
+
+
+
+
+</tgroup><caption>Error signal RMS for each algorithm implementation in the OEDK classroom.</caption>
+</table><table id="eip-1862" summary="Average RMS error">
+<tgroup cols="4"><tbody>
+  <row>
+    <entry/>
+    <entry><emphasis>LMS</emphasis></entry>
+    <entry><emphasis>NLMS</emphasis></entry>
+    <entry><emphasis>BLMS</emphasis></entry>
+  </row>
+  <row>
+    <entry><emphasis>Average RMS Value</emphasis></entry>
+    <entry>.0369</entry>
+    <entry>.0752</entry>
+    <entry>.0226</entry>
+  </row>
+</tbody>
+
+
+
+
+
+
+
+</tgroup><caption>Average error signal RMS for each algorithm implementation.</caption>
+</table></para><para id="eip-352">Since the purpose of the adaptive filter is to minimize the mean square error, the <emphasis>root mean square</emphasis> of the signal can be used to evaluate the effectiveness of each algorithm on the signals. Table 1 and Table 2 show the RMS values of the error signal when the corresponding algorithm has been used to train an adaptive filter with their corresponding desired signals (impulse to echoed impulse, male to echoed male, etc.)</para><para id="eip-685"><figure id="blmsfilter" orient="vertical"><subfigure id="oedkmalesubfigure-1">
+<title>OEDK Male Speech Echo Cancellation with LMS Algorithm</title>
+      <media id="oedkmale1" alt="">
+          <image mime-type="image/png" src="../../media/LMSoedk.png"/>
+        </media>
+   </subfigure>
+<subfigure id="oedkmalesubfigure-2">
+<title>OEDK Male Speech Echo Cancellation with NLMS Algorithm</title>
+      <media id="oedkmale2" alt="">
+          <image mime-type="image/png" src="../../media/NLMSoedk.png"/>
+        </media>
+   </subfigure>
+<subfigure id="oedkmalesubfigure-3">
+<title>OEDK Male Speech Echo Cancellation with BLMS Algorithm</title>
+      <media id="oedkmale3" alt="">
+          <image mime-type="image/png" src="../../media/BLMSoedk.png"/>
+        </media>
+   </subfigure>
+
+
+<caption>Echo cancellation of male speech in the OEDK classroom using three different adaptive filter algorithms.</caption></figure></para><para id="eip-567">Visually, it is apparent that the NLMS error signal's amplitude is smaller. This implies that the NLMS's output is closest to the desired signal.</para></section></content>
+
+</document>

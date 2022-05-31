@@ -1,0 +1,58 @@
+<document xmlns="http://cnx.rice.edu/cnxml">
+  <title>Algorithm</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m45332</md:content-id>
+  <md:title>Algorithm</md:title>
+  <md:abstract>Algorithm</md:abstract>
+  <md:uuid>78d9a8a4-9cfe-4353-b980-6181b3d6008e</md:uuid>
+</metadata>
+
+<content>
+    <section id="import-auto-id1876368">
+      <title>Algorithm</title>
+      <para id="import-auto-id1172770716869">We tried two methods that both can work with one of them having a better result. For both algorithms, we input the time delays between each microphone (microphone 1 through 4) and output the xy-coordinates.</para>
+      <section id="import-auto-id1172777323382">
+        <title>Get Time Delays</title>
+        <para id="import-auto-id1172785549494">First of all, to get the time delay information, we tried several methods to decide the time we get the pulse for each microphone. Method I is to catch the peak in certain time periods. In our Labview program, it checks every 0.5 second for at which time point the sound has the largest amplitude in the previous 0.5 second, and return that time point. Method II is to set an amplitude threshold, and return the first time point that is above the threshold. We set the threshold to be 0.5V to avoid the influence of noise and also catch the pulse we generate. In this method, we disable the threshold for 0.5 second after the program gets a time point to avoid the influence of imperfect pulse. By disabling the threshold, we ignore the sound that has amplitude above the threshold in this 0.5 second. After synchronizing the four microphones, we can get the time delays between each microphone. </para>
+      </section>
+      <section id="import-auto-id1172770689755">
+        <title>Method I: Direct Equation Solving </title>
+        <para id="import-auto-id1172770674424">We measured the time delay of received sound among four microphones, t_12, t_13, and t_14, where t_AB stands for the time delay of microphone A minus that of microphone B. Based on the physics fact that d=v*t and v is a constant (340m/s in the air), we know the relative distance difference from the point to four corners, called d_12, d_13, and d_14. </para>
+        <para id="import-auto-id1172771075506">Assume the coordinates of the point we are solving to be (x,y), the length of the panel to be a, and the width of the panel to be b. Using some simple geometric fact, we can represent the distance from the point to each microphone with (x,y), a, and b. By equating the differences of the calculated distances to the corresponding measured differences, d_12, d_13, and d_14, we get three equations. We solve equation 1 and 2 in Matlab, and get two possible x’s (called x1 and x2), and two possible y’s (called y1 and y2). Similarly, by solving equation 2 and 3 in Matlab, we can get possible x’s (called x3 and x4), and two possible y’s (called y3 and y4). Theoretically, there’s always a number that is both in the first set of x(x1 and x2) and the second set of x (x3 and x4), and that should be the x coordinate we want. The same holds for y coordinate. </para>
+        <para id="import-auto-id1172785174380">In practice, due to the noise and errors, we can never get an exact same x or y in two sets. Therefore, we calculate the differences between x1 and x3, x1 and x4, x2 and x3, and x2 and x4, and find the pair with minimum difference. We then decide the average value of the pair to be the x coordinate. The same for y coordinate. </para>
+        <para id="import-auto-id1172789404600">This method sometimes gives us results that far beyond our bounds and can be very unstable, so we try to develop a second method. </para>
+        <figure id="import-auto-id1172767714739">
+          <media id="import-auto-id1172769014573" alt="">
+            <image mime-type="image/png" src="../../media/graphics1-e7ec.png" height="744" width="575"/>
+          </media>
+        </figure>
+        <figure id="import-auto-id1172770850920">
+          <media id="import-auto-id1172789468478" alt="">
+            <image mime-type="image/jpg" src="../../media/graphics2-9503.jpg" height="744" width="575"/>
+          </media>
+        </figure>
+        <figure id="import-auto-id1172783285226">
+          <media id="import-auto-id1172768794715" alt="">
+            <image mime-type="image/jpg" src="../../media/graphics3-562f.jpg" height="744" width="575"/>
+          </media>
+        </figure>
+      </section>
+      <section id="import-auto-id1172776252499">
+        <title>Method II: Match Filter</title>
+        <para id="import-auto-id1172762591129">Setting the resolution to be 1 cm, we divide the board to 1cm*1cm grid. For each point (m, n) on the grid, calculate the distance from this point to each microphone using geometric relations, and get the distance differences d_12, d_23, and d_34, where d_AB stands for the distance to microphone A minus distance to microphone B. Note that we use d_23 and d_34 instead of d_13 and d_14 as in the first method since we notice that it may introduce more error if we rely on one microphone (microphone 1) too much. Based on the physics fact that t=d/v and v is a constant (340m/s in the air), we get the theoretical time delays t_12, t_23, and t_34 for point (m, n).</para>
+        <para id="import-auto-id1172789728745">Assume the corresponding measured time delay to be m_12, m_23, and m_34. For each point on the grid, we calculate the root-square-mean error between the measured time delays and the theoretical time delays: </para>
+        <figure id="import-auto-id8324667">
+          <media id="import-auto-id1172789485896" alt="">
+            <image mime-type="image/jpg" src="../../media/graphics4-1604.jpg" height="61" width="313"/>
+          </media>
+        </figure>
+        <para id="import-auto-id1172770727051">We then find the point (x, y) in the grid that has the least error and return it as the xy coordinate.</para>
+        <figure id="import-auto-id1172775506466">
+          <media id="import-auto-id1172770839563" alt="">
+            <image mime-type="image/jpg" src="../../media/graphics5-9541.jpg" height="744" width="575"/>
+          </media>
+        </figure>
+      </section>
+    </section>
+  </content>
+</document>

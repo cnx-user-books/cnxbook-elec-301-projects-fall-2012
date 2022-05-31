@@ -1,0 +1,12 @@
+<document xmlns="http://cnx.rice.edu/cnxml">
+  <title>Algorithm</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m45579</md:content-id>
+  <md:title>Algorithm</md:title>
+  <md:abstract/>
+  <md:uuid>8c7bf00c-4482-4dad-b17d-e9d0f54e9f4c</md:uuid>
+</metadata>
+
+<content>
+    <para id="import-auto-id6057580">1. wm_comp: compress the watermarked image at differential compression levels.<link resource="wm_comp.m">file.</link></para><para id="import-auto-id1165704945284">2. wm_comp_anal:  Plotting the correct ratio, which is the percentatio of the right pixels in the extraced message, as a function of compression value.<link resource="wm_comp_anal.m">file.</link></para><para id="import-auto-id1165705023362">3. wm_cox_ext: using cox's algorithm to extract the message inside a watermakred image.<link resource="wm_cox_ext.m">file.</link></para><para id="import-auto-id7614956">4. wm_cox_image: using cox's algorithm to water mark an image.<link resource="wm_cox_image.m">file.</link></para><para id="import-auto-id8452555">5. wm_decoder: takes code words and convert it back to message.<link resource="wm_decoder.m">file.</link></para><para id="import-auto-id1165705127485">6. wm_encoder: convert message (string) into a vector of acsii representation of doubles.<link resource="wm_encoder.m">file.</link></para><para id="import-auto-id1165705279198">7. wm_msg_compare: analyze the similarity between the extracted message at differential compression level, with the original message.<link resource="wm_msg_compare.m">file.</link></para><para id="import-auto-id7379317">8. wm_rand_msg_gen: generate a random 1000-length string as the message.<link resource="wm_rand_msg_gen.m">file.</link></para><para id="import-auto-id1165707599684">9. wm_runner: an top program that combines all the other modules and outputs results.<link resource="wm_runner.m">file.</link></para><para id="import-auto-id1165706241994">10.wm_sim_compress: use SVD algorithm to compress the watermarked image.<link resource="wm_sim_compress.m">file.</link></para></content>
+</document>

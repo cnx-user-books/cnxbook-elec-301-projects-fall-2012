@@ -1,0 +1,899 @@
+<col:collection xmlns="http://cnx.rice.edu/collxml" xmlns:md="http://cnx.rice.edu/mdml" xmlns:col="http://cnx.rice.edu/collxml" xmlns:cnxml="http://cnx.rice.edu/cnxml" xml:lang="en">
+  <metadata xmlns:md="http://cnx.rice.edu/mdml" mdml-version="0.5">
+  <md:content-id>col11475</md:content-id>
+  <md:title>ELEC 301 Projects Fall 2012</md:title>
+  
+  
+  <md:license url="http://creativecommons.org/licenses/by/3.0/"/>
+  <md:language>en</md:language>
+
+  
+
+  
+  
+  
+  
+  
+
+  <md:uuid>577a7aa3-dd8b-4e0e-af72-c3d97d5f8b1d</md:uuid>
+<md:slug>elec-301-projects-fall-2012</md:slug>
+</metadata>
+
+  <col:content>
+    
+      
+        
+      <col:subcollection>
+        <md:title>Auto-Tune</md:title>
+        
+        
+        
+
+        <col:content>
+          
+    
+      <col:module document="m45355"/>
+        
+      
+    
+    
+      <col:module document="m45378">
+        <col:featured-links>
+          
+            <cnxml:link-group type="supplemental">
+              <cnxml:link url="http://cnx.org/content/m45377/latest/">Implementation</cnxml:link>
+              <cnxml:link url="http://cnx.org/content/m45379/latest/">Experimental Results</cnxml:link>
+              <cnxml:link url="http://cnx.org/content/m45380/latest/">Try It Yourself!</cnxml:link>
+            </cnxml:link-group>
+          
+          
+            <cnxml:link-group type="prerequisite">
+              <cnxml:link url="http://cnx.org/content/m45355/latest/">Auto-Tune: Introduction</cnxml:link>
+            </cnxml:link-group>
+          
+        </col:featured-links>
+      </col:module>
+        
+      
+    
+    
+      <col:module document="m45377">
+        <col:featured-links>
+          
+            <cnxml:link-group type="supplemental">
+              <cnxml:link url="http://cnx.org/content/m45379/latest/">Auto-tune: Experimental Results</cnxml:link>
+              <cnxml:link url="http://cnx.org/content/m45380/latest/">Auto-Tune: Installation Instructions</cnxml:link>
+            </cnxml:link-group>
+          
+          
+            <cnxml:link-group type="prerequisite">
+              <cnxml:link url="http://cnx.org/content/m45355/latest/">Auto-Tune: Intruduction</cnxml:link>
+              <cnxml:link url="http://cnx.org/content/m45378/latest/">Auto-Tune: Challenges</cnxml:link>
+            </cnxml:link-group>
+          
+        </col:featured-links>
+      </col:module>
+        
+      
+    
+    
+      <col:module document="m45379"/>
+        
+      
+    
+    
+      <col:module document="m45380"/>
+        
+      
+    
+        </col:content>
+      </col:subcollection>
+    
+    
+      
+        
+      <col:subcollection>
+        <md:title>Characterization and Application of Echo Cancellation Methods</md:title>
+        
+        
+        
+
+        <col:content>
+          
+    
+      <col:module document="m45382"/>
+        
+      
+    
+    
+      <col:module document="m45387"/>
+        
+      
+    
+    
+      <col:module document="m45389"/>
+        
+      
+    
+    
+      <col:module document="m45392"/>
+        
+      
+    
+    
+      <col:module document="m45384"/>
+        
+      
+    
+    
+      <col:module document="m45383"/>
+        
+      
+    
+    
+      <col:module document="m45385"/>
+        
+      
+    
+    
+      <col:module document="m45386"/>
+        
+      
+    
+    
+      <col:module document="m45388"/>
+        
+      
+    
+        </col:content>
+      </col:subcollection>
+    
+    
+      
+        
+      <col:subcollection>
+        <md:title>Classification of Emotion in Speech</md:title>
+        
+        
+        
+
+        <col:content>
+          
+    
+      <col:module document="m45346"/>
+        
+      
+    
+    
+      <col:module document="m45343"/>
+        
+      
+    
+    
+      
+        
+      <col:subcollection>
+        <md:title>Algorithm Development</md:title>
+        
+        
+        
+
+        <col:content>
+          
+    
+      <col:module document="m45347"/>
+        
+      
+    
+    
+      <col:module document="m45342"/>
+        
+      
+    
+    
+      <col:module document="m45345"/>
+        
+      
+    
+    
+      <col:module document="m45348"/>
+        
+      
+    
+    
+      <col:module document="m45350"/>
+        
+      
+    
+        </col:content>
+      </col:subcollection>
+    
+    
+      <col:module document="m45349"/>
+        
+      
+    
+    
+      <col:module document="m45341"/>
+        
+      
+    
+    
+      <col:module document="m45344"/>
+        
+      
+    
+        </col:content>
+      </col:subcollection>
+    
+    
+      
+        
+      <col:subcollection>
+        <md:title>Dancing with Three-Dimensional Sound</md:title>
+        
+        
+        
+
+        <col:content>
+          
+    
+      <col:module document="m45356">
+        <col:featured-links>
+          
+            <cnxml:link-group type="supplemental">
+              <cnxml:link url="http://cnx.org/content/m45358/latest/">Background</cnxml:link>
+              <cnxml:link url="http://cnx.org/content/m45359/latest/">Calculating the Position, Speed, and Orientation of an Object</cnxml:link>
+              <cnxml:link url="http://cnx.org/content/m45357/latest/">Object Detection Challenges and Solutions</cnxml:link>
+              <cnxml:link url="http://cnx.org/content/m45360/latest/">3-D Sound Implementation</cnxml:link>
+              <cnxml:link url="http://cnx.org/content/m45375/latest/">Musical Mapping</cnxml:link>
+              <cnxml:link url="http://cnx.org/content/m45362/latest/">Results</cnxml:link>
+              <cnxml:link url="http://cnx.org/content/m45363/latest/">Future Work</cnxml:link>
+              <cnxml:link url="http://cnx.org/content/m45364/latest/">Conclusions</cnxml:link>
+              <cnxml:link url="http://cnx.org/content/m45365/latest/">References</cnxml:link>
+              <cnxml:link url="http://cnx.org/content/m45366/latest/">Poster</cnxml:link>
+              <cnxml:link url="http://cnx.org/content/m45373/latest/">The Team</cnxml:link>
+            </cnxml:link-group>
+          
+        </col:featured-links>
+      </col:module>
+        
+      
+    
+    
+      <col:module document="m45358">
+        <col:featured-links>
+          
+            <cnxml:link-group type="supplemental">
+              <cnxml:link url="http://cnx.org/content/m45356/latest/">Introduction</cnxml:link>
+              <cnxml:link url="http://cnx.org/content/m45359/latest/">Calculating the Position, Speed, and Orientation of an Object</cnxml:link>
+              <cnxml:link url="http://cnx.org/content/m45357/latest/">Object Detection Challenges and Solutions</cnxml:link>
+              <cnxml:link url="http://cnx.org/content/m45375/latest/">Musical Mapping</cnxml:link>
+              <cnxml:link url="http://cnx.org/content/m45360/latest/">3-D Sound Implementation</cnxml:link>
+              <cnxml:link url="http://cnx.org/content/m45362/latest/">Results</cnxml:link>
+              <cnxml:link url="http://cnx.org/content/m45363/latest/">Future Work</cnxml:link>
+              <cnxml:link url="http://cnx.org/content/m45364/latest/">Conclusions</cnxml:link>
+              <cnxml:link url="http://cnx.org/content/m45366/latest/">Poster</cnxml:link>
+              <cnxml:link url="http://cnx.org/content/m45365/latest/">References</cnxml:link>
+              <cnxml:link url="http://cnx.org/content/m45373/latest/">The Team</cnxml:link>
+            </cnxml:link-group>
+          
+        </col:featured-links>
+      </col:module>
+        
+      
+    
+    
+      <col:module document="m45359">
+        <col:featured-links>
+          
+            <cnxml:link-group type="supplemental">
+              <cnxml:link url="http://cnx.org/content/m45356/latest/">Introduction</cnxml:link>
+              <cnxml:link url="http://cnx.org/content/m45358/latest/">Background</cnxml:link>
+              <cnxml:link url="http://cnx.org/content/m45357/latest/">Object Detection Challenges and Solutions</cnxml:link>
+              <cnxml:link url="http://cnx.org/content/m45375/latest/">Musical Mapping</cnxml:link>
+              <cnxml:link url="http://cnx.org/content/m45360/latest/">3-D Sound Implementation</cnxml:link>
+              <cnxml:link url="http://cnx.org/content/m45362/latest/">Results</cnxml:link>
+              <cnxml:link url="http://cnx.org/content/m45363/latest/">Future Work</cnxml:link>
+              <cnxml:link url="http://cnx.org/content/m45364/latest/">Conclusions</cnxml:link>
+              <cnxml:link url="http://cnx.org/content/m45366/latest/">Poster</cnxml:link>
+              <cnxml:link url="http://cnx.org/content/m45365/latest/">References</cnxml:link>
+              <cnxml:link url="http://cnx.org/content/m45373/latest/">The Team</cnxml:link>
+            </cnxml:link-group>
+          
+        </col:featured-links>
+      </col:module>
+        
+      
+    
+    
+      <col:module document="m45357">
+        <col:featured-links>
+          
+            <cnxml:link-group type="supplemental">
+              <cnxml:link url="http://cnx.org/content/m45356/latest/">Introduction</cnxml:link>
+              <cnxml:link url="http://cnx.org/content/m45358/latest/">Background</cnxml:link>
+              <cnxml:link url="http://cnx.org/content/m45359/latest/">Calculating the Position, Speed, and Orientation of an Object</cnxml:link>
+              <cnxml:link url="http://cnx.org/content/m45375/latest/">Musical Mapping</cnxml:link>
+              <cnxml:link url="http://cnx.org/content/m45360/latest/">3-D Sound Implementation </cnxml:link>
+              <cnxml:link url="http://cnx.org/content/m45362/latest/">Results</cnxml:link>
+              <cnxml:link url="http://cnx.org/content/m45363/latest/">Future Work</cnxml:link>
+              <cnxml:link url="http://cnx.org/content/m45364/latest/">Conclusions</cnxml:link>
+              <cnxml:link url="http://cnx.org/content/m45366/latest/">Poster</cnxml:link>
+              <cnxml:link url="http://cnx.org/content/m45365/latest/">References</cnxml:link>
+              <cnxml:link url="http://cnx.org/content/m45373/latest/">The Team</cnxml:link>
+            </cnxml:link-group>
+          
+        </col:featured-links>
+      </col:module>
+        
+      
+    
+    
+      <col:module document="m45375">
+        <col:featured-links>
+          
+            <cnxml:link-group type="supplemental">
+              <cnxml:link url="http://cnx.org/content/m45356/latest/">Introduction</cnxml:link>
+              <cnxml:link url="http://cnx.org/content/m45358/latest/">Background</cnxml:link>
+              <cnxml:link url="http://cnx.org/content/m45359/latest/">Calculating the Position, Speed, and Orientation of an Object</cnxml:link>
+              <cnxml:link url="http://cnx.org/content/m45357/latest/">Object Detection Challenges and Solutions</cnxml:link>
+              <cnxml:link url="http://cnx.org/content/m45360/latest/">3-D Sound Implementation</cnxml:link>
+              <cnxml:link url="http://cnx.org/content/m45362/latest/">Results</cnxml:link>
+              <cnxml:link url="http://cnx.org/content/m45363/latest/">Future Work</cnxml:link>
+              <cnxml:link url="http://cnx.org/content/m45364/latest/">Conclusions</cnxml:link>
+              <cnxml:link url="http://cnx.org/content/m45366/latest/">Poster</cnxml:link>
+              <cnxml:link url="http://cnx.org/content/m45365/latest/">References</cnxml:link>
+              <cnxml:link url="http://cnx.org/content/m45373/latest/">The Team</cnxml:link>
+            </cnxml:link-group>
+          
+        </col:featured-links>
+      </col:module>
+        
+      
+    
+    
+      <col:module document="m45360">
+        <col:featured-links>
+          
+            <cnxml:link-group type="supplemental">
+              <cnxml:link url="http://cnx.org/content/m45356/latest/">Introduction</cnxml:link>
+              <cnxml:link url="http://cnx.org/content/m45358/latest/">Background</cnxml:link>
+              <cnxml:link url="http://cnx.org/content/m45359/latest/">Calculating the Position, Speed, and Orientation of an Object</cnxml:link>
+              <cnxml:link url="http://cnx.org/content/m45357/latest/">Object Detection Challenges and Solutions</cnxml:link>
+              <cnxml:link url="http://cnx.org/content/m45375/latest/">Musical Mapping</cnxml:link>
+              <cnxml:link url="http://cnx.org/content/m45362/latest/">Results</cnxml:link>
+              <cnxml:link url="http://cnx.org/content/m45363/latest/">Future Work</cnxml:link>
+              <cnxml:link url="http://cnx.org/content/m45364/latest/">Conclusions</cnxml:link>
+              <cnxml:link url="http://cnx.org/content/m45366/latest/">Poster</cnxml:link>
+              <cnxml:link url="http://cnx.org/content/m45365/latest/">References</cnxml:link>
+              <cnxml:link url="http://cnx.org/content/m45373/latest/">The Team</cnxml:link>
+            </cnxml:link-group>
+          
+        </col:featured-links>
+      </col:module>
+        
+      
+    
+    
+      <col:module document="m45362">
+        <col:featured-links>
+          
+            <cnxml:link-group type="supplemental">
+              <cnxml:link url="http://cnx.org/content/m45356/latest/">Introduction</cnxml:link>
+              <cnxml:link url="http://cnx.org/content/m45358/latest/">Background</cnxml:link>
+              <cnxml:link url="http://cnx.org/content/m45359/latest/">Calculating the Position, Speed, and Orientation of an Object</cnxml:link>
+              <cnxml:link url="http://cnx.org/content/m45357/latest/">Object Detection Challenges and Solutions</cnxml:link>
+              <cnxml:link url="http://cnx.org/content/m45375/latest/">Musical Mapping</cnxml:link>
+              <cnxml:link url="http://cnx.org/content/m45360/latest/">3-D Sound Implementation</cnxml:link>
+              <cnxml:link url="http://cnx.org/content/m45363/latest/">Future Work</cnxml:link>
+              <cnxml:link url="http://cnx.org/content/m45364/latest/">Conclusions</cnxml:link>
+              <cnxml:link url="http://cnx.org/content/m45366/latest/">Poster</cnxml:link>
+              <cnxml:link url="http://cnx.org/content/m45365/latest/">References</cnxml:link>
+              <cnxml:link url="http://cnx.org/content/m45373/latest/">The Team</cnxml:link>
+            </cnxml:link-group>
+          
+        </col:featured-links>
+      </col:module>
+        
+      
+    
+    
+      <col:module document="m45364">
+        <col:featured-links>
+          
+            <cnxml:link-group type="supplemental">
+              <cnxml:link url="http://cnx.org/content/m45356/latest/">Introduction</cnxml:link>
+              <cnxml:link url="http://cnx.org/content/m45358/latest/">Background</cnxml:link>
+              <cnxml:link url="http://cnx.org/content/m45359/latest/">Calculating the Position, Speed, and Orientation of an Object</cnxml:link>
+              <cnxml:link url="http://cnx.org/content/m45357/latest/">Object Detection Challenges and Solutions</cnxml:link>
+              <cnxml:link url="http://cnx.org/content/m45375/latest/">Musical Mapping</cnxml:link>
+              <cnxml:link url="http://cnx.org/content/m45360/latest/">3-D Sound Implementation</cnxml:link>
+              <cnxml:link url="http://cnx.org/content/m45362/latest/">Results</cnxml:link>
+              <cnxml:link url="http://cnx.org/content/m45363/latest/">Future Work</cnxml:link>
+              <cnxml:link url="http://cnx.org/content/m45366/latest/">Poster</cnxml:link>
+              <cnxml:link url="http://cnx.org/content/m45365/latest/">References</cnxml:link>
+              <cnxml:link url="http://cnx.org/content/m45373/latest/">The Team</cnxml:link>
+            </cnxml:link-group>
+          
+        </col:featured-links>
+      </col:module>
+        
+      
+    
+    
+      <col:module document="m45363">
+        <col:featured-links>
+          
+            <cnxml:link-group type="supplemental">
+              <cnxml:link url="http://cnx.org/content/m45356/latest/">Introduction</cnxml:link>
+              <cnxml:link url="http://cnx.org/content/m45358/latest/">Background</cnxml:link>
+              <cnxml:link url="http://cnx.org/content/m45359/latest/">Calculating the Position, Speed, and Orientation of an Object</cnxml:link>
+              <cnxml:link url="http://cnx.org/content/m45357/latest/">Object Detection Challenges and Solutions</cnxml:link>
+              <cnxml:link url="http://cnx.org/content/m45375/latest/">Musical Mapping</cnxml:link>
+              <cnxml:link url="http://cnx.org/content/m45360/latest/">3-D Sound Implementation</cnxml:link>
+              <cnxml:link url="http://cnx.org/content/m45362/latest/">Results</cnxml:link>
+              <cnxml:link url="http://cnx.org/content/m45364/latest/">Conclusions</cnxml:link>
+              <cnxml:link url="http://cnx.org/content/m45366/latest/">Poster</cnxml:link>
+              <cnxml:link url="http://cnx.org/content/m45365/latest/">References</cnxml:link>
+              <cnxml:link url="http://cnx.org/content/m45373/latest/">The Team</cnxml:link>
+            </cnxml:link-group>
+          
+        </col:featured-links>
+      </col:module>
+        
+      
+    
+    
+      <col:module document="m45366">
+        <col:featured-links>
+          
+            <cnxml:link-group type="supplemental">
+              <cnxml:link url="http://cnx.org/content/m45356/latest/">Introduction</cnxml:link>
+              <cnxml:link url="http://cnx.org/content/m45358/latest/">Background</cnxml:link>
+              <cnxml:link url="http://cnx.org/content/m45359/latest/">Calculating the Position, Speed, and Orientation of an Object</cnxml:link>
+              <cnxml:link url="http://cnx.org/content/m45357/latest/">Object Detection Challenges and Solutions</cnxml:link>
+              <cnxml:link url="http://cnx.org/content/m45360/latest/">3-D Sound Implementation</cnxml:link>
+              <cnxml:link url="http://cnx.org/content/m45362/latest/">Results</cnxml:link>
+              <cnxml:link url="http://cnx.org/content/m45363/latest/">Future Work</cnxml:link>
+              <cnxml:link url="http://cnx.org/content/m45364/latest/">Conclusions</cnxml:link>
+              <cnxml:link url="http://cnx.org/content/m45365/latest/">References</cnxml:link>
+              <cnxml:link url="http://cnx.org/content/m45375/latest/">Musical Mapping</cnxml:link>
+              <cnxml:link url="http://cnx.org/content/m45373/latest/">The Team</cnxml:link>
+            </cnxml:link-group>
+          
+        </col:featured-links>
+      </col:module>
+        
+      
+    
+    
+      <col:module document="m45365">
+        <col:featured-links>
+          
+            <cnxml:link-group type="supplemental">
+              <cnxml:link url="http://cnx.org/content/m45356/latest/">Introduction</cnxml:link>
+              <cnxml:link url="http://cnx.org/content/m45358/latest/">Background</cnxml:link>
+              <cnxml:link url="http://cnx.org/content/m45359/latest/">Calculating the Position, Speed, and Orientation of an Object</cnxml:link>
+              <cnxml:link url="http://cnx.org/content/m45357/latest/">Object Detection Challenges and Solutions</cnxml:link>
+              <cnxml:link url="http://cnx.org/content/m45375/latest/">Musical Mapping</cnxml:link>
+              <cnxml:link url="http://cnx.org/content/m45360/latest/">3-D Sound Implementation</cnxml:link>
+              <cnxml:link url="http://cnx.org/content/m45362/latest/">Results</cnxml:link>
+              <cnxml:link url="http://cnx.org/content/m45363/latest/">Future Work</cnxml:link>
+              <cnxml:link url="http://cnx.org/content/m45364/latest/">Conclusions</cnxml:link>
+              <cnxml:link url="http://cnx.org/content/m45366/latest/">Poster</cnxml:link>
+              <cnxml:link url="http://cnx.org/content/m45373/latest/">The Team</cnxml:link>
+            </cnxml:link-group>
+          
+        </col:featured-links>
+      </col:module>
+        
+      
+    
+    
+      <col:module document="m45373">
+        <col:featured-links>
+          
+            <cnxml:link-group type="supplemental">
+              <cnxml:link url="http://cnx.org/content/m45356/latest/">Introduction</cnxml:link>
+              <cnxml:link url="http://cnx.org/content/m45358/latest/">Background</cnxml:link>
+              <cnxml:link url="http://cnx.org/content/m45359/latest/">Calculating the Position, Speed, and Orientation of an Object</cnxml:link>
+              <cnxml:link url="http://cnx.org/content/m45357/latest/">Object Detection Challenges and Solutions</cnxml:link>
+              <cnxml:link url="http://cnx.org/content/m45375/latest/">Musical Mapping</cnxml:link>
+              <cnxml:link url="http://cnx.org/content/m45360/latest/">3-D Sound Implementation</cnxml:link>
+              <cnxml:link url="http://cnx.org/content/m45362/latest/">Results</cnxml:link>
+              <cnxml:link url="http://cnx.org/content/m45363/latest/">Future Work</cnxml:link>
+              <cnxml:link url="http://cnx.org/content/m45364/latest/">Conclusions</cnxml:link>
+              <cnxml:link url="http://cnx.org/content/m45366/latest/">Poster</cnxml:link>
+              <cnxml:link url="http://cnx.org/content/m45365/latest/">References</cnxml:link>
+            </cnxml:link-group>
+          
+        </col:featured-links>
+      </col:module>
+        
+      
+    
+        </col:content>
+      </col:subcollection>
+    
+    
+      
+        
+      <col:subcollection>
+        <md:title>Direction of Arrival Estimation</md:title>
+        
+        
+        
+
+        <col:content>
+          
+    
+      <col:module document="m45409"/>
+        
+      
+    
+    
+      <col:module document="m45411"/>
+        
+      
+    
+    
+      <col:module document="m45410"/>
+        
+      
+    
+    
+      <col:module document="m45413"/>
+        
+      
+    
+    
+      <col:module document="m45412"/>
+        
+      
+    
+    
+      <col:module document="m45414"/>
+        
+      
+    
+    
+      <col:module document="m45415"/>
+        
+      
+    
+        </col:content>
+      </col:subcollection>
+    
+    
+      
+        
+      <col:subcollection>
+        <md:title>High-Dynamic Range Imaging</md:title>
+        
+        
+        
+
+        <col:content>
+          
+    
+      <col:module document="m45370"/>
+        
+      
+    
+    
+      <col:module document="m45336"/>
+        
+      
+    
+    
+      <col:module document="m45368"/>
+        
+      
+    
+    
+      <col:module document="m45499"/>
+        
+      
+    
+    
+      <col:module document="m45500"/>
+        
+      
+    
+    
+      <col:module document="m45494"/>
+        
+      
+    
+    
+      <col:module document="m45496"/>
+        
+      
+    
+    
+      <col:module document="m45503"/>
+        
+      
+    
+        </col:content>
+      </col:subcollection>
+    
+    
+      
+        
+      <col:subcollection>
+        <md:title>Music Visualization with ICA</md:title>
+        
+        
+        
+
+        <col:content>
+          
+    
+      <col:module document="m45351"/>
+        
+      
+    
+    
+      <col:module document="m45352"/>
+        
+      
+    
+    
+      <col:module document="m45353"/>
+        
+      
+    
+    
+      <col:module document="m45354"/>
+        
+      
+    
+    
+      <col:module document="m45408"/>
+        
+      
+    
+        </col:content>
+      </col:subcollection>
+    
+    
+      
+        
+      <col:subcollection>
+        <md:title>Real-time Filter Design for Neural Recordings</md:title>
+        
+        
+        
+
+        <col:content>
+          
+    
+      <col:module document="m45319">
+        <col:featured-links>
+          
+            <cnxml:link-group type="supplemental">
+              <cnxml:link url="http://open-ephys.org/">open ephys</cnxml:link>
+            </cnxml:link-group>
+          
+        </col:featured-links>
+      </col:module>
+        
+      
+    
+    
+      <col:module document="m45320"/>
+        
+      
+    
+    
+      <col:module document="m45321"/>
+        
+      
+    
+    
+      <col:module document="m45322"/>
+        
+      
+    
+    
+      <col:module document="m45323"/>
+        
+      
+    
+    
+      <col:module document="m45325"/>
+        
+      
+    
+    
+      <col:module document="m45326"/>
+        
+      
+    
+    
+      <col:module document="m45329"/>
+        
+      
+    
+    
+      <col:module document="m45327"/>
+        
+      
+    
+    
+      <col:module document="m45318"/>
+        
+      
+    
+        </col:content>
+      </col:subcollection>
+    
+    
+      
+        
+      <col:subcollection>
+        <md:title>Robustness Analysis on DCT Watermarking Technique Under Compression Attack</md:title>
+        
+        
+        
+
+        <col:content>
+          
+    
+      <col:module document="m45406"/>
+        
+      
+    
+    
+      <col:module document="m45381"/>
+        
+      
+    
+    
+      <col:module document="m45407"/>
+        
+      
+    
+    
+      <col:module document="m45577"/>
+        
+      
+    
+    
+      <col:module document="m45578"/>
+        
+      
+    
+    
+      <col:module document="m45581"/>
+        
+      
+    
+    
+      <col:module document="m45579"/>
+        
+      
+    
+    
+      <col:module document="m45583"/>
+        
+      
+    
+    
+      <col:module document="m45580"/>
+        
+      
+    
+        </col:content>
+      </col:subcollection>
+    
+    
+      
+        
+      <col:subcollection>
+        <md:title>Smile Identification</md:title>
+        
+        
+        
+
+        <col:content>
+          
+    
+      <col:module document="m45397"/>
+        
+      
+    
+    
+      <col:module document="m45398"/>
+        
+      
+    
+    
+      <col:module document="m45395"/>
+        
+      
+    
+    
+      <col:module document="m45400">
+        <col:featured-links>
+          
+            <cnxml:link-group type="supplemental">
+              <cnxml:link url="https://github.com/dannyvolz/Facial-Detection-and-Expression-Analysis">Code and Images</cnxml:link>
+            </cnxml:link-group>
+          
+        </col:featured-links>
+      </col:module>
+        
+      
+    
+    
+      <col:module document="m45399"/>
+        
+      
+    
+    
+      <col:module document="m45401"/>
+        
+      
+    
+    
+      <col:module document="m45403"/>
+        
+      
+    
+    
+      <col:module document="m45404"/>
+        
+      
+    
+        </col:content>
+      </col:subcollection>
+    
+    
+      
+        
+      <col:subcollection>
+        <md:title>Sound Positioning System</md:title>
+        
+        
+        
+
+        <col:content>
+          
+    
+      <col:module document="m45331"/>
+        
+      
+    
+    
+      <col:module document="m45334"/>
+        
+      
+    
+    
+      <col:module document="m45332"/>
+        
+      
+    
+    
+      <col:module document="m45335"/>
+        
+      
+    
+    
+      <col:module document="m45333"/>
+        
+      
+    
+    
+      <col:module document="m45330"/>
+        
+      
+    
+        </col:content>
+      </col:subcollection>
+    
+  </col:content>
+</col:collection>

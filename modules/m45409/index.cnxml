@@ -1,0 +1,26 @@
+<document xmlns="http://cnx.rice.edu/cnxml">
+  <title>Introduction</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m45409</md:content-id>
+  <md:title>Introduction</md:title>
+  <md:abstract>Introduction to the Direction of Arrival Estimation beamforming ELEC 301 project</md:abstract>
+  <md:uuid>f356b1fe-5489-4532-9991-d11c3e5f1ac4</md:uuid>
+</metadata>
+
+<content>
+    <section id="import-auto-id1166112872768">
+      <title>Introduction</title>
+      <para id="import-auto-id1166114181555">Beamforming is a type of signal processing which uses sensor arrays to either transmit or receive signals in a certain direction. This directionality is accomplished by manipulating the phases at each sensor in the array so that constructive interference occurs at favored angles and destructive interference occurs elsewhere. Beamforming is most often used with sound or radio waves and it has numerous applications in areas such as RADAR, SONAR, wireless communications, and acoustics.</para>
+      <section id="import-auto-id6919098">
+        <title>Direction of Arrival Estimation</title>
+        <para id="import-auto-id1166112886964">Our specific application of beamforming is direction of arrival estimation. This process is described in detail in the module of that name, but it can be roughly summed up in a sentence as using a sensor array to determine at what angle, in relation to the center of the array, a propagating source exists. For our simulation we used a linear array of sensors along the x-axis and defined the phase center of the array as the point (0, 0). If there were an odd number of sensors the center sensor was on the origin, and if there were an even number the center was between the two central sensors. Here is a way to visualize the setup of our MATLAB simulation:</para>
+        <figure id="import-auto-id7235015">
+          <media id="import-auto-id1166112879019" alt="">
+            <image mime-type="image/jpg" src="../../media/Picture 1-c6fc.jpg" height="279" width="225"/>
+          </media>
+        </figure>
+        <para id="import-auto-id1166114032110">The goal is to find the angle <emphasis effect="italics">ϕ</emphasis>. It may be helpful to keep this image in mind as the techniques behind beamforming and direction of arrival are explained.</para>
+      </section>
+    </section>
+  </content>
+</document>

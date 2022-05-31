@@ -1,0 +1,25 @@
+<document xmlns="http://cnx.rice.edu/cnxml">
+  <title>The Team and References</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m45404</md:content-id>
+  <md:title>The Team and References</md:title>
+  <md:abstract/>
+  <md:uuid>5985b532-c040-4190-80ad-cf06fe2996e1</md:uuid>
+</metadata>
+
+<content>
+    <section id="import-auto-id1167326204567">
+      <title>The Team </title>
+      <para id="import-auto-id1167326333063">Daniel Volz and Amanda Meurer are Junior ECE students specializing in computer engineering. Justin DeVito is a Senior Chemical and Biomolecular Engineer. </para>
+    </section>
+    <section id="import-auto-id1167324871353">
+      <title>References</title>
+      <para id="import-auto-id1167326370706">[1] Chris Harris and Mike Stephens. A Combined Corner and Edge Detector. Technical report, Plessey Research, Roke Manor, United Kingdom, 1988. </para>
+      <para xmlns:fo="urn:oasis:names:tc:opendocument:xmlns:xsl-fo-compatible:1.0" id="import-auto-id1167324461380" fo:font-style="normal" fo:font-weight="normal">[2] Christina Lakka, Spiros Nikolopoulos, Christos Varytimidis, and Ioannis Kompatsiaris. A Bayesian network modeling approach for cross media analysis. Signal Processing: Image Communication, 26(3):175–193, March 2011. </para>
+      <para id="import-auto-id1167324443790">[3] Rainer Lienhart, Alexander Kuranov, Vadim Pisarevsky, and M R L Technical Report. Empirical Analysis of Detection Cascades of Boosted Classifiers for Rapid Object Detection. Technical report, Microprocessor Research Lab, Intel Labs, Santa Clara, 2002. </para>
+      <para id="import-auto-id1167326354364">[4] MathWorks. polyfit: Polynomial curve fitting, 2012. </para>
+      <para xmlns:fo="urn:oasis:names:tc:opendocument:xmlns:xsl-fo-compatible:1.0" id="import-auto-id1167326278908" fo:font-style="normal" fo:font-weight="normal">[5] Jianbo Shi and Carlo Tomasi. Good Features to Track. In Computer Vision and Pattern Recognition, pages 593–600, 1994. </para>
+      <para id="import-auto-id1167323843822">[6] Carlos Eduardo Thomaz. FEI Face Database. </para>
+    </section>
+  </content>
+</document>
